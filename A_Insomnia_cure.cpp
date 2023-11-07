@@ -1,4 +1,4 @@
-//"2023-10-18 21:28:03",
+//"2023-10-26 15:56:27",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/ujjwal-agrawal-9267b1253/
 // Codeforces: https://codeforces.com/profile/unerring_coder
@@ -47,11 +47,11 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> pi;
 typedef vector<int> vec;
-typedef vector<char> vec_ch;
+typedef vector<bool> vec_ch;
 typedef map<int,int> mp;
 typedef unordered_map<int,int> ump;
 typedef vector<vector<int>> dvec;
-typedef vector<pair<int,int>> vec_pair;
+typedef vector<pair<int,bool>> vec_pair;
 typedef vector<pair<int,pair<int,bool>>> vec_db_pr;
 typedef map<int,int> mp;
 typedef queue<int> q;
@@ -108,9 +108,26 @@ ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = 
 
 void solve()
 {
-    inint(x);
-    vec veci(x);
-    not done yet:
+    inint(k);
+    inint(l);
+    inint(m);
+    inint(n);
+    inint(d);
+    vec veci(d,true);
+    for(int i = 1;i<=d;i++){
+        if((i%k == 0 || i%l==0 || i%m == 0 || i%n == 0) && veci[i-1]){
+            veci[i-1] = false;
+        }
+    }
+
+    int x = 0;
+    rep(i,d){
+        if(veci[i] == false){
+            x++;
+        }
+    }
+
+    cout<<x<<endl;
     
 }
 
@@ -124,8 +141,8 @@ int32_t main()
     //God knows when to help you So Keep Giving up your effort bcoz 
     //when effort and help combine then such erra will come in Which you can't Imagine
     //              ☆*: .｡. o(≧▽≦)o .｡.:*☆
-    int t;
-    cin>>t;
+    int t = 1;
+    // cin>>t;
     while(t--)
     {
     solve();

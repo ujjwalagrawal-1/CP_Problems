@@ -1,4 +1,4 @@
-//"2023-10-18 21:28:03",
+//"2023-10-25 18:35:48",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/ujjwal-agrawal-9267b1253/
 // Codeforces: https://codeforces.com/profile/unerring_coder
@@ -108,10 +108,31 @@ ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = 
 
 void solve()
 {
-    inint(x);
-    vec veci(x);
-    not done yet:
-    
+    // instr(st);
+    string st;cin>>st;
+    int count = 0;
+    int flag = 0;
+    for(int i = 0;i<st.size();i++){
+        if(st[i] == '1'){
+            i++;
+            int x = count;
+            while(st[i] == '0' && i<st.size()){
+                if(i == st.size()-1){
+                    flag = 1;
+                    break;
+                }
+                count++;
+                i++;
+            }
+            if(flag == 1){
+                count = x;
+            }
+            i--;
+        }
+    }
+    cout<<count<<endl;
+
+
 }
 
 

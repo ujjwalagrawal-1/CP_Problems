@@ -1,4 +1,4 @@
-//"2023-10-18 21:28:03",
+//"2023-10-29 05:31:23",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/ujjwal-agrawal-9267b1253/
 // Codeforces: https://codeforces.com/profile/unerring_coder
@@ -14,6 +14,8 @@ using namespace std;
 #define IOtext freopen("input.txt","r",stdin); freopen("output.txt","w",stdout);
 #define Pai (3.141592653589)
 #define M 1000000007
+#define in(x) insert(x);
+#define re return
 #define pb push_back
 #define pp pop_back
 #define f first
@@ -57,6 +59,10 @@ typedef map<int,int> mp;
 typedef queue<int> q;
 typedef queue<pair<int,int>> doq;
 typedef vector<char> vch;
+typedef set<char> sc;
+typedef set<int> si;
+typedef set<ll> sl;
+typedef set<string> ss;
 
 #ifndef ONLINE_JUDGE
 #define debug(x) cerr<<#x<<" ";_print(x); cerr<<endl;
@@ -106,12 +112,37 @@ ll moduloMultiplication(ll a,ll b,ll mod){ll res = 0;a %= mod;while (b){if (b & 
 ll powermod(ll x, ll y, ll p){ll res = 1;x = x % p;if (x == 0) return 0;while (y > 0){if (y & 1)res = (res*x) % p;y = y>>1;x = (x*x) % p;}return res;}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 
-void solve()
+bool solve()
 {
+    mp sw;
     inint(x);
     vec veci(x);
-    not done yet:
-    
+    rep(i,x){
+        cin>>veci[i];
+        sw[veci[i]]++;
+    }
+    if(sw.size()>2){
+        re false;
+    }
+    if(sw.size() == 1){
+        re true;
+    }
+    if(sw.size() == 2){
+        int cnt1 = 0;
+        int cnt2 = 0;
+        for(auto itr:veci){
+            if(itr == veci[0]){
+                cnt1++;
+            }
+            else{
+                cnt2++;
+            }
+        }
+        if(abs(cnt2 - cnt1) <= 1){
+            re true;
+        }
+        re false;
+    }
 }
 
 
@@ -128,7 +159,12 @@ int32_t main()
     cin>>t;
     while(t--)
     {
-    solve();
+    if(solve()){
+        cy;
+    }
+    else{
+        cn;
+    }
     }
     return 0;
 }

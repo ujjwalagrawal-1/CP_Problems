@@ -1,4 +1,4 @@
-//"2023-10-18 21:28:03",
+//"2023-10-20 12:33:14",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/ujjwal-agrawal-9267b1253/
 // Codeforces: https://codeforces.com/profile/unerring_coder
@@ -110,8 +110,20 @@ void solve()
 {
     inint(x);
     vec veci(x);
-    not done yet:
-    
+    if(x%2 == 0){
+        for(int i = 1;i<=x;i++){
+            if(i%2 == 0){
+                veci[i-1] = i-1;
+                veci[i-2] = i;
+            }
+        }
+        cout<<veci;
+    }
+    else{
+        cout<<-1<<endl;
+    }
+
+
 }
 
 
@@ -124,8 +136,8 @@ int32_t main()
     //God knows when to help you So Keep Giving up your effort bcoz 
     //when effort and help combine then such erra will come in Which you can't Imagine
     //              ☆*: .｡. o(≧▽≦)o .｡.:*☆
-    int t;
-    cin>>t;
+    int t =1;
+    // cin>>t;
     while(t--)
     {
     solve();

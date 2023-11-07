@@ -1,4 +1,4 @@
-//"2023-10-18 21:28:03",
+//"2023-11-04 00:53:02",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/ujjwal-agrawal-9267b1253/
 // Codeforces: https://codeforces.com/profile/unerring_coder
@@ -14,6 +14,7 @@ using namespace std;
 #define IOtext freopen("input.txt","r",stdin); freopen("output.txt","w",stdout);
 #define Pai (3.141592653589)
 #define M 1000000007
+#define in(x) insert(x);
 #define pb push_back
 #define pp pop_back
 #define f first
@@ -57,6 +58,10 @@ typedef map<int,int> mp;
 typedef queue<int> q;
 typedef queue<pair<int,int>> doq;
 typedef vector<char> vch;
+typedef set<char> sc;
+typedef set<int> si;
+typedef set<ll> sl;
+typedef set<string> ss;
 
 #ifndef ONLINE_JUDGE
 #define debug(x) cerr<<#x<<" ";_print(x); cerr<<endl;
@@ -110,8 +115,22 @@ void solve()
 {
     inint(x);
     vec veci(x);
-    not done yet:
-    
+    cin>>veci;
+    int max = veci[0];
+    int min = veci[0];
+    int count = 0;
+    for(auto itr : veci){
+        if(itr == veci[0])C;
+        if(itr > max){
+            count++;
+            max = itr;
+        }
+        else if(itr < min){
+            count++;
+            min = itr;
+        }
+    }
+    cout<<count<<endl;
 }
 
 
@@ -124,8 +143,7 @@ int32_t main()
     //God knows when to help you So Keep Giving up your effort bcoz 
     //when effort and help combine then such erra will come in Which you can't Imagine
     //              ☆*: .｡. o(≧▽≦)o .｡.:*☆
-    int t;
-    cin>>t;
+    int t = 1;
     while(t--)
     {
     solve();

@@ -1,4 +1,4 @@
-//"2023-10-18 21:28:03",
+//"2023-10-20 08:37:44",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/ujjwal-agrawal-9267b1253/
 // Codeforces: https://codeforces.com/profile/unerring_coder
@@ -108,10 +108,31 @@ ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = 
 
 void solve()
 {
-    inint(x);
-    vec veci(x);
-    not done yet:
-    
+    inll(x);
+    inll(y);
+    int flag = 0;
+    int pn = 0;
+    for(int i = x+1;i<y+1;i++){
+        flag = 0;
+        for(int u = 2;u<i;u++){
+            if(i%u == 0){
+                flag +=  1;
+                // break;
+            }
+        }
+        // cout<<"flag is    "<<flag<<endl;
+        if(flag == 0){
+            //it is a prime Number;
+            pn = i;
+            break;
+        }
+    }
+    if(pn == y){
+        cy;
+    }
+    else{
+        cn;
+    }
 }
 
 
@@ -124,8 +145,8 @@ int32_t main()
     //God knows when to help you So Keep Giving up your effort bcoz 
     //when effort and help combine then such erra will come in Which you can't Imagine
     //              ☆*: .｡. o(≧▽≦)o .｡.:*☆
-    int t;
-    cin>>t;
+    int t = 1;
+    // cin>>t;
     while(t--)
     {
     solve();

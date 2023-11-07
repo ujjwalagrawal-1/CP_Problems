@@ -1,4 +1,4 @@
-//"2023-10-18 21:28:03",
+//"2023-11-02 18:51:14",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/ujjwal-agrawal-9267b1253/
 // Codeforces: https://codeforces.com/profile/unerring_coder
@@ -14,6 +14,7 @@ using namespace std;
 #define IOtext freopen("input.txt","r",stdin); freopen("output.txt","w",stdout);
 #define Pai (3.141592653589)
 #define M 1000000007
+#define in(x) insert(x);
 #define pb push_back
 #define pp pop_back
 #define f first
@@ -57,6 +58,10 @@ typedef map<int,int> mp;
 typedef queue<int> q;
 typedef queue<pair<int,int>> doq;
 typedef vector<char> vch;
+typedef set<char> sc;
+typedef set<int> si;
+typedef set<ll> sl;
+typedef set<string> ss;
 
 #ifndef ONLINE_JUDGE
 #define debug(x) cerr<<#x<<" ";_print(x); cerr<<endl;
@@ -106,12 +111,18 @@ ll moduloMultiplication(ll a,ll b,ll mod){ll res = 0;a %= mod;while (b){if (b & 
 ll powermod(ll x, ll y, ll p){ll res = 1;x = x % p;if (x == 0) return 0;while (y > 0){if (y & 1)res = (res*x) % p;y = y>>1;x = (x*x) % p;}return res;}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 
-void solve()
+int solve()
 {
+    int sumx = 0;int sumy = 0;
     inint(x);
-    vec veci(x);
-    not done yet:
-    
+    rep(i,x){
+    int y,z;
+    cin>>y>>z;
+    if(y == z){
+    }
+    }
+    // cout<<"Sumx is"<<sumx<<endl;
+    return sumx>sumy? sumy:sumx;
 }
 
 
@@ -124,11 +135,11 @@ int32_t main()
     //God knows when to help you So Keep Giving up your effort bcoz 
     //when effort and help combine then such erra will come in Which you can't Imagine
     //              ☆*: .｡. o(≧▽≦)o .｡.:*☆
-    int t;
-    cin>>t;
+    int t = 1;
     while(t--)
     {
-    solve();
+    cout<<solve()<<endl;
+    // solve();
     }
     return 0;
 }

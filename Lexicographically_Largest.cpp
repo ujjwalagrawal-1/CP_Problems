@@ -124,6 +124,7 @@ void solve()
             }   
         }
     }
+    not done yet
     cout<<vecb<<endl;
 }
 

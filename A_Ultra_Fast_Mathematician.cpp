@@ -1,4 +1,4 @@
-//"2023-10-18 21:28:03",
+//"2023-10-20 11:21:24",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/ujjwal-agrawal-9267b1253/
 // Codeforces: https://codeforces.com/profile/unerring_coder
@@ -74,7 +74,7 @@ void _print(double t) {cerr << t;}
 template<typename T> // cin >> vector<T>
 istream& operator>>(istream &istream, vector<T> &v){for (auto &it : v)cin >> it;return istream;}
 template<typename T> // cout << vector<T>
-ostream& operator<<(ostream &ostream, const vector<T> &c) { for (auto &it : c) cout << it << " "; return ostream; }
+ostream& operator<<(ostream &ostream, const vector<T> &c) { for (auto &it : c) cout << it; return ostream; }
 template<typename T, typename V> // cout << map<T,T>
 ostream& operator<<(ostream &ostream, const map<T,V> &c) { for (auto &it : c) cout << it.first << " " << it.second<<endl; return ostream; }
 
@@ -108,13 +108,22 @@ ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = 
 
 void solve()
 {
-    inint(x);
-    vec veci(x);
-    not done yet:
-    
+    instr(str1);
+    instr(str2);
+    int ans = 1;
+    int io = 0;
+    vec veci;
+    rep(i,str1.size()){
+        char fi = str1[i];
+        char se = str2[i];
+        int val = 1;
+        if(fi == se){
+            val = 0;
+        }
+        veci.push_back(val);
+    }
+    cout<<veci;
 }
-
-
 int32_t main()
 {
     bullet()
@@ -124,8 +133,7 @@ int32_t main()
     //God knows when to help you So Keep Giving up your effort bcoz 
     //when effort and help combine then such erra will come in Which you can't Imagine
     //              ☆*: .｡. o(≧▽≦)o .｡.:*☆
-    int t;
-    cin>>t;
+    int t = 1;
     while(t--)
     {
     solve();

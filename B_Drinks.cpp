@@ -1,4 +1,4 @@
-//"2023-10-04 17:19:24",
+//"2023-10-26 15:34:58",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/ujjwal-agrawal-9267b1253/
 // Codeforces: https://codeforces.com/profile/unerring_coder
@@ -108,17 +108,19 @@ ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = 
 
 void solve()
 {
-    inint(t);
-    vec veci(t);
-    cin>>veci;
-    // vector<float> veci2(t);
+    inint(x);
+    vec veci(x);
+    float y = x;
     float sum = 0;
-    foreach(i,0,t,1){
-        // veci2[i] = veci[i]/100;
-        sum += veci[i]/100;
+    rep(i,x){
+        cin>>veci[i];
+        sum += veci[i];
     }
-    sum /= t;
-    cout<<sum<<endl;
+    // cout<<"Sum is  "<<sum<<endl;
+    float t = sum/y;
+    // cout<<"t is  "<<t<<endl;
+    // float p = t/y * 100;
+    cout<<t<<endl;
 }
 
 
@@ -128,8 +130,9 @@ int32_t main()
     #ifndef ONLINE_JUDGE
         freopen("Error.txt","w",stderr);
     #endif
-    //Rating? Neh. In love with experience.
-    //Code Karlo, Coz KHNH :)
+    //God knows when to help you So Keep Giving up your effort bcoz 
+    //when effort and help combine then such erra will come in Which you can't Imagine
+    //              ☆*: .｡. o(≧▽≦)o .｡.:*☆
     int t = 1;
     while(t--)
     {
