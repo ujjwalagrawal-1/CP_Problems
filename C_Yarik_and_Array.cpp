@@ -1,4 +1,4 @@
-//"2023-10-25 18:35:48",
+//"2023-11-17 20:54:52",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/ujjwal-agrawal-9267b1253/
 // Codeforces: https://codeforces.com/profile/unerring_coder
@@ -14,6 +14,7 @@ using namespace std;
 #define IOtext freopen("input.txt","r",stdin); freopen("output.txt","w",stdout);
 #define Pai (3.141592653589)
 #define M 1000000007
+#define in(x) insert(x);
 #define pb push_back
 #define pp pop_back
 #define f first
@@ -57,6 +58,10 @@ typedef map<int,int> mp;
 typedef queue<int> q;
 typedef queue<pair<int,int>> doq;
 typedef vector<char> vch;
+typedef set<char> sc;
+typedef set<int> si;
+typedef set<ll> sl;
+typedef set<string> ss;
 
 #ifndef ONLINE_JUDGE
 #define debug(x) cerr<<#x<<" ";_print(x); cerr<<endl;
@@ -108,31 +113,30 @@ ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = 
 
 void solve()
 {
-    // instr(st);
-    string st;cin>>st;
-    int count = 0;
-    int flag = 0;
-    for(int i = 0;i<st.size();i++){
-        if(st[i] == '1'){
-            i++;
-            int x = count;
-            while(st[i] == '0' && i<st.size()){
-                if(i == st.size()-1){
-                    flag = 1;
-                    break;
-                }
-                count++;
-                i++;
-            }
-            if(flag == 1){
-                count = x;
-            }
-            i--;
-        }
-    }
-    cout<<count<<endl;
-
-
+    inll(x);
+    vec veci(x);
+    cin>>veci;
+    sort(all(veci));
+    // int  i = 0;
+    // int maxi = INT_MIN;
+    // while(i<x){
+    //     int sum = 0;
+    //     for(int j = veci[i];i<x;){
+    //         if(veci[i] == j){
+    //             sum += veci[i];
+    //             cout<<"sum is"<<sum<<endl;
+    //             j++;i++;
+    //         }
+    //         else{
+    //             cout<<"break"<<endl;
+    //             i--;
+    //             break;
+    //         }
+    //         maxi = max(maxi,sum);
+    //     }
+    //     i++;
+    // }
+    cout<<veci<<endl;
 }
 
 

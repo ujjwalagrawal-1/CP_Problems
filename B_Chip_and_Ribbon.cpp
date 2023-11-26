@@ -1,4 +1,4 @@
-//"2023-11-14 00:44:04",
+//"2023-11-24 20:40:37",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/ujjwal-agrawal-9267b1253/
 // Codeforces: https://codeforces.com/profile/unerring_coder
@@ -47,7 +47,7 @@ using namespace std;
 //Typedef
 typedef long long ll;
 typedef pair<int, int> pi;
-typedef vector<int> vec;
+typedef vector<long long> vec;
 typedef vector<char> vec_ch;
 typedef map<int,int> mp;
 typedef unordered_map<int,int> ump;
@@ -102,7 +102,7 @@ vector <bool> is_prime;
 
 // Mathematical functions
 void Sieve(int n){ is_prime.assign(n + 1, true); is_prime[0] = is_prime[1] = false; for(ll i = 2; i * i <= n; i++) if(is_prime[i]) for(ll j = i * i; j <= n; j += i) is_prime[j] = false;}
-void get_primes(int n){ for(int i = 2; i <= n; i++) if(is_prime[i])  primes.push_back(i); }
+void get_primes(int n){ for(int i = 2; i <= n; i++)  if(is_prime[i])  primes.push_back(i); }
 ll mod_add(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a + b) % m) + m) % m;}
 ll mod_sub(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a - b) % m) + m) % m;}
 ll gcd(ll a, ll b){if (b == 0)return a;return gcd(b, a % b);} //__gcd 
@@ -115,19 +115,15 @@ void solve()
 {
     inint(x);
     vec veci(x);
-    int sum = 0;
-    rep(i,x){
-        inint(y);
-        sum += y;
+    cin>>veci;
+    ll add = 0;
+    add = veci[0]-1;
+    for(int i = 1;i<x;i++){
+        if(veci[i]>veci[i-1]){
+            add += veci[i]-veci[i-1];
+        }
     }
-    x++;
-    int flag = 0;
-    for(int i = 1;i<6;i++){
-    if((sum+i)%(x) != 1){
-        flag++;
-    }
-    }
-    cout<<flag<<endl;
+    cout<<add<<endl;
 }
 
 
@@ -140,7 +136,8 @@ int32_t main()
     //God knows when to help you So Keep Giving up your effort bcoz 
     //when effort and help combine then such erra will come in Which you can't Imagine
     //              ☆*: .｡. o(≧▽≦)o .｡.:*☆
-    int t = 1;
+    int t;
+    cin>>t;
     while(t--)
     {
     solve();

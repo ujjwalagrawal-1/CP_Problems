@@ -1,4 +1,4 @@
-//"2023-11-14 00:44:04",
+//"2023-11-15 20:46:28",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/ujjwal-agrawal-9267b1253/
 // Codeforces: https://codeforces.com/profile/unerring_coder
@@ -102,7 +102,7 @@ vector <bool> is_prime;
 
 // Mathematical functions
 void Sieve(int n){ is_prime.assign(n + 1, true); is_prime[0] = is_prime[1] = false; for(ll i = 2; i * i <= n; i++) if(is_prime[i]) for(ll j = i * i; j <= n; j += i) is_prime[j] = false;}
-void get_primes(int n){ for(int i = 2; i <= n; i++) if(is_prime[i])  primes.push_back(i); }
+void get_primes(int n){ for(int i = 2; i <= n; i++)  if(is_prime[i])  primes.push_back(i); }
 ll mod_add(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a + b) % m) + m) % m;}
 ll mod_sub(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a - b) % m) + m) % m;}
 ll gcd(ll a, ll b){if (b == 0)return a;return gcd(b, a % b);} //__gcd 
@@ -113,21 +113,18 @@ ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = 
 
 void solve()
 {
+    inint(n);
     inint(x);
-    vec veci(x);
-    int sum = 0;
-    rep(i,x){
-        inint(y);
-        sum += y;
+    int t = 2*n;
+    int ur =  t - x;
+    int r = t - ur;
+    // cout<<abs(ur-r)<<endl;
+    if(ur >= r){
+        cout<<0<<endl;
     }
-    x++;
-    int flag = 0;
-    for(int i = 1;i<6;i++){
-    if((sum+i)%(x) != 1){
-        flag++;
+    else{
+        cout<<r - ur<<endl;
     }
-    }
-    cout<<flag<<endl;
 }
 
 
@@ -140,7 +137,8 @@ int32_t main()
     //God knows when to help you So Keep Giving up your effort bcoz 
     //when effort and help combine then such erra will come in Which you can't Imagine
     //              ☆*: .｡. o(≧▽≦)o .｡.:*☆
-    int t = 1;
+    int t;
+    cin>>t;
     while(t--)
     {
     solve();
