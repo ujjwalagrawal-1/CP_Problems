@@ -119,12 +119,12 @@ void solve()
     bool v = false;
     rep(i,x) {
         if(s[i] == 'a' || s[i] == 'e') {
-            ans += s[i];
-            v = true;
+        ans += s[i];
+        v = true;
             if(i + 2 < x && (s[i+2] == 'a' || s[i+2] == 'e')) {
                 v = false;
                 ans += '.';
-            }
+        }
         }
         else {
             ans += s[i];
