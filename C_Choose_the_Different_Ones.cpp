@@ -1,4 +1,4 @@
-//"2024-01-24 20:12:52",
+//"2024-02-06 20:51:02",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -110,26 +110,80 @@ ll lcm(ll a, ll b){return (a/gcd(a,b)*b);}
 ll moduloMultiplication(ll a,ll b,ll mod){ll res = 0;a %= mod;while (b){if (b & 1)res = (res + a) % mod;b >>= 1;}return res;}
 ll powermod(ll x, ll y, ll p){ll res = 1;x = x % p;if (x == 0) return 0;while (y > 0){if (y & 1)res = (res*x) % p;y = y>>1;x = (x*x) % p;}return res;}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
+vector<int> removeDuplicates(vector<int> &arr) {
+    unordered_set<int> seen;
+    vector<int> result;
 
-void solve()
-{
-    inint(n);
-    inint(m);
-    vec v(n);
-    cin>>v;
-    int prefix_sum=0;
-    int count=0;
-    for(int i=0;i<n;i++){
-        prefix_sum+=v[i];
-        if(prefix_sum>=m){
-            count++;
-            prefix_sum=0;
+    for (int num : arr) {
+        if (seen.find(num) == seen.end()) {
+            result.push_back(num);
+            seen.insert(num);
         }
     }
-    cout<<count<<endl;
 
-    
+    sort(all(result));
+    return result;
 }
+void solve()
+{
+    inint(x);
+    inint(y);
+    inint(k);
+    vec a(x);
+    vec b(y);
+    cin>>a;
+    cin>>b;
+    vec na = removeDuplicates(a);
+    vec nb = removeDuplicates(b);
+    map<int,string>hash;
+    int cnt = 1;
+    while(cnt!=k+1){
+        int c = binary_search(na.begin(), na.end(), cnt);
+        if(c){
+        hash[cnt] += 'a';
+        }
+        cnt++;
+    }
+    cnt  = 1;
+    while(cnt!=k+1){
+        int c = binary_search(nb.begin(), nb.end(), cnt);
+        if(c){
+        hash[cnt] += 'b';
+        }
+        cnt++;
+    }
+    int cnta = 0,cntb = 0,t = 0;
+    for(auto itr:hash){
+        if(itr.second.size()>=2){
+           cnta++;cntb++;
+        }
+        else if(itr.second == "a"){
+            cnta++;
+        }
+        else if(itr.second == "b"){
+            cntb++;
+        }
+    }
+    // out(t);
+    if(cnta >= k/2 && cntb >= k/2){
+        if(hash.size() != k){
+            cn;
+        }
+        else{
+           cy;
+        }
+    }
+    else{
+        cn;
+    }
+    // else if(cnta  ==  k/2 && cntb ==  k/2){
+    //     cy;
+    // }
+
+    // else if()
+
+
+};
 
 
 int32_t main()
@@ -144,7 +198,9 @@ int32_t main()
     cin>>t;
     while(t--)
     {
+    // cout<<"1"<<" ";
     solve();
+    // cout<<endl;
     }
     return 0;
 }

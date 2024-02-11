@@ -1,4 +1,4 @@
-//"2024-01-24 20:12:52",
+//"2024-01-18 20:13:19",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -111,24 +111,20 @@ ll moduloMultiplication(ll a,ll b,ll mod){ll res = 0;a %= mod;while (b){if (b & 
 ll powermod(ll x, ll y, ll p){ll res = 1;x = x % p;if (x == 0) return 0;while (y > 0){if (y & 1)res = (res*x) % p;y = y>>1;x = (x*x) % p;}return res;}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 
-void solve()
+bool solve()
 {
-    inint(n);
-    inint(m);
-    vec v(n);
-    cin>>v;
-    int prefix_sum=0;
-    int count=0;
-    for(int i=0;i<n;i++){
-        prefix_sum+=v[i];
-        if(prefix_sum>=m){
-            count++;
-            prefix_sum=0;
-        }
-    }
-    cout<<count<<endl;
+        inint(x);
+        instr(a);
+        instr(b);
+        instr(c);
 
-    
+        rep(i,x){
+            if(a[i] != c[i] && b[i] != c[i]){
+                return 1;
+            }
+        }
+        return 0;
+        
 }
 
 
@@ -144,7 +140,13 @@ int32_t main()
     cin>>t;
     while(t--)
     {
-    solve();
+    bool a = solve();
+    if(a){
+        cy;
+    }
+    else{
+        cn;
+    }
     }
     return 0;
 }

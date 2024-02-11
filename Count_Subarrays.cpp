@@ -1,4 +1,4 @@
-//"2024-01-24 20:12:52",
+//"2024-02-07 20:55:32",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -55,7 +55,7 @@ typedef vector<vector<int>> dvec;
 typedef vector<pair<int,int>> vec_pair;
 typedef vector<pair<int,pair<int,bool>>> vec_db_pr;
 typedef map<int,int> mp;
-typedef queue<int> q;
+typedef queue<int> q;`
 typedef queue<pair<int,int>> doq;
 typedef vector<char> vch;
 typedef set<char> sc;
@@ -113,23 +113,23 @@ ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = 
 
 void solve()
 {
-    inint(n);
-    inint(m);
-    vec v(n);
-    cin>>v;
-    int prefix_sum=0;
-    int count=0;
-    for(int i=0;i<n;i++){
-        prefix_sum+=v[i];
-        if(prefix_sum>=m){
-            count++;
-            prefix_sum=0;
-        }
-    }
-    cout<<count<<endl;
+    int n;cin>>n;
+	unordered_map<int,int>m;
+	vector<int>v(n);
+	for(int i=0;i<n;i++)cin>>v[i];
+	for(int i=0;i<n;i++){
+	    int sum=0;
+	    for(int j=i;j<n;j++){
+	        sum+=v[j];
+	        if(sum<=n){m[sum]++;}
+	        else break;
+	    }
+	}
+    for(int i=1;i<=n;i++)cout<<m[i]<<" ";
+    cout<<endl;
 
-    
 }
+
 
 
 int32_t main()

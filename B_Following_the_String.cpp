@@ -1,4 +1,4 @@
-//"2024-01-24 20:12:52",
+//"2024-02-06 20:26:32",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -113,22 +113,37 @@ ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = 
 
 void solve()
 {
-    inint(n);
-    inint(m);
-    vec v(n);
-    cin>>v;
-    int prefix_sum=0;
-    int count=0;
-    for(int i=0;i<n;i++){
-        prefix_sum+=v[i];
-        if(prefix_sum>=m){
-            count++;
-            prefix_sum=0;
+    inint(x);
+    vec veci(x); 
+    cin>>veci;
+    // map<char,int> h;
+    string a;
+    vec b;
+    int i = 0;
+    char ch = 'a'+i;
+    string ans = "";
+    for(auto itr:veci){
+        ch = 'a'+i;
+        int ele = itr;
+        if(ele == 0){
+            ans += ch;
+            a += ch;
+            b.pb(1);
+            i++;
+        }
+        else{
+            int fl = 0;
+            rep(i,b.size()){
+                if(b[i] == ele){
+                    ans += a[i];
+                    b[i]++;
+                    fl = 1;
+                    break;
+                }
+            }
         }
     }
-    cout<<count<<endl;
-
-    
+    cout<<ans<<endl;
 }
 
 

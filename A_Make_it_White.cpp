@@ -1,4 +1,4 @@
-//"2024-01-24 20:12:52",
+//"2024-02-06 20:16:55",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -113,22 +113,28 @@ ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = 
 
 void solve()
 {
-    inint(n);
-    inint(m);
-    vec v(n);
-    cin>>v;
-    int prefix_sum=0;
-    int count=0;
-    for(int i=0;i<n;i++){
-        prefix_sum+=v[i];
-        if(prefix_sum>=m){
-            count++;
-            prefix_sum=0;
+    inint(x);
+    instr(st);
+    int mini = INT_MAX;
+    int last = 0;int k = x-1;
+    int fi = 0;int i = 0;
+    while(1){
+        if(st[k] == 'B'){
+            break;
+        }
+        else{
+            k--;
         }
     }
-    cout<<count<<endl;
-
-    
+    while(1){
+        if(st[i] == 'B'){
+            break;
+        }
+        else{
+            i++;
+        }
+    }
+    cout<<k-i+1<<endl;
 }
 
 
