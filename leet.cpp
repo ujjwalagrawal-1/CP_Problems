@@ -1,4 +1,4 @@
-//"2024-04-07 08:25:55",
+//"2024-04-13 21:00:33",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -6,6 +6,9 @@
 
 #include <bits/stdc++.h>
 using namespace std;
+
+//Speed
+#define bullet() ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
 
 //Macros
 #define IOtext freopen("input.txt","r",stdin); freopen("output.txt","w",stdout);
@@ -111,55 +114,32 @@ ll powermod(ll x, ll y, ll p){ll res = 1;x = x % p;if (x == 0) return 0;while (y
 bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
-class Solution {
-public:
-    long long minOperationsToMakeMedianK(vector<int>& nums, int k) {
-        unordered_map<int,int> mp;
-        int val = 0;
-        int maxi =INT_MIN ;
-        for(auto itr:nums){
-            mp[itr]++;
-            maxi = max(maxi,mp[itr]);
+int numberOfSubarrays(vector<int>& coins,int k) {
+    int ele = MAX(coins);
+    vector<bool> si(ele);
+    rep(i,sz(coins)){
+        int l = 1;
+        for(int j = coins[i];j <= ele ; j *= l){
+            si[j] = true;
+            cout<<j<<endl;
+            l++;
         }
-        if(mp.count(k) && mp[k] == maxi){
-            return 0;
-        }
-        int  want = 0;
-        if(!mp.count(k)){
-            want = maxi + 1;
-        }
-        if(mp.count(k)){
-            want = maxi - mp[k] + 1;
-        }
-        vec veci;
-        for(auto itr:mp){
-            veci.push_back(itr.s);
-        }
-        ll ans  =0;
-        feach(i,1,100000,1){
-            int a = k-i;
-            int b = k+i;
-            if(mp.count(a)){
-                int need = min(want , mp[a]);
-                ans += i*need;
-                if(need == want){
-                    return ans;
-                }
-                else{
-                    want -= mp[a];
-                }
-            }
-            if(mp.count(b)){
-                int need = min(want , mp[b]);
-                ans += i*need;
-                if(need == want){
-                    return ans;
-                }
-                else{
-                    want -= mp[b];
-                }
-            }
-        }
-        return  -1;
+        cy;
     }
-};
+    int p = 1;
+    while(k){
+        if(si[p] == true){
+            k--;
+        }
+        p++;
+    }
+    return p;
+}
+
+    int main(){
+        inint(x);
+        vector<int> veci(x);
+        cin>>veci;
+        inint(k);
+        cout<<numberOfSubarrays(veci,k)<<endl;
+    }

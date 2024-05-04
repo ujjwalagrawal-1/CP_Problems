@@ -1,21 +1,24 @@
-//"2024-04-07 08:25:55",
-// Author Ujjwal_Agrawal
-// Linkedin:  https://www.linkedin.com/in/uj7b1253/
-// Codeforces: https://codeforces.com/profile/n_________er
-// Codechef: https://www.codechef.com/users/kgr
+// Date time
+// Author Keert_Agrawal
+// Linkedin:  https://www.linkedin.com/in//
+// Codeforces: https://codeforces.com/profile/
+// Codechef: https://www.codechef.com/users/
 
 #include <bits/stdc++.h>
 using namespace std;
 
+//Speed
+#define goli() ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);  // Not to be touched  100% beats iske karan ayengaa hamesha
+
 //Macros
 #define IOtext freopen("input.txt","r",stdin); freopen("output.txt","w",stdout);
-#define Pai (3.141592653589)
-#define M 1000000007
-#define in(x) insert(x);
+#define py (3.141592653589)
+#define M 1000000007 
+#define ins(x) insert(x);
 #define pb push_back
 #define pp pop_back
-#define f first
-#define s second
+#define f1 first
+#define s2 second
 #define feach(i, j, k, in) for(int i=j;i<k;i+=in)
 #define rfeach(i, j, k, in) for(int i=j;i>=k;i-=in)
 #define rep(i,j) feach(i,0,j,1)
@@ -95,71 +98,38 @@ bool isPrime(ll n){if(n<=1)return false;if(n<=3)return true;if(n%2==0||n%3==0)re
 bool isPowerOfTwo(int n){if(n==0)return false;return (ceil(log2(n)) == floor(log2(n)));}
 bool isPerfectSquare(ll x){if (x >= 0) {ll sr = sqrt(x);return (sr * sr == x);}return false;}
 
-//Constants
-vector <ll> primes;
-vector <bool> is_prime;
+// //Constants
+// vector <ll> primes;
+// vector <bool> is_prime;
 
-// Mathematical functions
-void Sieve(int n){ is_prime.assign(n + 1, true); is_prime[0] = is_prime[1] = false; for(ll i = 2; i * i <= n; i++) if(is_prime[i]) for(ll j = i * i; j <= n; j += i) is_prime[j] = false;}
-void get_primes(int n){ for(int i = 2; i <= n; i++)  if(is_prime[i])  primes.push_back(i); }
-ll mod_add(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a + b) % m) + m) % m;}
-ll mod_sub(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a - b) % m) + m) % m;}
+// // Mathematical functions
+// void Sieve(int n){ is_prime.assign(n + 1, true); is_prime[0] = is_prime[1] = false; for(ll i = 2; i * i <= n; i++) if(is_prime[i]) for(ll j = i * i; j <= n; j += i) is_prime[j] = false;}
+// void get_primes(int n){ for(int i = 2; i <= n; i++)  if(is_prime[i])  primes.push_back(i); }
 ll gcd(ll a, ll b){if (b == 0)return a;return gcd(b, a % b);} //__gcd 
 ll lcm(ll a, ll b){return (a/gcd(a,b)*b);}
-ll moduloMultiplication(ll a,ll b,ll mod){ll res = 0;a %= mod;while (b){if (b & 1)res = (res + a) % mod;b >>= 1;}return res;}
-ll powermod(ll x, ll y, ll p){ll res = 1;x = x % p;if (x == 0) return 0;while (y > 0){if (y & 1)res = (res*x) % p;y = y>>1;x = (x*x) % p;}return res;}
-bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
-ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
-ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
-class Solution {
-public:
-    long long minOperationsToMakeMedianK(vector<int>& nums, int k) {
-        unordered_map<int,int> mp;
-        int val = 0;
-        int maxi =INT_MIN ;
-        for(auto itr:nums){
-            mp[itr]++;
-            maxi = max(maxi,mp[itr]);
-        }
-        if(mp.count(k) && mp[k] == maxi){
-            return 0;
-        }
-        int  want = 0;
-        if(!mp.count(k)){
-            want = maxi + 1;
-        }
-        if(mp.count(k)){
-            want = maxi - mp[k] + 1;
-        }
-        vec veci;
-        for(auto itr:mp){
-            veci.push_back(itr.s);
-        }
-        ll ans  =0;
-        feach(i,1,100000,1){
-            int a = k-i;
-            int b = k+i;
-            if(mp.count(a)){
-                int need = min(want , mp[a]);
-                ans += i*need;
-                if(need == want){
-                    return ans;
-                }
-                else{
-                    want -= mp[a];
-                }
-            }
-            if(mp.count(b)){
-                int need = min(want , mp[b]);
-                ans += i*need;
-                if(need == want){
-                    return ans;
-                }
-                else{
-                    want -= mp[b];
-                }
-            }
-        }
-        return  -1;
+
+void solve()
+{
+    int x = 2,ans = 0;
+    for(int i = 0;i<x;i++){
+        ans+=1;
     }
-};
+    out(ans);
+}   
+
+
+int32_t main()
+{
+    goli()
+    #ifndef ONLINE_JUDGE
+        freopen("Error.txt","w",stderr);
+    #endif
+
+    int t = 1;
+    // cin>>t;
+    while(t--)
+    {
+    solve();
+    }
+    return 0;
+}

@@ -1,4 +1,4 @@
-//"2024-04-07 08:25:55",
+//"2024-04-27 16:50:11",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -6,6 +6,9 @@
 
 #include <bits/stdc++.h>
 using namespace std;
+
+//Speed
+#define bullet() ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
 
 //Macros
 #define IOtext freopen("input.txt","r",stdin); freopen("output.txt","w",stdout);
@@ -111,55 +114,53 @@ ll powermod(ll x, ll y, ll p){ll res = 1;x = x % p;if (x == 0) return 0;while (y
 bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
-class Solution {
-public:
-    long long minOperationsToMakeMedianK(vector<int>& nums, int k) {
-        unordered_map<int,int> mp;
-        int val = 0;
-        int maxi =INT_MIN ;
-        for(auto itr:nums){
-            mp[itr]++;
-            maxi = max(maxi,mp[itr]);
+void solve()
+{
+    instr(st);
+    int c1 = COUNT(st,'1');
+    int c0 = COUNT(st,'0');
+    int ans = 0;
+    rep(i,sz(st)){
+        if(c0 < 0 || c1 < 0){
+            ans = max(c0,c1);
+            out(ans);
+            return;
         }
-        if(mp.count(k) && mp[k] == maxi){
-            return 0;
-        }
-        int  want = 0;
-        if(!mp.count(k)){
-            want = maxi + 1;
-        }
-        if(mp.count(k)){
-            want = maxi - mp[k] + 1;
-        }
-        vec veci;
-        for(auto itr:mp){
-            veci.push_back(itr.s);
-        }
-        ll ans  =0;
-        feach(i,1,100000,1){
-            int a = k-i;
-            int b = k+i;
-            if(mp.count(a)){
-                int need = min(want , mp[a]);
-                ans += i*need;
-                if(need == want){
-                    return ans;
-                }
-                else{
-                    want -= mp[a];
-                }
+        else{
+            if(st[i] == '0'){
+                c1--;
             }
-            if(mp.count(b)){
-                int need = min(want , mp[b]);
-                ans += i*need;
-                if(need == want){
-                    return ans;
-                }
-                else{
-                    want -= mp[b];
-                }
+            else{
+                c0--;
             }
         }
-        return  -1;
     }
-};
+    if(c0 < 0 || c1 < 0){
+            ans = max(c0,c1);
+    }
+    out(ans);
+}
+
+
+int32_t main()
+{
+    bullet()
+    #ifndef ONLINE_JUDGE
+        freopen("Error.txt","w",stderr);
+    #endif
+        /*
+    ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्।
+    उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय माऽमृतात्॥
+    
+    ॐ भूर्भुवः स्वः। तत्सवितुर्वरेण्यं॥
+    भर्गो देवस्यः धीमहि। धियो यो नः प्रचोदयात्॥
+    */
+
+    int t = 1;
+    cin>>t;
+    while(t--)
+    {
+    solve();
+    }
+    return 0;
+}
