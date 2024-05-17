@@ -1,8 +1,8 @@
-//"2023-10-06 03:48:39",
+//"2024-05-10 20:21:51",
 // Author Ujjwal_Agrawal
-// Linkedin:  https://www.linkedin.com/in/ujjwal-agrawal-9267b1253/
-// Codeforces: https://codeforces.com/profile/unerring_coder
-// Codechef: https://www.codechef.com/users/kumarujjwalagr
+// Linkedin:  https://www.linkedin.com/in/uj7b1253/
+// Codeforces: https://codeforces.com/profile/n_________er
+// Codechef: https://www.codechef.com/users/kgr
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -14,14 +14,15 @@ using namespace std;
 #define IOtext freopen("input.txt","r",stdin); freopen("output.txt","w",stdout);
 #define Pai (3.141592653589)
 #define M 1000000007
+#define in(x) insert(x);
 #define pb push_back
 #define pp pop_back
 #define f first
 #define s second
-#define foreach(i, j, k, in) for(int i=j;i<k;i+=in)
-#define rforeach(i, j, k, in) for(int i=j;i>=k;i-=in)
-#define rep(i,j) foreach(i,0,j,1)
-#define rrep(i,j) rforeach(i,j,0,1)
+#define feach(i, j, k, in) for(int i=j;i<k;i+=in)
+#define rfeach(i, j, k, in) for(int i=j;i>=k;i-=in)
+#define rep(i,j) feach(i,0,j,1)
+#define rrep(i,j) rfeach(i,j,0,1)
 #define set_bits(x) __builtin_popcountll(x)
 #define zero_bits(x) __builtin_ctzll(x)
 #define sz(s) (int)(s.size())
@@ -42,21 +43,27 @@ using namespace std;
 #define cn cout<<"NO"<<endl
 #define cm cout<<"-1"<<endl
 #define ps(x,y) fixed<<setprecision(y)<<x
+#define rtn return;
+
+int powint(int base, int exponent) {int result = 1;for (int i = 0; i < exponent; i++) {result *= base;}return result;}
 
 //Typedef
 typedef long long ll;
-typedef pair<int, int> pi;
-typedef vector<int> vec;
+typedef pair<ll, ll> pi;
+typedef vector<ll> vec;
 typedef vector<char> vec_ch;
-typedef map<int,int> mp;
+typedef map<ll,ll> mp;
 typedef unordered_map<int,int> ump;
-typedef vector<vector<int>> dvec;
-typedef vector<pair<int,int>> vec_pair;
-typedef vector<pair<int,pair<int,bool>>> vec_db_pr;
-typedef map<int,int> mp;
-typedef queue<int> q;
-typedef queue<pair<int,int>> doq;
+typedef vector<vector<ll>> dvec;
+typedef vector<pair<ll,ll>> vec_pair;
+typedef vector<pair<ll,pair<ll,bool>>> vec_db_pr;
+typedef queue<ll> q;
+typedef queue<pair<ll,ll>> doq;
 typedef vector<char> vch;
+typedef set<char> sc;
+typedef set<int> si;
+typedef set<ll> sl;
+typedef set<string> ss;
 
 #ifndef ONLINE_JUDGE
 #define debug(x) cerr<<#x<<" ";_print(x); cerr<<endl;
@@ -64,11 +71,7 @@ typedef vector<char> vch;
 #define debug(x)
 #endif
 
-void _print(ll t) {cerr << t;}
-void _print(int t) {cerr << t;}
-void _print(string t) {cerr << t;}
-void _print(char t) {cerr << t;}
-void _print(double t) {cerr << t;}
+void _print(ll t) {cerr << t;};void _print(int t) {cerr << t;};void _print(string t) {cerr << t;};void _print(char t) {cerr << t;};void _print(double t) {cerr << t;};
 
 // Operator overloads
 template<typename T> // cin >> vector<T>
@@ -78,9 +81,9 @@ ostream& operator<<(ostream &ostream, const vector<T> &c) { for (auto &it : c) c
 template<typename T, typename V> // cout << map<T,T>
 ostream& operator<<(ostream &ostream, const map<T,V> &c) { for (auto &it : c) cout << it.first << " " << it.second<<endl; return ostream; }
 
-//Sortinga
-bool sorta(const pair<int,int> &a,const pair<int,int> &b){return (a.second < b.second);}
-bool sortd(const pair<int,int> &a,const pair<int,int> &b){return (a.second > b.second);}
+//Sorting
+bool sorta(const pair<int,int> &a,const pair<int,int> &b){return (a.second < b.second);};
+bool sortd(const pair<int,int> &a,const pair<int,int> &b){return (a.second > b.second);};
 
 //Bits
 string decToBinary(int n){string s="";int i = 0;while (n > 0) {s =to_string(n % 2)+s;n = n / 2;i++;}return s;}
@@ -104,60 +107,9 @@ ll gcd(ll a, ll b){if (b == 0)return a;return gcd(b, a % b);} //__gcd
 ll lcm(ll a, ll b){return (a/gcd(a,b)*b);}
 ll moduloMultiplication(ll a,ll b,ll mod){ll res = 0;a %= mod;while (b){if (b & 1)res = (res + a) % mod;b >>= 1;}return res;}
 ll powermod(ll x, ll y, ll p){ll res = 1;x = x % p;if (x == 0) return 0;while (y > 0){if (y & 1)res = (res*x) % p;y = y>>1;x = (x*x) % p;}return res;}
+bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
-
-void solve()
-{
-    dvec veci(3,vec(3));
-    cin>>veci;
-    dvec vecx(3,vec(3,1));
-    for (int i = 0; i <3; i++)
-    {
-      for (int j = 0; j <3; j++)
-      {
-          if(veci[i][j]%2 == 1){		
-            	vecx[i][j] = vecx[i][j] ? 0:1;
-            	if(i>0){
-                	vecx[i-1][j] = vecx[i-1][j] ? 0:1;		
-            	}
-            	if(j>0){
-                	vecx[i][j-1] = vecx[i][j-1] ? 0:1;		
-            	}
-            	if(i<2){
-                	vecx[i+1][j] = vecx[i+1][j]  ? 0:1;		
-            	}
-            	if(j<2){
-                	vecx[i][j+1] = vecx[i][j+1]  ? 0:1;	
-            	}
-        	}
-      }
-    }
-
-     for(int i = 0;i<3;i++){
-        for(int j = 0;j<3;j++){
-            cout<<vecx[i][j];
-        }
-        cout<<endl;
-    }
-
-}
+ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 
 
 
-int32_t main()
-{
-    bullet()
-    #ifndef ONLINE_JUDGE
-        freopen("Error.txt","w",stderr);
-    #endif
-    //God knows when to help you So Keep Giving up your effort bcoz 
-    //when effort and help combine then such erra will come in Which you can't Imagine
-    //              ☆*: .｡. o(≧▽≦)o .｡.:*☆
-    int t = 1;
-    // cin>>t;
-    while(t--)
-    {
-    solve();
-    }
-    return 0;
-}
