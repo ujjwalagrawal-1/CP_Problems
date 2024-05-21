@@ -1,4 +1,4 @@
-//"2024-03-03 22:22:28",
+//"2024-05-17 19:50:00",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -17,8 +17,8 @@ using namespace std;
 #define in(x) insert(x);
 #define pb push_back
 #define pp pop_back
-#define f first
-#define s second
+#define fir first
+#define sec second
 #define feach(i, j, k, in) for(int i=j;i<k;i+=in)
 #define rfeach(i, j, k, in) for(int i=j;i>=k;i-=in)
 #define rep(i,j) feach(i,0,j,1)
@@ -49,17 +49,16 @@ int powint(int base, int exponent) {int result = 1;for (int i = 0; i < exponent;
 
 //Typedef
 typedef long long ll;
-typedef pair<int, int> pi;
-typedef vector<int> vec;
+typedef pair<ll, ll> pi;
+typedef vector<ll> vec;
 typedef vector<char> vec_ch;
-typedef map<int,int> mp;
+typedef map<ll,ll> mp;
 typedef unordered_map<int,int> ump;
-typedef vector<vector<int>> dvec;
-typedef vector<pair<int,int>> vec_pair;
-typedef vector<pair<int,pair<int,bool>>> vec_db_pr;
-typedef map<int,int> mp;
-typedef queue<int> q;
-typedef queue<pair<int,int>> doq;
+typedef vector<vector<ll>> dvec;
+typedef vector<pair<ll,ll>> vec_pair;
+typedef vector<pair<ll,pair<ll,bool>>> vec_db_pr;
+typedef queue<ll> q;
+typedef queue<pair<ll,ll>> doq;
 typedef vector<char> vch;
 typedef set<char> sc;
 typedef set<int> si;
@@ -114,9 +113,16 @@ ll moduloMultiplication(ll a,ll b,ll mod){ll res = 0;a %= mod;while (b){if (b & 
 ll powermod(ll x, ll y, ll p){ll res = 1;x = x % p;if (x == 0) return 0;while (y > 0){if (y & 1)res = (res*x) % p;y = y>>1;x = (x*x) % p;}return res;}
 bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
+ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 void solve()
 {
     // code -->
+    inll(x);
+    vec veci(x);
+    cin>>veci;
+    sort(all(veci));
+    ll ans = veci[x-1]*2 + veci[x-2]*2 - veci[0]*2 - veci[1]*2;
+    out(ans); 
 }   
 
 

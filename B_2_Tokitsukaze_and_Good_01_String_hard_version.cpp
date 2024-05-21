@@ -1,4 +1,4 @@
-//"2024-05-17 19:53:59",
+//"2024-05-18 01:39:11",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -114,37 +114,24 @@ ll powermod(ll x, ll y, ll p){ll res = 1;x = x % p;if (x == 0) return 0;while (y
 bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
-ll f(ll x,vec &veci,ll i){
-    if(i < 0){
-        if(x == 0)
-        return 0;
-        else
-        return INT_MAX;
+int f(vec veci,int z,int o,ll ct,ll i){
+    if(i >= sz(veci)-1){
+        if(veci[i] == 0){
+            z++;
+        }
+        if(veci[i] == 1){
+            o++;
+        }
+        if(v)
     }
-    if(x < 0){
-        return INT_MAX;
-    }
-    if(x == 0){
-        return 0;
-    }
-    
-
-    ll a,b;
-
-    a = f(x-veci[i],veci,i) + 1;
-    b = f(x,veci,i-1);
-
-    return min(a,b);
-
-
 }
 void solve()
 {
     // code -->
     inll(x);
-    vec veci{1,3,6,10,15};
-    ll ans = f(x,veci,0);
-    out(ans);
+    vec veci(x);cin>>veci;
+    ll ct = 0;
+    f(veci,0,0,ct,0);
 }   
 
 

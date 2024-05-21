@@ -1,4 +1,4 @@
-//"2024-05-17 19:53:59",
+//"2024-05-20 19:25:29",
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -43,24 +43,23 @@ using namespace std;
 #define cn cout<<"NO"<<endl
 #define cm cout<<"-1"<<endl
 #define ps(x,y) fixed<<setprecision(y)<<x
-#define rtn return;
+#define rtn return
 
 int powint(int base, int exponent) {int result = 1;for (int i = 0; i < exponent; i++) {result *= base;}return result;}
 
 //Typedef
 typedef long long ll;
-typedef pair<ll, ll> pi;
-typedef vector<ll> vec;
-typedef vector<char> vec_ch;
-typedef map<ll,ll> mp;
-typedef unordered_map<int,int> ump;
-typedef vector<vector<ll>> dvec;
-typedef vector<pair<ll,ll>> vec_pair;
-typedef vector<pair<ll,pair<ll,bool>>> vec_db_pr;
-typedef queue<ll> q;
-typedef queue<pair<ll,ll>> doq;
+typedef pair<ll, ll> pil;typedef pair<int, int> pi;
+typedef vector<ll> vecl;typedef vector<int> vec;
+typedef map<ll,ll> mpl;typedef map<int,int> mp;
+typedef unordered_map<ll,ll> umpl;typedef unordered_map<int,int> ump;
+typedef vector<vector<ll>> dvecl;typedef vector<vector<int>> dvec;
+typedef vector<pair<ll,ll>> vec_pairl;typedef vector<pair<ll,ll>> vec_pairl;
+typedef vector<pair<ll,pair<ll,bool>>> vecdbplb;typedef vector<pair<int,pair<int,bool>>> vecdbpb;
+typedef queue<ll> ql;
+typedef queue<pair<ll,ll>> qpl;
 typedef vector<char> vch;
-typedef set<char> sc;
+typedef set<char> sch;
 typedef set<int> si;
 typedef set<ll> sl;
 typedef set<string> ss;
@@ -114,37 +113,31 @@ ll powermod(ll x, ll y, ll p){ll res = 1;x = x % p;if (x == 0) return 0;while (y
 bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
-ll f(ll x,vec &veci,ll i){
-    if(i < 0){
-        if(x == 0)
-        return 0;
-        else
-        return INT_MAX;
-    }
-    if(x < 0){
-        return INT_MAX;
-    }
-    if(x == 0){
-        return 0;
-    }
-    
-
-    ll a,b;
-
-    a = f(x-veci[i],veci,i) + 1;
-    b = f(x,veci,i-1);
-
-    return min(a,b);
-
-
-}
 void solve()
 {
     // code -->
-    inll(x);
-    vec veci{1,3,6,10,15};
-    ll ans = f(x,veci,0);
-    out(ans);
+    inint(x);
+    instr(st);
+    // cin>>veci;
+    int a = COUNT(st,'L');
+    int b = 1;
+    vec veci(x);
+    rep(i,x){
+        if(i == 0 ){
+            if(st[i] == 'L')
+            veci[i] = a;
+            if(st[i] == 'R') veci[i] = b;
+            else {
+                if(st.size() > 1){
+                    if(st[i] == 'L'){
+                        veci[i] = a;
+                        veci[i+1] = 
+                    }
+                }
+            }
+        }
+        
+    }
 }   
 
 
@@ -155,11 +148,8 @@ int32_t main()
         freopen("Error.txt","w",stderr);
     #endif
         /*
-    ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्।
-    उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय माऽमृतात्॥
-    
-    ॐ भूर्भुवः स्वः। तत्सवितुर्वरेण्यं॥
-    भर्गो देवस्यः धीमहि। धियो यो नः प्रचोदयात्॥
+    ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्। उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय माऽमृतात्॥
+    ॐ भूर्भुवः स्वः। तत्सवितुर्वरेण्यं॥भर्गो देवस्यः धीमहि। धियो यो नः प्रचोदयात्॥
     */
 
     int t = 1;
@@ -169,4 +159,4 @@ int32_t main()
     solve();
     }
     return 0;
-}
+}\
