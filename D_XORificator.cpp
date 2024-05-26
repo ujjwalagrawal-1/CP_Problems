@@ -115,117 +115,68 @@ ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = 
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 void solve()
 {
-    
     // code -->
     inll(x);
-    instr(st);
-    bool fl = 0;
-    if(x%2 != 0){
-        cn;
-        return;
-    }
-    dvec veci(4);
+    inll(y);
+    dvec veci(x,vec(y));
     rep(i,x){
-        if(st[i] == 'N'){
-            veci[0].pb(i);
-        }
-        if(st[i] == 'S'){
-            veci[1].pb(i);
-        }
-        if(st[i] == 'W'){
-            veci[3].pb(i);
-        }
-        if(st[i] == 'E'){
-            veci[2].pb(i);
-        }
-    }
-    x = sz(veci);
-    rep(i,x){
-        if((veci[i].size())%2 == 0){
-            int k = 0;
-            rfeach(j,sz(veci[i])-1,0,1){
-                if(k%2 == 0){fl = 1;
-                st[veci[i][j]] = 'R';}
-                else{
-                    st[veci[i][j]] = 'H';
-                }
-                veci[i].pop_back();
-                k++;
-            }
-        }
-        else{
-            int k = 0;
-            rfeach(j,sz(veci[i])-1,1,1){
-                if(k%2 == 0){fl = 1;
-                st[veci[i][j]] = 'R';}
-                else{
-                    st[veci[i][j]] = 'H';
-                }
-                veci[i].pop_back();
-                k++;
-            }
-        }
-    }
-    // cy;
-        ll sum = 0;
-        vec rem(4);
-        rep(i,4){
-            rem[i] = sz(veci[i]);
-            sum += sz(veci[i]);
-        }
-        // out(rem);
-        // out("sum is   " << sum)
-        if(sum%2 == 0){
-            if(rem[0] == rem[1]){
-                // out("sum is   " << sum)
-                if(rem[2] == rem[3]){
-                    if(rem[0] == 1 && rem[2] == 1){
-                        if(fl){
-                        rep(i,x){
-                            st[veci[i][0]] = 'H';
-                        }
-                        }
-                        else{
-                            rep(i,2){
-                            st[veci[i][0]] = 'R';
-                        }
-                        feach(i,2,4,1){
-                            st[veci[i][0]] = 'H';
-                        }
-                        }
-                    }
-                    else if(rem[0] == 1 && rem[2] == 0){
-                        // out("F")
-                        if(!fl){
-                            cn;rtn;
-                        }
-                        rep(i,2){
-                            st[veci[i][0]] = 'H';
-                        }
-                    }
-                    else if(rem[0] == 0 && rem[2] == 1){
-                        if(!fl){
-                            // out("F")
-                            cn;rtn;
-                        }
-                        feach(i,2,4,1){
-                            st[veci[i][0]] = 'H';
-                        }
-                    }
-                }
-                else{
-                    cn;rtn;
-                }
+        rep(j,y){
+            char in;
+            cin>>in;
+            if(in == '0'){
+                veci[i][j] = 0;
             }
             else{
-                cn;rtn;
+                veci[i][j] = 1;
             }
         }
-        else{
-            cn; return;
+    }
+    vector<bool> col_d(y,0);
+    ll tp = 0;
+    rep(i,y){
+        ll cnt = 0;
+        rep(j,x){
+            cnt += veci[j][i];
         }
-        out(st);
+        if(cnt == 1){
+            // out("cnt is  "<<cnt);
+            col_d[i] = 1;
+            tp++;
+        }
+    }
+    if((int)tp >= (int)(x/2)){
+        cn;
+        rep(i,x){
+            cout<<0;
+        }
+        cout<<endl;
         rtn;
+    }
+    ll maxi = INT_MIN;
+    ll pp = 0;
+    rep(i,x){
+        ll cnt = 0;
+        rep(j,y){
+            if(col_d[y]){
+                C;
+            }
+            cnt += veci[i][j];
+        }
+        maxi = max(maxi,cnt);
+        if(cnt == maxi){
+            pp = i;
+        }
+    }
+    cy;
+    rep(i,x){
+        if(i == pp){
+            cout<<1;
+        }
+        else{
+            cout<<0;
+        }
+    }
+    cout<<endl;
 }   
 
 
@@ -244,7 +195,6 @@ int32_t main()
     cin>>t;
     while(t--)
     {
-        // out(t);
     solve();
     }
     return 0;

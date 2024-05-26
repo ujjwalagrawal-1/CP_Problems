@@ -113,119 +113,39 @@ ll powermod(ll x, ll y, ll p){ll res = 1;x = x % p;if (x == 0) return 0;while (y
 bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
+// int f(int val,int dig,char p){
+//     if(dig < 0){
+//         if()
+//     }
+// }
 void solve()
 {
-    
-    // code -->
-    inll(x);
-    instr(st);
-    bool fl = 0;
-    if(x%2 != 0){
-        cn;
-        return;
+   inll(x);
+  vector<ll> veci;
+  for(int i=0;i<=31;i++){
+   if(x & (1LL<<i)){
+    veci.pb(1);
+   }
+   else{
+    veci.pb(0);
+   }
+  }
+
+ rep(i,veci.size()){
+   if(veci[i]==1 && i+1<veci.size() && veci[i+1]==1){
+    veci[i]=-1;
+    int j=i+1;
+    while(j<veci.size() && veci[j]==1){
+     veci[j]=0;
+     j++;
     }
-    dvec veci(4);
-    rep(i,x){
-        if(st[i] == 'N'){
-            veci[0].pb(i);
-        }
-        if(st[i] == 'S'){
-            veci[1].pb(i);
-        }
-        if(st[i] == 'W'){
-            veci[3].pb(i);
-        }
-        if(st[i] == 'E'){
-            veci[2].pb(i);
-        }
-    }
-    x = sz(veci);
-    rep(i,x){
-        if((veci[i].size())%2 == 0){
-            int k = 0;
-            rfeach(j,sz(veci[i])-1,0,1){
-                if(k%2 == 0){fl = 1;
-                st[veci[i][j]] = 'R';}
-                else{
-                    st[veci[i][j]] = 'H';
-                }
-                veci[i].pop_back();
-                k++;
-            }
-        }
-        else{
-            int k = 0;
-            rfeach(j,sz(veci[i])-1,1,1){
-                if(k%2 == 0){fl = 1;
-                st[veci[i][j]] = 'R';}
-                else{
-                    st[veci[i][j]] = 'H';
-                }
-                veci[i].pop_back();
-                k++;
-            }
-        }
-    }
-    // cy;
-        ll sum = 0;
-        vec rem(4);
-        rep(i,4){
-            rem[i] = sz(veci[i]);
-            sum += sz(veci[i]);
-        }
-        // out(rem);
-        // out("sum is   " << sum)
-        if(sum%2 == 0){
-            if(rem[0] == rem[1]){
-                // out("sum is   " << sum)
-                if(rem[2] == rem[3]){
-                    if(rem[0] == 1 && rem[2] == 1){
-                        if(fl){
-                        rep(i,x){
-                            st[veci[i][0]] = 'H';
-                        }
-                        }
-                        else{
-                            rep(i,2){
-                            st[veci[i][0]] = 'R';
-                        }
-                        feach(i,2,4,1){
-                            st[veci[i][0]] = 'H';
-                        }
-                        }
-                    }
-                    else if(rem[0] == 1 && rem[2] == 0){
-                        // out("F")
-                        if(!fl){
-                            cn;rtn;
-                        }
-                        rep(i,2){
-                            st[veci[i][0]] = 'H';
-                        }
-                    }
-                    else if(rem[0] == 0 && rem[2] == 1){
-                        if(!fl){
-                            // out("F")
-                            cn;rtn;
-                        }
-                        feach(i,2,4,1){
-                            st[veci[i][0]] = 'H';
-                        }
-                    }
-                }
-                else{
-                    cn;rtn;
-                }
-            }
-            else{
-                cn;rtn;
-            }
-        }
-        else{
-            cn; return;
-        }
-        out(st);
-        rtn;
+    veci[j]=1;
+    i=j-1;
+   }
+  }
+  out(veci.size());
+  out(veci);
+  
 }   
 
 
@@ -244,7 +164,6 @@ int32_t main()
     cin>>t;
     while(t--)
     {
-        // out(t);
     solve();
     }
     return 0;
