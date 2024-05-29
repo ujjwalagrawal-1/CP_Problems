@@ -1,4 +1,4 @@
-//"2024-05-20 19:25:29",
+// 2024-05-29 20:30:10
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -114,41 +114,23 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
-bool isbinarydecimal(int x) {
-    string s = to_string(x);
-    for (auto &c : s) {
-        if (c != '1' && c != '0') {
-            return 0;
-        }
+void solve()
+{
+    // code -->
+    inll(x);
+    vecl veci(x);
+    cin>>veci;
+    sort(all(veci),greater<int>());
+    vecl ans(x);
+    ans[0] = veci[0];
+    feach(i,1,x,1){
+        ans[i] = veci[i]&ans[i-1];
     }
-    return 1;
-}
-int isValid(int x,vector<int> &dp) {
-    if (dp[x] != -1) {
-        return dp[x];
-    }
-    if (isbinarydecimal(x)) {
-        return dp[x] = 1;
-    }
-    dp[x] = 0;
- 
-    for (int i = 2; i * i <= x; i++) {
-        if (x % i == 0 && isValid(i,dp) && isValid(x / i,dp)) {
-            return dp[x] = 1;
-        }
-    }
-    return dp[x] = 0;
-}
-void solve() {
-    inint(n);
-    vector<int> dp(n+1,-1);
-    if (isValid(n,dp)) {
-        cy;
-    } else {
-       cn;
-    }
-}
-
+    cy;
+    out(veci);
+    out(ans);
+    cn;
+}   
 
 
 int32_t main()
