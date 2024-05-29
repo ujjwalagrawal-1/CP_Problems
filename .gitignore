@@ -1,2 +1,23 @@
-.exe
-.bin
+# Ignore common binary files
+*.exe
+*.dll
+*.so
+*.dylib
+*.bin
+*.o
+*.obj
+*.a
+*.lib
+*.dat
+*.class
+*.pyc
+*.pyo
+*.pyd
+*.out
+*.elf
+*.aout
+*.axf
+*.o
+*.ko
+*.mod
+*.mod.c
