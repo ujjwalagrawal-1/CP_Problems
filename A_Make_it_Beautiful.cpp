@@ -117,6 +117,28 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
+    inint(x);
+    vec veci(x);
+    cin>>veci;
+    ll sum = 0;
+    sort(all(veci));
+    int i = 1;
+    int j = veci.size()-1;
+    while(i < j){
+        swap(veci[i],veci[j]);
+        i+=2;j-=2;
+    }
+    rep(i,x){
+        if(sum == veci[i]){
+            cn;
+            rtn;
+        }
+        else{
+            sum += veci[i];
+        }
+    }
+    cy;
+    out(veci);
 }   
 
 
