@@ -1,4 +1,4 @@
-// 2024-06-03 21:43:15
+// 2024-06-03 21:21:30
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -104,7 +104,7 @@ vector <ll> primes;
 vector <bool> is_prime;
 
 // Mathematical functions
-void Sieve(ll n){ is_prime.assign(n + 1, true); is_prime[0] = is_prime[1] = false; for(ll i = 2; i * i <= n; i++) if(is_prime[i]) for(ll j = i * i; j <= n; j += i) is_prime[j] = false;}
+void Sieve(int n){ is_prime.assign(n + 1, true); is_prime[0] = is_prime[1] = false; for(ll i = 2; i * i <= n; i++) if(is_prime[i]) for(ll j = i * i; j <= n; j += i) is_prime[j] = false;}
 void get_primes(int n){ for(int i = 2; i <= n; i++)  if(is_prime[i])  primes.push_back(i); }
 ll mod_add(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a + b) % m) + m) % m;}
 ll mod_sub(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a - b) % m) + m) % m;}
@@ -120,48 +120,54 @@ void solve()
 {
     // code -->
     inll(x);
-    vec veci(x);
-    cin>>veci;
-    vec ggg;
-    bool f = 1;
-    rep(i,x-1){
-        ggg.pb(__gcd(veci[i],veci[i+1]));
-        if(i!=1){
-            if(ggg[i] > ggg[i-1]){
-                f = 0;
+    vecl a(x);
+    vecl b(x);
+    cin>>a>>b;
+    inll(r);
+    vecl c(r);
+    cin>>c;
+    unordered_map<ll,ll> mp;
+    rep(i,x){
+        mp[b[i]]++;
+    }
+    map<int,int> st;
+    rep(i,x){
+        if(a[i] != b[i]){
+            st[b[i]]++;
+        }
+    }
+    bool f1 = 0;
+    ll tp = 0;
+    rfeach(i,r-1,0,1){
+        if(!f1 && mp.count(c[i])){
+            if(st.count(c[i])){
+                st[c[i]]--;
+            if(st[c[i]] == 0){
+                st.erase(c[i]);
+            }
+            }
+            f1 = 1;
+        }
+        else if(f1 && mp.count(c[i])){
+            if(st.count(c[i])){
+                st[c[i]]--;
+            if(st[c[i]] == 0){
+                st.erase(c[i]);
+            }
             }
         }
+        tp++;
+        if(!f1){
+            cn;return;
+        }
     }
-    out(ggg);
-    bool rrr = 0;
-    feach(i,1,x-1,1){
-
-        int you = __gcd(veci[i-1],veci[i+1]);
-        if(i == 1){
-            if(you >= ggg[i]){
-                rrr = 1;
-            }
-            C;
-        }
-        if(i == x-2){
-            if(you <= ggg[x-2]){
-                rrr = 1;
-            }C;
-        }
-        if(you <= ggg[i-1]   || you >= ggg[i]){
-            rrr = 1;
-        }
-        if(rrr){
-            break;
-        }
-
-    }
-    if(rrr){
-        cn;
-    }
-    else{
+    if(f1 && st.size() == 0){
         cy;
     }
+    else{
+        cn;
+    }
+
 }   
 
 
@@ -184,3 +190,5 @@ int32_t main()
     }
     return 0;
 }
+
+

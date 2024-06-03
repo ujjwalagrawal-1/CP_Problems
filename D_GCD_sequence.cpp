@@ -1,4 +1,4 @@
-// 2024-06-03 21:43:15
+// 2024-06-04 00:07:56
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -104,7 +104,7 @@ vector <ll> primes;
 vector <bool> is_prime;
 
 // Mathematical functions
-void Sieve(ll n){ is_prime.assign(n + 1, true); is_prime[0] = is_prime[1] = false; for(ll i = 2; i * i <= n; i++) if(is_prime[i]) for(ll j = i * i; j <= n; j += i) is_prime[j] = false;}
+void Sieve(int n){ is_prime.assign(n + 1, true); is_prime[0] = is_prime[1] = false; for(ll i = 2; i * i <= n; i++) if(is_prime[i]) for(ll j = i * i; j <= n; j += i) is_prime[j] = false;}
 void get_primes(int n){ for(int i = 2; i <= n; i++)  if(is_prime[i])  primes.push_back(i); }
 ll mod_add(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a + b) % m) + m) % m;}
 ll mod_sub(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a - b) % m) + m) % m;}
@@ -120,47 +120,27 @@ void solve()
 {
     // code -->
     inll(x);
-    vec veci(x);
+    vecl veci(x);
     cin>>veci;
-    vec ggg;
-    bool f = 1;
+    vecl gc_d;
+    int ct = 0;
+    vecl st;
+    ll prev = 0;
     rep(i,x-1){
-        ggg.pb(__gcd(veci[i],veci[i+1]));
-        if(i!=1){
-            if(ggg[i] > ggg[i-1]){
-                f = 0;
+        ll yo = gcd(veci[i],veci[i+1]);
+        gc_d.pb(yo);
+        if(i != 1){
+            if(prev > yo){
+                st.pb(i);
             }
         }
+        prev = yo
     }
-    out(ggg);
-    bool rrr = 0;
-    feach(i,1,x-1,1){
-
-        int you = __gcd(veci[i-1],veci[i+1]);
-        if(i == 1){
-            if(you >= ggg[i]){
-                rrr = 1;
-            }
-            C;
-        }
-        if(i == x-2){
-            if(you <= ggg[x-2]){
-                rrr = 1;
-            }C;
-        }
-        if(you <= ggg[i-1]   || you >= ggg[i]){
-            rrr = 1;
-        }
-        if(rrr){
-            break;
-        }
-
+    rep(i,x-2){
+        
     }
-    if(rrr){
-        cn;
-    }
-    else{
-        cy;
+    rep(i,x-2){
+        
     }
 }   
 

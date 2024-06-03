@@ -1,4 +1,4 @@
-// 2024-06-03 21:43:15
+// 2024-06-04 00:32:42
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -104,7 +104,7 @@ vector <ll> primes;
 vector <bool> is_prime;
 
 // Mathematical functions
-void Sieve(ll n){ is_prime.assign(n + 1, true); is_prime[0] = is_prime[1] = false; for(ll i = 2; i * i <= n; i++) if(is_prime[i]) for(ll j = i * i; j <= n; j += i) is_prime[j] = false;}
+void Sieve(int n){ is_prime.assign(n + 1, true); is_prime[0] = is_prime[1] = false; for(ll i = 2; i * i <= n; i++) if(is_prime[i]) for(ll j = i * i; j <= n; j += i) is_prime[j] = false;}
 void get_primes(int n){ for(int i = 2; i <= n; i++)  if(is_prime[i])  primes.push_back(i); }
 ll mod_add(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a + b) % m) + m) % m;}
 ll mod_sub(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a - b) % m) + m) % m;}
@@ -119,48 +119,36 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
-    inll(x);
-    vec veci(x);
+    inll(n);
+    inll(f);
+    inll(k);
+    vec veci(n);
     cin>>veci;
-    vec ggg;
-    bool f = 1;
-    rep(i,x-1){
-        ggg.pb(__gcd(veci[i],veci[i+1]));
-        if(i!=1){
-            if(ggg[i] > ggg[i-1]){
-                f = 0;
-            }
+    ll fav = veci[f-1];
+    sort(all(veci),greater<int>());
+    bool f1 = 0;
+    bool f2 = 0;
+    rep(i,k){
+        if(veci[i] == fav){
+            f1 = 1;
         }
     }
-    out(ggg);
-    bool rrr = 0;
-    feach(i,1,x-1,1){
-
-        int you = __gcd(veci[i-1],veci[i+1]);
-        if(i == 1){
-            if(you >= ggg[i]){
-                rrr = 1;
-            }
-            C;
+    feach(i,k,n,1){
+        if(veci[i] == fav){
+            f2 = 1;
         }
-        if(i == x-2){
-            if(you <= ggg[x-2]){
-                rrr = 1;
-            }C;
-        }
-        if(you <= ggg[i-1]   || you >= ggg[i]){
-            rrr = 1;
-        }
-        if(rrr){
-            break;
-        }
-
     }
-    if(rrr){
-        cn;
+    // out(f1<<"  "<<f2);
+    if(f1 && f2){
+        out("MAYBE");
+        rtn;
     }
-    else{
+    else if(f1 && !f2){
         cy;
+        rtn;
+    }
+    else if(!f1 && f2){
+        cn;rtn;
     }
 }   
 
