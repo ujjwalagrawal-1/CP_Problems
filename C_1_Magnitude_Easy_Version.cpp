@@ -1,12 +1,11 @@
-// 2024-06-18 14:12:26
+// 2024-06-15 17:15:29
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
 // Codechef: https://www.codechef.com/users/kgr
 
 
-
-
+// Credit : Viraj Sir
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -121,15 +120,18 @@ void solve()
 {
     // code -->
     inll(x);
-    inll(y);
-    ll a = max(1ll*0,x-y);
-    ll b = x + y;
-    ll ans = 0;
-    feach(i,a,b+1,1){
-        ans |= i;
+    ll mn = 0 ;
+    ll mx = 0;
+    rep(i,x){
+        ll j;cin>>j;
+        mn += j;
+        mx += j;
+        mx = max(mx, llabs(mn));
+        mx = max(mx, llabs(mx));
     }
-    out(ans);
-}
+    out(mx);
+    
+}   
 
 
 int32_t main()

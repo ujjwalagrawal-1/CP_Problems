@@ -1,12 +1,11 @@
-// 2024-06-18 14:12:26
+// 2024-06-18 08:57:44
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
 // Codechef: https://www.codechef.com/users/kgr
 
 
-
-
+// Credit : Viraj Sir
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -120,16 +119,19 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
-    inll(x);
-    inll(y);
-    ll a = max(1ll*0,x-y);
-    ll b = x + y;
-    ll ans = 0;
-    feach(i,a,b+1,1){
-        ans |= i;
+    instr(s);
+    set<char>st;
+    rep(i,sz(s)){
+        st.insert(s[i]);
     }
-    out(ans);
-}
+    rep(i,sz(s)){
+        if(s[i] != s[i%sz(st)]){
+            cn;
+            rtn;
+        }
+    }
+    cy;
+}   
 
 
 int32_t main()

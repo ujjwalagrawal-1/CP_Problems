@@ -1,12 +1,11 @@
-// 2024-06-18 14:12:26
+// 2024-06-06 20:08:22
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
 // Codechef: https://www.codechef.com/users/kgr
 
 
-
-
+// Credit : Viraj Sir
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -121,15 +120,18 @@ void solve()
 {
     // code -->
     inll(x);
-    inll(y);
-    ll a = max(1ll*0,x-y);
-    ll b = x + y;
-    ll ans = 0;
-    feach(i,a,b+1,1){
-        ans |= i;
+    vecl veci(x);
+    cin>>veci;
+    ll maxi = INT_MIN;
+    ll mini = INT_MAX;
+    ll i =0,j = 1;
+    while(j<x){
+        maxi = max(veci[i],veci[j]);
+        mini = min(mini,maxi);
+        i++,j++;
     }
-    out(ans);
-}
+    out(mini-1);
+}   
 
 
 int32_t main()

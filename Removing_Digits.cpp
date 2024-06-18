@@ -1,12 +1,11 @@
-// 2024-06-18 14:12:26
+// 2024-06-04 13:34:39
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
 // Codechef: https://www.codechef.com/users/kgr
 
 
-
-
+// Credit : Viraj Sir
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -117,19 +116,39 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
+ll findMaxdig(int x){
+    int maxi = 0;
+    while(x){
+        maxi = max(maxi,x%10);
+        x /= 10;
+    }
+    return maxi;
+}
+ll f(ll x,vector<int>& dp){
+    if(x == 0){
+        return 0;
+    }
+    if(dp[x] != -1){
+        return dp[x];
+    }
+    
+    ll num = findMaxdig(x);
+    // out(x - num)
+    return f(x - num,dp) + 1;
+}
 void solve()
 {
     // code -->
-    inll(x);
-    inll(y);
-    ll a = max(1ll*0,x-y);
-    ll b = x + y;
+    inll(n);
+    vector<int> dp(n+1,0);
+    // ll ans = f(x,dp);
     ll ans = 0;
-    feach(i,a,b+1,1){
-        ans |= i;
+    for(int x = 0;x <= n;x++){
+        dp[x] = dp[x-findMaxdig(x)] + 1;
     }
+    ans = dp[n]-1;
     out(ans);
-}
+}   
 
 
 int32_t main()
@@ -144,7 +163,7 @@ int32_t main()
     */
 
     int t = 1;
-    cin>>t;
+    // cin>>t;
     while(t--)
     {
     solve();

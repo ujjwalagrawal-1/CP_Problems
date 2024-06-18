@@ -1,12 +1,11 @@
-// 2024-06-18 14:12:26
+// 2024-06-18 13:08:18
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
 // Codechef: https://www.codechef.com/users/kgr
 
 
-
-
+// Credit : Viraj Sir
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -122,14 +121,23 @@ void solve()
     // code -->
     inll(x);
     inll(y);
-    ll a = max(1ll*0,x-y);
-    ll b = x + y;
-    ll ans = 0;
-    feach(i,a,b+1,1){
-        ans |= i;
+    if(x%2 == 0){
+        // by both even and odd
+        if(y%2 != 0){
+            cn;
+        }
+        else if()
     }
-    out(ans);
-}
+    else{
+        // only through odd 
+        if(y%2 == 0){
+            cn;
+        }
+        else{
+            feach(i,)
+        }
+    }
+}   
 
 
 int32_t main()
