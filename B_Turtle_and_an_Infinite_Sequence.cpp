@@ -122,12 +122,17 @@ void solve()
     // code -->
     inll(x);
     inll(y);
-    ll a = max(1ll*0,x-y);
-    ll b = x + y;
-    ll ans = 0;
-    feach(i,a,b+1,1){
-        ans |= i;
+    int l = max(1ll*0,x-y);
+    int r = x + y;
+    int ans = x;
+    for (ll i = 31; i >= 0; i--) {
+    ll x = (l >> i) & 1;
+    ll y = (r >> i) & 1;
+    if (x != y) {
+      ans |= (1LL << (i + 1)) - 1;
+      break;
     }
+  }
     out(ans);
 }
 
