@@ -1,4 +1,4 @@
-// 2024-06-19 00:11:19
+// 2024-06-19 19:00:23
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -51,7 +51,6 @@ using namespace std;
 
 //Typedef
 typedef long long ll;
-typedef long double ld;
 typedef pair<ll, ll> pil;typedef pair<int, int> pi;
 typedef vector<ll> vecl;typedef vector<int> vec;
 typedef map<ll,ll> mpl;typedef map<int,int> mp;
@@ -117,28 +116,23 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
-ld ManhattanDis(int a,int b,int c,int d){
-    return (ld)(sqrt(pov((c-a),2) + pov((d - b),2)));
-}
-ld slope(int a,int b,int c,int d){
-    return labs((ld)(ld((b - d)/(a - c))));
-}
-
 void solve()
 {
     // code -->
-    inint(a);
-    inint(b);
-    inint(c);
-    inint(d);
-    inint(e);
-    inint(f);
-    ld disfromc = ManhattanDis(0,0,a,b);
-    ld disbtwci = ManhattanDis(c,d,e,f);
-    ld scp = slope(0,0,a,b);
-    ld scc = slope(c,d,e,f);
-    if()    
-
+        inll(n);inll(x);
+        vec veci(n);
+        rep(i,n){
+            cin>>veci[i];
+        }
+        ll sum=0;
+        ll ans=-1;
+        rep(i,n){
+            sum+=veci[i];
+            if(sum%x){
+                ans=max(ans, max(1ll*i+1, 1ll*(n-i-1)));
+            }
+        }
+       out(ans);
 }   
 
 
