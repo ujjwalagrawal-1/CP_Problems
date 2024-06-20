@@ -1,4 +1,4 @@
-// 2024-06-19 23:55:17
+// 2024-06-20 01:10:10
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -118,17 +118,8 @@ ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r +
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
 void solve()
 {
-    inint(x); 
-    inint(y);
-    if(y%x != 0){ 
-        out(0<<" "<<0);
-        return;
-    }
-    else{
-        int a = y/x;
-        out(1<<" "<<a);
-    }
-}
+    // code -->
+}   
 
 
 int32_t main()
