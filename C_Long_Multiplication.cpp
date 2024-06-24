@@ -1,4 +1,4 @@
-// 2024-06-25 01:41:32
+// 2024-06-25 04:00:20
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -119,25 +119,24 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
-    inll(x);
-    vecl veci(x);
-    cin>>veci;
-    ll maxi  = INT_MIN;
-    if(x <= 2){
-        if(x == 1){
-            out(veci[0]);
+    instr(x);
+    instr(y);
+    string a1 = "";
+    string a2 = "";
+    rep(i,sz(x)){
+        char maxi = max(x[i],y[i]);
+        char mini = min(x[i],y[i]);
+        if(a1 <= a2){
+            a1 += maxi;
+            a2 += mini;
         }
         else{
-            out(min(veci[0],veci[1]));
+            a1 += mini;
+            a2 += maxi;
         }
-        rtn;
     }
-    rep(i,x-2){
-        vecl a{veci[i],veci[i+1],veci[i+2]};
-        sort(all(a));
-        maxi = max(maxi,a[1]);
-    }
-    out(maxi);
+    out(a1);
+    out(a2);
 }   
 
 
