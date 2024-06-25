@@ -1,4 +1,4 @@
-// 2024-06-25 04:00:20
+// 2024-06-25 23:03:07
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -119,25 +119,27 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
-    instr(x);
-    instr(y);
-    string a1 = "";
-    string a2 = "";
-    rep(i,sz(x)){
-        char maxi = max(x[i],y[i]);
-        char mini = min(x[i],y[i]);
-        if(a1 <= a2){
-            a1 += maxi;
-            a2 += mini;
-        }
-        else{
-            a1 += mini;
-            a2 += maxi;
+    inll(x);
+    instr(s);
+    ll ans = 0;
+    feach(i,1,x+1,1){
+        for(ll j = i-1;j<=x-1;j+=i){
+            if(s[j] == '1'){
+                B;
+            }
+            else if(s[j] == '2'){
+                C;
+            }
+            else{
+                s[j] = '2';
+                ans += i;
+            }
+        // out("i is "<<i << "   sum is   "<<ans << "str  is  "<<s);
         }
     }
-    out(a1);
-    out(a2);
-}
+    out(ans);
+}   
+
 
 int32_t main()
 {
@@ -154,6 +156,7 @@ int32_t main()
     cin>>t;
     while(t--)
     {
+        // out("t is"<< t);
     solve();
     }
     return 0;
