@@ -1,4 +1,4 @@
-// 2024-06-27 01:31:25
+// 2024-06-27 01:08:38
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -116,54 +116,31 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
-int maxum = 0;
-int f(vecl &coins, ll sum, vector<int> &memo) {
-    if (sum == 0) {
-        return 0;
-    }
-    if (sum < 0) {
-        return INT_MAX - 1;
-    }
-    if (memo[sum] != -1) {
-        return memo[sum];
-    }
-     
-    int ans = 10000 - 1;
-    for (int i = 0; i < coins.size(); ++i) {
-        int subproblem = f(coins, sum - coins[i], memo);
-        if (subproblem != INT_MAX - 1) {
-            ans = min(ans, subproblem + 1);
+void solve()
+{
+    // code -->
+    inll(x);
+    vec veci;
+    Sieve(x);
+    veci.pb(1);
+    rep(i,x){
+        ll k = 1;
+        if(is_prime[i]){
+        while(i*k <= x){
+            // out("Primes[i]*k == "<<primes[i]*k);
+            veci.pb(i*k);
+            k++;
+            if(sz(veci) == x){
+                B;
+            }
+        }
+        }
+        if(sz(veci) == x){
+            B;
         }
     }
-    memo[sum] = ans;
-   
-    return ans;
-}
-
-void solve() {
-    inll(N);;
-  vector<int> dp(N,-1);
-  dp[0] = 0;
-  for (int i = 0; i < N; i++) { 
-    for (int x : a) {
-      if (i + x < N) {
-        dp[i + x] = min(dp[i + x], dp[i] + 1);
-      }
-    }
-  }
-  int tt;
-  cin >> tt;
-  while (tt--) {
-    int n;
-    cin >> n;
-    int ans = 0;
-    if (n >= N) {
-      int cnt = (n - N) / a.back() + 5;
-      n -= cnt * a.back();
-      ans += cnt;
-    }
-    cout << ans + dp[n] << '\n';
-}
+    out(veci);
+}   
 
 
 int32_t main()
