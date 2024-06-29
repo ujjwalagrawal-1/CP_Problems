@@ -1,4 +1,4 @@
-// 2024-06-28 16:09:15
+// 2024-06-28 18:27:12
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -114,29 +114,17 @@ ll moduloMultiplication(ll a,ll b,ll mod){ll res = 0;a %= mod;while (b){if (b & 
 ll powermod(ll x, ll y, ll p){ll res = 1;x = x % p;if (x == 0) return 0;while (y > 0){if (y & 1)res = (res*x) % p;y = y>>1;x = (x*x) % p;}return res;}
 bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
-ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}\
+ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
 void solve()
 {
     // code -->
     inll(x);
-    inll(y);
-    dvecl veci(x,vecl(y,0));
-    rep(i,x){
-        veci[i][0] = i+1;
-    }
-    feach(i,0,x,1){
-        feach(j,1,y,1){
-            veci[i][j] = veci[i][j-1] + 256;
-        }
-    }
-    out(x*y);
-    for(auto itr:veci){
-        for(auto i:itr){
-            os(i);
-        }
-        out("");
-    }
+    vec veci(x-1);
+    cin>>veci;
+    ll sum = SUM(veci);
+    out(-1*sum);
+
 }   
 
 
@@ -152,7 +140,7 @@ int32_t main()
     */
 
     int t = 1;
-    cin>>t;
+    // cin>>t;
     while(t--)
     {
     solve();
