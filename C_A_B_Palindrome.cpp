@@ -1,4 +1,4 @@
-// 2024-07-07 23:42:51
+// 2024-07-03 01:15:18
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -119,9 +119,75 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
-    inll(n);inll(k);
-    cout<<pov(n,k)<<endl;
-}
+    inll(a);
+    inll(b);
+    instr(st);
+        ll x = a + b;
+        ll cnt = 0;
+        rep(i,(x)/2){
+            if(st[i] != '?' && st[x - i-1] != '?'){
+                if(st[i] != st[x-i-1]){
+                    out(-1);
+                    rtn;
+                }
+                else{
+                    st[i] == '0' ? a-- : b--;
+                    st[x-i-1] == '0' ? a-- : b--;
+                }
+            }
+            else{
+                if(st[i] == '?' && st[x-i-1] == '?'){
+                    cnt++;
+                }
+                else if(st[i] == '?' && st[x-i-1] != '?'){
+                    st[x-i-1] == '0' ? a-- : b--;
+                    st[i] = st[x-i-1];
+                    if(st[x-i-1] == '0'){
+                        a--;
+                    }
+                    else{
+                        b--;
+                    }
+                }
+                else{
+                    st[i] == '0' ? a-- : b--;
+                    st[x-i-1] = st[i];
+                    if(st[i] == '0'){
+                        a--;
+                    }
+                    else{
+                        b--;
+                    }
+                }
+            }
+        }
+        if(x%2 == 0){
+            if(a || b){
+                if(a && b){
+                    ll t = a+b;
+                    if(t%2 == 0 && t/2 == cnt){
+                        
+                    }
+                }
+            }
+        }
+        else{
+            out(-1);
+            rtn;
+        }
+        }
+        else{
+            if((a == 1 && b == 0) || (a == 0 && b == 1)){
+                out(st);
+                rtn;
+            }
+            else{
+                out(-1);
+            }
+        }
+        
+
+}   
 
 
 int32_t main()
