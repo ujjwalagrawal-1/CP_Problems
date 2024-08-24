@@ -1,4 +1,4 @@
-// 2024-06-04 00:07:56
+// 2024-07-29 13:31:14
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -116,33 +116,52 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
+bool chk(int x,vector<int> &veci){
+    vec ans;
+    ans.push_back(0);
+    rep(i,sz(veci)-1){
+        int cal = __gcd(veci[i == x ? i-1 : i],veci[i+1 == x ? i+2 : i+1]);
+        if(cal >= ans.back()){
+            ans.pb(cal);
+        }
+        else{
+            return 0;
+        }
+    }
+    return 1;
+}
 void solve()
 {
     // code -->
     inll(x);
-    vecl veci(x);
+    vec veci(x);
     cin>>veci;
-    vecl gc_d;
-    int ct = 0;
-    vecl st;
-    ll prev = 0;
+    vec cal_gcd;
+    vec store;
+    cal_gcd.push_back(0);
     rep(i,x-1){
-        ll yo = gcd(veci[i],veci[i+1]);
-        gc_d.pb(yo);
-        if(i != 1){
-            if(prev > yo){
-                st.pb(i);
-            }
+        int cal = __gcd(veci[i],veci[i+1]);
+        if(cal_gcd.back() > cal){
+            store = {i-1,i,i+1};
+            break;
         }
-        prev = yo
+        cal_gcd.push_back(cal);
     }
-    rep(i,x-2){
-        
+
+    if(store.size() == 0){
+        cy;rtn;
     }
-    rep(i,x-2){
-        
+    else if(chk(store[0],veci) || chk(store[1],veci) || chk(store[2],veci)){
+        cy;
+        rtn;
     }
-}   
+    else{
+        // out(cal_gcd);
+        // out(store);
+        cn;rtn;
+    }
+    
+}
 
 
 int32_t main()

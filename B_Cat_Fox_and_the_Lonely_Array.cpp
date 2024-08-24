@@ -1,9 +1,11 @@
-//"2024-05-17 20:56:38",
+// 2024-08-02 10:04:57
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
 // Codechef: https://www.codechef.com/users/kgr
 
+
+// Credit : Viraj Sir
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -43,24 +45,23 @@ using namespace std;
 #define cn cout<<"NO"<<endl
 #define cm cout<<"-1"<<endl
 #define ps(x,y) fixed<<setprecision(y)<<x
-#define rtn return;
+#define rtn return
 
-int powint(int base, int exponent) {int result = 1;for (int i = 0; i < exponent; i++) {result *= base;}return result;}
+
 
 //Typedef
 typedef long long ll;
-typedef pair<ll, ll> pi;
-typedef vector<ll> vec;
-typedef vector<char> vec_ch;
-typedef map<ll,ll> mp;
-typedef unordered_map<int,int> ump;
-typedef vector<vector<ll>> dvec;
-typedef vector<pair<ll,ll>> vec_pair;
-typedef vector<pair<ll,pair<ll,bool>>> vec_db_pr;
-typedef queue<ll> q;
-typedef queue<pair<ll,ll>> doq;
+typedef pair<ll, ll> pil;typedef pair<int, int> pi;
+typedef vector<ll> vecl;typedef vector<int> vec;
+typedef map<ll,ll> mpl;typedef map<int,int> mp;
+typedef unordered_map<ll,ll> umpl;typedef unordered_map<int,int> ump;
+typedef vector<vector<ll>> dvecl;typedef vector<vector<int>> dvec;
+typedef vector<pair<ll,ll>> vec_pairl;typedef vector<pair<ll,ll>> vec_pairl;
+typedef vector<pair<ll,pair<ll,bool>>> vecdbplb;typedef vector<pair<int,pair<int,bool>>> vecdbpb;
+typedef queue<ll> ql;
+typedef queue<pair<ll,ll>> qpl;
 typedef vector<char> vch;
-typedef set<char> sc;
+typedef set<char> sch;
 typedef set<int> si;
 typedef set<ll> sl;
 typedef set<string> ss;
@@ -114,30 +115,64 @@ ll powermod(ll x, ll y, ll p){ll res = 1;x = x % p;if (x == 0) return 0;while (y
 bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
+ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
+bool check(ll k,ll n,vecl &arr){
+    vector<int>fre1(22,0);
+    for(int i=0;i<k;i++){
+        int j=0;
+        int x=arr[i];
+        while(x>0){
+            if(x%2)
+                fre1[j]++;
+            j++;
+            x/=2;
+        }
+    }
+    vector<int>freq=fre1;
+    for(int i=k;i<n;i++){
+        int j=0;
+        int x=arr[i];
+        while(x>0){
+            if(x%2)
+                freq[j]++;
+            j++;
+            x/=2;
+        }
+        j=0;
+        x=arr[i-k];
+        while(x>0){
+            if(x%2)
+                freq[j]--;
+            j++;
+            x/=2;
+        }
+        for(int i=0;i<22;i++){
+            if(freq[i]>0 && fre1[i]==0)return false;
+            if(freq[i]==0 && fre1[i]>0)return false;
+        }
+    }
+    return true;
+}
 void solve()
 {
     // code -->
     inll(x);
-    vec veci(x);
+    vecl veci(x);
     cin>>veci;
-    ll ans = 0;
-    int mini = INT_MAX;
-    feach(k,1,x+1,1){
-        rep(j,x-k+1){
-            int e = veci[j];
-            feach(l,j+1,j+k,1){
-                e |= veci[l];
-            }
-            // out("e for k = "<<k<<"and j = "<<j<<" is " << e);
-            int prev = mini;
-            mini = min(e,mini);
-            if(mini == e && mini < prev){
-                ans = k;
-            }
+    ll s = 1;
+    ll e = x;
+    while(s <= e){
+        ll mid = s + (e - s)/2;
+        // out("mid is "<<mid);
+        if(check(mid,sz(veci),veci)){
+            e = mid - 1;
+        }
+        else{
+            s = mid + 1;
         }
     }
-    out(ans);
-}
+    out(s);
+}   
 
 
 int32_t main()
@@ -147,11 +182,8 @@ int32_t main()
         freopen("Error.txt","w",stderr);
     #endif
         /*
-    ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्।
-    उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय माऽमृतात्॥
-    
-    ॐ भूर्भुवः स्वः। तत्सवितुर्वरेण्यं॥
-    भर्गो देवस्यः धीमहि। धियो यो नः प्रचोदयात्॥
+    ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्। उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय माऽमृतात्॥
+    ॐ भूर्भुवः स्वः। तत्सवितुर्वरेण्यं॥भर्गो देवस्यः धीमहि। धियो यो नः प्रचोदयात्॥
     */
 
     int t = 1;

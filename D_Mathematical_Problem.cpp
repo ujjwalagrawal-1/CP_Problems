@@ -1,4 +1,4 @@
-// 2024-07-02 03:33:57
+// 2024-07-29 01:34:47
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -116,23 +116,30 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
-ll f(ll i, string &s) {
-    if (i == s.size() - 1) {
-        return s[i] - '0';
+void solve()
+{
+    // code -->
+    inll(x);
+    instr(st);
+    vec ans;
+    if(x == 2){
+        int num = stoi(st);
+        out(num);
+        rtn;
     }
-    // 3 case
-    ll a = (s[i] - '0') * 10 + (s[i+1] - '0') + f(i+2,s);
-    ll b = (s[i] - '0') * f(i+1, s);
-    ll c = (s[i] - '0') + f(i+1, s);
-    return max({a, b, c});
-}
+    ll mini=1e9;
+    for(int i=0;i<st.size()-1;i++){
+        ll res=stoi(st.substr(i,2));
+        for(int j=0;j<x;j++){
+            if(j==i || j==i+1) continue;
+            int next_digit=st[j]-'0';
+            res=min(res+next_digit,res*next_digit);
+        }
+        mini=min(mini,res);
+    }
+    cout<<mini<<endl;
+}   
 
-void solve() {
-    ll x;
-    string s;
-    cin >> x >> s;
-    cout << f(0, s) << endl;
-}
 
 int32_t main()
 {

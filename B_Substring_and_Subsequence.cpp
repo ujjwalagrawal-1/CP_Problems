@@ -1,4 +1,4 @@
-// 2024-06-27 20:37:10
+// 2024-07-18 15:05:51
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -116,29 +116,46 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
+int find_lcs(string &a,string &b,dvecl &dp,ll i,ll j){
+  if(i >= sz(a) || j >= sz(b)){
+    return 0;
+  }
+  int ans = 0;
+  if(dp[i][j] != -1){
+    return dp[i][j];
+  }
+  if(a[i] == b[j]){
+    ans += (find_lcs(a,b,dp,i+1,j+1) + 1);
+  }
+  else{
+    ans += max(find_lcs(a,b,dp,i+1,j),find_lcs(a,b,dp,i,j+1));
+  }
+
+  return dp[i][j] = ans;
+}
 void solve()
 {
     // code -->
-    instr(a);instr(b);
-      
-      ll ans = 0;
-      rep(i,sz(b)){
-        
-        ll j = 0;
-        rep(k,sz(a)){
-          if(j+i<b.size()&&b[j+i]==a[k]){
-            j++;
-          }
+    instr(a);
+    instr(b);
+    // this is the wrong way to tackale the Questions 
+    // dvecl dp(sz(a),vector<ll>(sz(b),-1));
+    // int len = find_lcs(a,b,dp,0,0);
+    // out(sz(b) - len + sz(a));
+
+    // so we will do this
+    ll maxi = 0;
+    rep(i,sz(b)){
+      ll k = 0;
+      rep(j,sz(a)){
+        if(b[i+k] == a[j]){
+          k++;
         }
-        
-        ans = max(ans,j);
-        
       }
-      
-      cout<<a.size() + b.size() - ans<<endl;
-      
-    
-}   
+      maxi = max(maxi,k);
+    }
+    out(sz(b)-maxi + sz(a));
+}
 
 
 int32_t main()
@@ -160,5 +177,3 @@ int32_t main()
     }
     return 0;
 }
-
-

@@ -1,4 +1,4 @@
-// 2024-05-30 21:35:25
+// 2024-07-31 14:39:46
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -119,30 +119,23 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
-    inll(x);
-    vec p(x);
-    vec t(x);
-    cin>>p>>t;
-    bool p1 = 0, te = 0;
-    vec tk(x,0);
-    ll ans = 0;
-    ll min1 = INT_MAX;
-    ll max1 = INT_MIN;
-    ll min2 = INT_MAX;
-    ll max2 = INT_MIN;
-    rep(i,x){
-        ll val = max(p[i],t[i]);
-        if(val == p[i]){
-            p1 = 1;
-            mini = 
-        }
-        else{
-            te = 1;
-        }
-        // nt[i] = 
+    inll(n);
+    inll(m);
+    int x = n + m + 1;
+    vec a(x);
+    vec b(x);
+    cin>>a>>b;
+    // out(a);
+    // out(b);
+    vec vis(n+m+1,0);
+    
+    rep(i,n+m+1){
+        
     }
-    if()
-}   
+
+    
+    
+}
 
 
 int32_t main()

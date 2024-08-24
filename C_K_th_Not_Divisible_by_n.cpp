@@ -1,4 +1,4 @@
-// 2024-06-04 01:51:36
+// 2024-07-30 00:38:18
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/uj7b1253/
 // Codeforces: https://codeforces.com/profile/n_________er
@@ -119,6 +119,21 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
+    inll(n);
+    inll(k);
+    ll s = 0;
+    ll e = 1e10;
+    while(s<e){
+        ll mid = s + (e - s)/2;
+        ll t = mid/n;
+        if(mid - t >= k){
+            e = mid;
+        }
+        else{
+            s = mid + 1;
+        }
+    }
+    out(s);
 }   
 
 
