@@ -1,4 +1,4 @@
-// 2024-08-25 12:26:11
+// 2024-08-26 18:12:11
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -117,62 +117,25 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
-
-map<int,int> take; 
-void f(ll &a,map<int,string>& mp){
-    string c = to_string(a);
-    while(c.size()>0 && c.back() == '0'){
-        c.pop_back();
-    }
-    take[a] = sz(c);
-    mp[a] = c;
-}
-bool comp(ll &a ,ll &b){
-
-    int aa = Num_of_Digits(a) - take[a];
-    int bb = Num_of_Digits(b) - take[b];
-
-    if(aa == bb){
-        return b < a;
-    }
-
-    return aa > bb;
-}
 void solve()
 {
     // code -->
     inll(x);
     inll(y);
-
-    vecl veci(x);
-    cin>>veci;
-    map<int,string> mp;
-    rep(i,x){
-        f(veci[i],mp);
-    }
-    sort(all(veci),comp);
-
-    // out(veci);
-    // out(sz(veci));
-
-    ll i = 0;ll j = x-1;
-    string ans = "";
-    while(i < x){
-        if(!(i&1)){
-            ans += mp[veci[i]];
+    vecl val;
+    for(int i = 1;i*i<=x;i++){
+        if(x%i == 0 && i <= y){
+            val.pb(i);
+            ll t = x/i;
+            if(t <= y){
+                val.pb(t);
+            }
         }
-        else{
-            ans += to_string(veci[i]);
-        }
-        i++;
     }
 
-    if(sz(ans) >= y+1){
-        out("Sasha")
-    }
-    else{
-        out("Anna");
-    }
+    sort(all(val));
+
+    out(x/(val.back()));
 }   
 
 

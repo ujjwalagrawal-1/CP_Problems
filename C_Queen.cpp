@@ -1,4 +1,4 @@
-// 2024-08-25 12:26:11
+// 2024-08-26 23:10:41
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -118,61 +118,43 @@ ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = 
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
 
-map<int,int> take; 
-void f(ll &a,map<int,string>& mp){
-    string c = to_string(a);
-    while(c.size()>0 && c.back() == '0'){
-        c.pop_back();
+bool f(vector <int> adj[],int rootnode,vec &ans,map<int,int> & mp){
+    bool val = true;
+    for(auto child : adj[rootnode]){
+        val &= f(adj,child,ans,mp);
     }
-    take[a] = sz(c);
-    mp[a] = c;
-}
-bool comp(ll &a ,ll &b){
-
-    int aa = Num_of_Digits(a) - take[a];
-    int bb = Num_of_Digits(b) - take[b];
-
-    if(aa == bb){
-        return b < a;
+    if(val && mp[rootnode]){
+        cy;
+        ans.pb(rootnode);
     }
-
-    return aa > bb;
+    if(mp[rootnode]){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 void solve()
 {
     // code -->
     inll(x);
-    inll(y);
-
-    vecl veci(x);
-    cin>>veci;
-    map<int,string> mp;
-    rep(i,x){
-        f(veci[i],mp);
-    }
-    sort(all(veci),comp);
-
-    // out(veci);
-    // out(sz(veci));
-
-    ll i = 0;ll j = x-1;
-    string ans = "";
-    while(i < x){
-        if(!(i&1)){
-            ans += mp[veci[i]];
+    vector<int> adj[x+1];
+    int rootnode = 0;
+    map<int,int> mp;
+    feach(i,1,x+1,1){
+        ll a,b;
+        cin>>a>>b;
+        mp[i] = b;
+        if(a == -1){
+            rootnode = i+1;
+            C;
         }
-        else{
-            ans += to_string(veci[i]);
-        }
-        i++;
+        adj[a].pb(i);
     }
-
-    if(sz(ans) >= y+1){
-        out("Sasha")
-    }
-    else{
-        out("Anna");
-    }
+    vec ans;
+    f(adj,rootnode,ans,mp);
+    sort(all(ans));
+    out(ans);
 }   
 
 
@@ -188,7 +170,7 @@ int32_t main()
     */
 
     int t = 1;
-    cin>>t;
+    // cin>>t;
     while(t--)
     {
     solve();
