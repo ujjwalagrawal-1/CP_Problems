@@ -1,4 +1,4 @@
-// 2024-08-28 21:29:41
+// 2024-08-29 23:34:06
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -45,6 +45,7 @@ using namespace std;
 #define cm cout<<"-1"<<endl
 #define ps(x,y) fixed<<setprecision(y)<<x
 #define rtn return
+
 
 
 //Typedef
@@ -120,26 +121,28 @@ void solve()
 {
     // code -->
     inll(x);
-    instr(st);
-    ll cnt = 0;
-    ll s = 0;ll d = 0;
-    rep(i,x-1){
-        if(st[i] == st[i+1]){
-            s++;
-        }
-        else{
-            d++;
-        }
+    vecl veci(x);
+    cin>>veci;
+    vecl se(x);
+    cin>>se;
+    ll cu = 0;
+    mp mp1;
+    mp mp2;
+    rep(i,x){
+        mp1[veci[i]] = i;
+    }
+    rep(i,x){
+        mp2[se[i]] = i;
     }
 
-    cnt = s*d;
-    // out("initial cnt is"<<cnt);
-    ll n = d-1;
-    cnt += (n)*(n+1)/2;
-
-    out(cnt);
-
-}   
+    for(auto itr : mp1){
+        int diff = mp2[itr.fir] - itr.sec;
+        if(diff >= cu){
+            cu = diff;
+        }
+    }
+    out(cu);
+}
 
 
 int32_t main()
@@ -154,7 +157,7 @@ int32_t main()
     */
 
     int t = 1;
-    cin>>t;
+    // cin>>t;
     while(t--)
     {
     solve();
