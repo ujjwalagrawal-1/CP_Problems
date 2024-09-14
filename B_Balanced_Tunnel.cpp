@@ -121,27 +121,20 @@ void solve()
 {
     // code -->
     inll(x);
-    vecl veci(x);
-    cin>>veci;
-    vecl se(x);
-    cin>>se;
-    ll cu = 0;
-    mp mp1;
-    mp mp2;
+    vecl a(x);
+    vecl b(x);
+    cin>>a>>b;
+    mp mp;
     rep(i,x){
-        mp1[veci[i]] = i;
+        mp[b[i]] = i;
     }
-    rep(i,x){
-        mp2[se[i]] = i;
-    }
-
-    for(auto itr : mp1){
-        int diff = mp2[itr.fir] - itr.sec;
-        if(diff >= cu){
-            cu = diff;
+    ll ans = 0;
+    rfeach(i,x-1,0,1){
+        if(mp[a[i]] != i+ans){
+            ans++;
         }
     }
-    out(cu);
+    out(ans);
 }
 
 
@@ -153,7 +146,8 @@ int32_t main()
     #endif
         /*
     ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्। उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय माऽमृतात्॥
-    ॐ भूर्भुवः स्वः। तत्सवितुर्वरेण्यं॥भर्गो देवस्यः धीमहि। धियो यो नः प्रचोदयात्॥
+    ॐ भूर्भुवः स्वः। तत्सवितुर्वरेण्यं॥भsdcvsdcvsdcsdcdscdstheere are ok
+    र्गो देवस्यः धीमहि। धियो यो नः प्रचोदयात्॥
     */
 
     int t = 1;

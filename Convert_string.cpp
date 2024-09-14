@@ -1,11 +1,10 @@
-// 2024-07-31 23:32:11
+// 2024-09-11 21:34:29
 // Author Ujjwal_Agrawal
-// Linkedin:  https://www.linkedin.com/in/uj7b1253/
-// Codeforces: https://codeforces.com/profile/n_________er
-// Codechef: https://www.codechef.com/users/kgr
+// Linkedin:  https://www.linkedin.com/in/u1253/
+// Codeforces: https://codeforces.com/profile
+// Codechef: https://www.codechef.com/users/
 
 
-// Credit : Viraj Sir
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -51,15 +50,17 @@ using namespace std;
 
 //Typedef
 typedef long long ll;
-typedef pair<ll, ll> pil;typedef pair<int, int> pi;
+typedef pair<ll, ll> pll;typedef pair<int, int> pii;
+typedef pair<char, int> pci;typedef pair<char, ll> pcl;
+typedef pair<string, ll> psl;typedef pair<char, char> pcc;
 typedef vector<ll> vecl;typedef vector<int> vec;
 typedef map<ll,ll> mpl;typedef map<int,int> mp;
 typedef unordered_map<ll,ll> umpl;typedef unordered_map<int,int> ump;
 typedef vector<vector<ll>> dvecl;typedef vector<vector<int>> dvec;
-typedef vector<pair<ll,ll>> vec_pairl;typedef vector<pair<ll,ll>> vec_pairl;
-typedef vector<pair<ll,pair<ll,bool>>> vecdbplb;typedef vector<pair<int,pair<int,bool>>> vecdbpb;
+typedef vector<pair<ll,ll>> vecpll;
+typedef vector<pair<ll,pair<ll,bool>>> vecpllb;typedef vector<pair<int,pair<int,bool>>> vecpiib;
 typedef queue<ll> ql;
-typedef queue<pair<ll,ll>> qpl;
+typedef queue<pair<ll,ll>> qpll;
 typedef vector<char> vch;
 typedef set<char> sch;
 typedef set<int> si;
@@ -120,22 +121,30 @@ void solve()
 {
     // code -->
     inll(x);
-    instr(a);
-    instr(b);
-    int cnt = 0;
-    feach(i,1,x-1,1){
-        if((a[i] == '.' && a[i+1] == 'x' && a[i-1] =='x') && b[i] == '.' ){
-            cnt++;
+    instr(st);
+    unordered_map<char,ll> mp;
+    for (auto it : st){
+        mp[it]++;
+    }
+    ll a = mp['0'];
+    ll b = mp['1'];
+    ll val = 0;
+    feach(i,1,x+1,1){
+        ll mini = min(a, b);
+        ll maxi = a+ b-mini;
+        if(i < mini){
+            C;
+        }
+        if((i - mini)%2 == 0){
+            val++;
+        }
+        else{
+            if(i >= maxi && (i - maxi)%2 == 0){
+                val++;
+            }
         }
     }
-    swap(a,b);
-    feach(i,1,x-1,1){
-        if((a[i] == '.' && a[i+1] == 'x' && a[i-1] =='x') && b[i] == '.' ){
-            cnt++;
-        }
-    }
-    out(cnt);
-    
+    out(val);
 }   
 
 

@@ -120,7 +120,6 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
-    
     inll(n);
     if (n&1)
     {

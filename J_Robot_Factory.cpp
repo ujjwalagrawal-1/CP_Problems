@@ -1,11 +1,10 @@
-// 2024-07-31 23:32:11
+// 2024-09-14 10:42:41
 // Author Ujjwal_Agrawal
-// Linkedin:  https://www.linkedin.com/in/uj7b1253/
-// Codeforces: https://codeforces.com/profile/n_________er
-// Codechef: https://www.codechef.com/users/kgr
+// Linkedin:  https://www.linkedin.com/in/u1253/
+// Codeforces: https://codeforces.com/profile
+// Codechef: https://www.codechef.com/users/
 
 
-// Credit : Viraj Sir
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -51,15 +50,17 @@ using namespace std;
 
 //Typedef
 typedef long long ll;
-typedef pair<ll, ll> pil;typedef pair<int, int> pi;
+typedef pair<ll, ll> pll;typedef pair<int, int> pii;
+typedef pair<char, int> pci;typedef pair<char, ll> pcl;
+typedef pair<string, ll> psl;typedef pair<char, char> pcc;
 typedef vector<ll> vecl;typedef vector<int> vec;
 typedef map<ll,ll> mpl;typedef map<int,int> mp;
 typedef unordered_map<ll,ll> umpl;typedef unordered_map<int,int> ump;
 typedef vector<vector<ll>> dvecl;typedef vector<vector<int>> dvec;
-typedef vector<pair<ll,ll>> vec_pairl;typedef vector<pair<ll,ll>> vec_pairl;
-typedef vector<pair<ll,pair<ll,bool>>> vecdbplb;typedef vector<pair<int,pair<int,bool>>> vecdbpb;
+typedef vector<pair<ll,ll>> vecpll;
+typedef vector<pair<ll,pair<ll,bool>>> vecpllb;typedef vector<pair<int,pair<int,bool>>> vecpiib;
 typedef queue<ll> ql;
-typedef queue<pair<ll,ll>> qpl;
+typedef queue<pair<ll,ll>> qpll;
 typedef vector<char> vch;
 typedef set<char> sch;
 typedef set<int> si;
@@ -116,26 +117,61 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
+
+ll dfs(ll i,ll j,dvecl &veci,dvecl &vis){
+    if(i < 0 || j<0 || i >= sz(veci) || j >= sz(veci[0]) || vis[i][j]){
+        return 0;
+    }
+    vis[i][j] = 1;
+    string st = decToBinary(int(veci[i][j]));
+    while(sz(st) != 4){
+        st = '0' + st;
+    }
+    // out(st);
+    int t = 1;
+    ll cnt = 0;
+    rep(k,4){
+        if(st[k] == '0'){
+            if(k == 0){
+                t += dfs(i-1,j,veci,vis);
+            }
+            if(k == 1){
+                t += dfs(i,j+1,veci,vis);
+            }
+            if(k == 2){
+                t += dfs(i+1,j,veci,vis);                
+            }
+            if(k == 3){
+                t += dfs(i,j-1,veci,vis);              
+            }
+        }
+    }
+
+    return t;
+}
 void solve()
 {
     // code -->
-    inll(x);
-    instr(a);
-    instr(b);
-    int cnt = 0;
-    feach(i,1,x-1,1){
-        if((a[i] == '.' && a[i+1] == 'x' && a[i-1] =='x') && b[i] == '.' ){
-            cnt++;
+    // Nice Question Under 1400 Rated
+    ll n,m;
+    cin>>n>>m;
+    dvecl veci(n,vecl(m,0));
+    cin>>veci;
+    dvecl vis(n,vecl(m,0));
+    vecl ans;
+    rep(i,n){
+        rep(j,m){
+            if(!vis[i][j]){
+                ll val = dfs(i,j,veci,vis);
+                ans.pb(val);
+            }
         }
     }
-    swap(a,b);
-    feach(i,1,x-1,1){
-        if((a[i] == '.' && a[i+1] == 'x' && a[i-1] =='x') && b[i] == '.' ){
-            cnt++;
-        }
+    sort(all(ans),greater<int>());
+    rep(i,sz(ans)){
+        os(ans[i]);
     }
-    out(cnt);
-    
+    out("");
 }   
 
 
@@ -151,7 +187,7 @@ int32_t main()
     */
 
     int t = 1;
-    cin>>t;
+    // cin>>t;
     while(t--)
     {
     solve();
