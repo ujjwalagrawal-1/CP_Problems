@@ -1,11 +1,10 @@
-// 2024-07-29 13:31:14
+// 2024-09-18 22:31:03
 // Author Ujjwal_Agrawal
-// Linkedin:  https://www.linkedin.com/in/uj7b1253/
-// Codeforces: https://codeforces.com/profile/n_________er
-// Codechef: https://www.codechef.com/users/kgr
+// Linkedin:  https://www.linkedin.com/in/u1253/
+// Codeforces: https://codeforces.com/profile
+// Codechef: https://www.codechef.com/users/
 
 
-// Credit : Viraj Sir
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -51,15 +50,17 @@ using namespace std;
 
 //Typedef
 typedef long long ll;
-typedef pair<ll, ll> pil;typedef pair<int, int> pi;
+typedef pair<ll, ll> pll;typedef pair<int, int> pii;
+typedef pair<char, int> pci;typedef pair<char, ll> pcl;
+typedef pair<string, ll> psl;typedef pair<char, char> pcc;
 typedef vector<ll> vecl;typedef vector<int> vec;
 typedef map<ll,ll> mpl;typedef map<int,int> mp;
 typedef unordered_map<ll,ll> umpl;typedef unordered_map<int,int> ump;
 typedef vector<vector<ll>> dvecl;typedef vector<vector<int>> dvec;
-typedef vector<pair<ll,ll>> vec_pairl;typedef vector<pair<ll,ll>> vec_pairl;
-typedef vector<pair<ll,pair<ll,bool>>> vecdbplb;typedef vector<pair<int,pair<int,bool>>> vecdbpb;
+typedef vector<pair<ll,ll>> vecpll;
+typedef vector<pair<ll,pair<ll,bool>>> vecpllb;typedef vector<pair<int,pair<int,bool>>> vecpiib;
 typedef queue<ll> ql;
-typedef queue<pair<ll,ll>> qpl;
+typedef queue<pair<ll,ll>> qpll;
 typedef vector<char> vch;
 typedef set<char> sch;
 typedef set<int> si;
@@ -116,52 +117,55 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
-bool chk(int x,vector<int> &veci){
-    vec ans;
-    ans.push_back(0);
-    rep(i,sz(veci)-1){
-        int cal = __gcd(veci[i == x ? i-1 : i],veci[i+1 == x ? i+2 : i+1]);
-        if(cal >= ans.back()){
-            ans.pb(cal);
-        }
-        else{
-            return 0;
-        }
-    }
-    return 1;
-}
 void solve()
 {
     // code -->
+    cout<<"New "<<endl;
     inll(x);
-    vec veci(x);
+    vecl veci(x);
     cin>>veci;
-    vec cal_gcd;
-    vec store;
-    cal_gcd.push_back(0);
-    rep(i,x-1){
-        int cal = __gcd(veci[i],veci[i+1]);
-        if(cal_gcd.back() > cal){
-            store = {i-1,i,i+1};
-            break;
+    vecl a;
+    vecl b;
+    ll i = 0;
+    ll j = 0;
+    vec st;
+    while(i<x-2){
+        a.pb(gcd(veci[i],veci[i+1]));
+        b.push_back(gcd(veci[i],veci[i+2]));
+        if(i >= 1){
+            if(sz(a) && a[sz(a)-1] < a[sz(a)-2]){
+                st.pb(i+1);
+                if(sz(st) > 1){
+                    cn;rtn;
+                }
+            }
         }
-        cal_gcd.push_back(cal);
+        i++;
     }
-
-    if(store.size() == 0){
-        cy;rtn;
+    a.pb(gcd(veci[x-1],veci[x-2]));
+    if(a[sz(a)-1] < a[sz(a)-2]){
+        cm;
+        st.pb(sz(a)-1);
     }
-    else if(chk(store[0],veci) || chk(store[1],veci) || chk(store[2],veci)){
+    if(sz(st) == 0){
         cy;
-        rtn;
     }
     else{
-        // out(cal_gcd);
-        // out(store);
-        cn;rtn;
+        int ind = st[0];
+        if(ind == 1){
+            cy;
+            rtn;
+        }
+        else{
+            if(b[ind-2] >= a[ind-2] && b[ind-2] <= a[ind]){
+
+            }
+        }
     }
-    
-}
+    out("st is  "<<st);
+    out(a);
+    out(b);
+}   
 
 
 int32_t main()

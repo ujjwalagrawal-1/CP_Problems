@@ -1,4 +1,4 @@
-// 2024-09-14 20:03:25
+// 2024-09-19 01:05:10
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -27,7 +27,7 @@ using namespace std;
 #define set_bits(x) __builtin_popcountll(x)
 #define zero_bits(x) __builtin_ctzll(x)
 #define sz(s) (int)(s.size())
-#define Num_of_Digits(sz(grid[0])) ((int)log10(sz(grid[0])) + 1)
+#define Num_of_Digits(n) ((int)log10(n) + 1)
 #define inint(x) int x; cin>>x;
 #define inll(x) long long int x; cin>>x;
 #define instr(x) string x; cin>>x;
@@ -92,12 +92,12 @@ bool sorta(const pair<int,int> &a,const pair<int,int> &b){return (a.second < b.s
 bool sortd(const pair<int,int> &a,const pair<int,int> &b){return (a.second > b.second);}
 
 //Bits
-string decToBinary(int sz(grid[0])){string s="";int i = 0;while (sz(grid[0]) > 0) {s =to_string(sz(grid[0]) % 2)+s;sz(grid[0]) = sz(grid[0]) / 2;i++;}return s;}
-ll binaryToDecimal(string sz(grid[0])){string num = sz(grid[0]);ll dec_value = 0;int base = 1;int len = num.length();for(int i = len - 1; i >= 0; i--){if (num[i] == '1')dec_value += base;base = base * 2;}return dec_value;}
+string decToBinary(int n){string s="";int i = 0;while (n > 0) {s =to_string(n % 2)+s;n = n / 2;i++;}return s;}
+ll binaryToDecimal(string n){string num = n;ll dec_value = 0;int base = 1;int len = num.length();for(int i = len - 1; i >= 0; i--){if (num[i] == '1')dec_value += base;base = base * 2;}return dec_value;}
 
 //Check
-bool isPrime(ll sz(grid[0])){if(sz(grid[0])<=1)return false;if(sz(grid[0])<=3)return true;if(sz(grid[0])%2==0||sz(grid[0])%3==0)return false;for(int i=5;i*i<=sz(grid[0]);i=i+6)if(sz(grid[0])%i==0||sz(grid[0])%(i+2)==0)return false;return true;}
-bool isPowerOfTwo(int sz(grid[0])){if(sz(grid[0])==0)return false;return (ceil(log2(sz(grid[0]))) == floor(log2(sz(grid[0]))));}
+bool isPrime(ll n){if(n<=1)return false;if(n<=3)return true;if(n%2==0||n%3==0)return false;for(int i=5;i*i<=n;i=i+6)if(n%i==0||n%(i+2)==0)return false;return true;}
+bool isPowerOfTwo(int n){if(n==0)return false;return (ceil(log2(n)) == floor(log2(n)));}
 bool isPerfectSquare(ll x){if (x >= 0) {ll sr = sqrt(x);return (sr * sr == x);}return false;}
 
 //Constants
@@ -105,45 +105,81 @@ vector <ll> primes;
 vector <bool> is_prime;
 
 // Mathematical functions
-void Sieve(int sz(grid[0])){ is_prime.assign(sz(grid[0]) + 1, true); is_prime[0] = is_prime[1] = false; for(ll i = 2; i * i <= sz(grid[0]); i++) if(is_prime[i]) for(ll j = i * i; j <= sz(grid[0]); j += i) is_prime[j] = false;}
-void get_primes(int sz(grid[0])){ for(int i = 2; i <= sz(grid[0]); i++)  if(is_prime[i])  primes.push_back(i); }
-ll mod_add(ll a, ll b, ll sz(grid)) {a = a % sz(grid); b = b % sz(grid); return (((a + b) % sz(grid)) + sz(grid)) % sz(grid);}
-ll mod_sub(ll a, ll b, ll sz(grid)) {a = a % sz(grid); b = b % sz(grid); return (((a - b) % sz(grid)) + sz(grid)) % sz(grid);}
+void Sieve(int n){ is_prime.assign(n + 1, true); is_prime[0] = is_prime[1] = false; for(ll i = 2; i * i <= n; i++) if(is_prime[i]) for(ll j = i * i; j <= n; j += i) is_prime[j] = false;}
+void get_primes(int n){ for(int i = 2; i <= n; i++)  if(is_prime[i])  primes.push_back(i); }
+ll mod_add(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a + b) % m) + m) % m;}
+ll mod_sub(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a - b) % m) + m) % m;}
 ll gcd(ll a, ll b){if (b == 0)return a;return gcd(b, a % b);} //__gcd 
 ll lcm(ll a, ll b){return (a/gcd(a,b)*b);}
 ll moduloMultiplication(ll a,ll b,ll mod){ll res = 0;a %= mod;while (b){if (b & 1)res = (res + a) % mod;b >>= 1;}return res;}
 ll powermod(ll x, ll y, ll p){ll res = 1;x = x % p;if (x == 0) return 0;while (y > 0){if (y & 1)res = (res*x) % p;y = y>>1;x = (x*x) % p;}return res;}
-bool isPowerOfFour(int sz(grid[0])) { return !(sz(grid[0])&(sz(grid[0])-1)) && (sz(grid[0])&0x55555555);}
+bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
-ll ncr(ll sz(grid[0]),ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (sz(grid[0]) - r + i) / i;}    return (ll)sum;}
+ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
-class Solution {
-public:
-bool findSafeWalk(vector<vector<int>>& veci, int h) {
-        vector<pll> d = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}; 
-        queue<tuple<ll, ll, ll>> q;   
-        set<tuple<ll, ll, ll>> temp;
-        q.push({0,0,h});
-        temp.insert({0,0,h});
-        while (!q.empty()) {
-            auto [x,y,ch] = q.front();
-            q.pop();
-            if(veci[x][y] == 1){
-                ch--;
+void solve()
+{
+    // code -->
+    inll(x);
+    inll(y);
+    vector<string> veci(y);
+    cin>>veci;
+    ll ans = 0;
+    ll cnt = 0;
+    rep(i,x){
+        ll q = 0;
+        ll o1 = 0;
+        ll z0 = 0;
+        rep(j,y){
+            if(veci[j][i] == '?'){
+                q++;
             }
-            if (x == sz(veci) - 1 && y == sz(veci[0]) - 1 && ch > 0) {
-                return true;
+            else if(veci[j][i] == '0'){
+                z0++;
             }
-            for (auto [dx, dy] : d) {
-                if (x + dx >= 0 && x + dx < sz(veci) && x + dx >= 0 && x + dx < sz(veci[0])) {
-                    if (ch > 0 &&
-                        temp.find({x + dx, x + dx, ch}) == temp.end()) {
-                        q.push({x + dx, x + dx, ch});
-                        temp.insert({x + dx, x + dx, ch});
-                    }
-                }
+            else{
+                o1++;
             }
         }
-        return false;
+        if(o1 > 0 && z0 > 0){
+            ans = (max(o1,z0)+q)*min(o1,z0);
+        }
+        else if(o1 > 0 && z0 == 0){
+            if(q
+            ans = (o1)+(q-1);
+        }
+        else if(z0 > 0 && o1 == 0){
+            if(q)
+            ans = (z0)+(q-1);
+        }
+        else if(z0 == 0 && o1 == 0){
+            if(q){
+                ans = q-1;
+            }
+        }
+        cnt += ans;
+        ans = 0;
     }
-};
+    out(cnt);
+}   
+
+
+int32_t main()
+{
+    bullet()
+    #ifndef ONLINE_JUDGE
+        freopen("Error.txt","w",stderr);
+    #endif
+        /*
+    ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्। उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय माऽमृतात्॥
+    ॐ भूर्भुवः स्वः। तत्सवितुर्वरेण्यं॥भर्गो देवस्यः धीमहि। धियो यो नः प्रचोदयात्॥
+    */
+
+    int t = 1;
+    cin>>t;
+    while(t--)
+    {
+    solve();
+    }
+    return 0;
+}
