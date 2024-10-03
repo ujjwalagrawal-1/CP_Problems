@@ -1,4 +1,4 @@
-// 2024-09-18 19:52:12
+// 2024-09-26 12:52:04
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -121,24 +121,35 @@ void solve()
 {
     // code -->
     inll(x);
-    inll(y);
+    inll(e);
     vecl veci(x);
     cin>>veci;
-
-    ll maxi = MAX(veci);
-    Sieve(maxi);
-    vecl one;
-    vecl primes;
+    ll ans = 0;
     rep(i,x){
-        if(veci[i] == 1){
-            one.pb(i);
-        }
-        if(is_prime[veci[i]]){
-            primes.pb(i);
+        if(veci[i] != 1 && is_prime[veci[i]]){
+            ll l = 0,r = 0;
+            feach(j,i+e,x,e){
+                if(veci[j] == 1){
+                    r++;
+                }
+                else{
+                    break;
+                }
+            }
+            rfeach(j,i-e,0,e){
+                if(veci[j] == 1){
+                    l++;
+                }
+                else{
+                    break;
+                }
+            }
+            ans += (l + r + l*r);
         }
     }
-    
-}
+
+    out(ans);
+}   
 
 
 int32_t main()
@@ -154,6 +165,7 @@ int32_t main()
 
     int t = 1;
     cin>>t;
+    Sieve(1e6+1);
     while(t--)
     {
     solve();

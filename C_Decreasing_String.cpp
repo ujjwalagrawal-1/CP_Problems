@@ -1,4 +1,4 @@
-// 2024-09-19 20:15:44
+// 2024-09-28 15:16:08
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -120,45 +120,49 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
-    inll(x);
-    vecl veci(x);
-    cin>>veci;
-    set<pair<int,int>> sm1;
-    set<pair<int,int>> sm2;
-    set<pair<int,int>> sm3;
-    map<tuple<int,int,int>,int > r;
-    int ans = 0;
-    bool fl = 0;
-    rep(i,x-2){
-        fl = 0;
-        int f = veci[i];
-        int s = veci[i+1];
-        int t = veci[i+2];
-        if(sm1.count({f,s})){
-            if(!fl)
-            ans++;
-        }
-        if(sm2.count({s,t})){
-            if(!fl)
-            ans++;
-        }
-        if(sm3.count({t,f})){
-            if(!fl)
-            ans++;
-        }
-        sm1.insert({f,s});
-        sm2.insert({s,t});
-        sm3.insert({t,f});
-        if(r.count({f,s,t})){
-            ans--;
-        }
-        else
-        r[{f,s,t}]++;
-    }
-
-    out(ans);
-
-}   
+    	string s;
+	cin >> s;
+ 
+	ll k;
+	cin >> k;
+ 
+	stack<ll> st;
+	vector<ll> v;
+ 
+	for(ll i = 0; i < s.size(); i++) {
+		while(!st.empty() && s[st.top()] > s[i]) {
+			v.push_back(st.top());
+			st.pop();
+		}
+		st.push(i);
+	}
+ 
+	while(!st.empty()) {
+		v.push_back(st.top());
+		st.pop();
+	}
+ 
+	ll n = s.size();
+ 
+	set<ll> ss;
+	ll p = 0;
+ 
+	while(k > n) {
+		k -= (n);
+		n--;
+		ss.insert(v[p++]);
+	}
+ 
+	ll sk = 0;
+	for(ll i = 0; i < s.size(); i++) {
+		if(ss.count(i)) continue;
+		k--;
+		if(k == 0) {
+			cout << s[i];
+			return;
+		}
+	}
+}
 
 
 int32_t main()

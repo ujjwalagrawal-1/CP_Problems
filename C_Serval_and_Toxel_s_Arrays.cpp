@@ -1,4 +1,4 @@
-// 2024-09-19 20:15:44
+// 2024-09-29 16:22:58
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -109,7 +109,7 @@ void Sieve(int n){ is_prime.assign(n + 1, true); is_prime[0] = is_prime[1] = fal
 void get_primes(int n){ for(int i = 2; i <= n; i++)  if(is_prime[i])  primes.push_back(i); }
 ll mod_add(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a + b) % m) + m) % m;}
 ll mod_sub(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a - b) % m) + m) % m;}
-ll gcd(ll a, ll b){if (b == 0)return a;return gcd(b, a % b);} //__gcd 
+ll gcd(ll a, ll b){if (b == 0)return a;return gcd(b, a % b);} //__gcd x
 ll lcm(ll a, ll b){return (a/gcd(a,b)*b);}
 ll moduloMultiplication(ll a,ll b,ll mod){ll res = 0;a %= mod;while (b){if (b & 1)res = (res + a) % mod;b >>= 1;}return res;}
 ll powermod(ll x, ll y, ll p){ll res = 1;x = x % p;if (x == 0) return 0;while (y > 0){if (y & 1)res = (res*x) % p;y = y>>1;x = (x*x) % p;}return res;}
@@ -120,45 +120,8 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
-    inll(x);
-    vecl veci(x);
-    cin>>veci;
-    set<pair<int,int>> sm1;
-    set<pair<int,int>> sm2;
-    set<pair<int,int>> sm3;
-    map<tuple<int,int,int>,int > r;
-    int ans = 0;
-    bool fl = 0;
-    rep(i,x-2){
-        fl = 0;
-        int f = veci[i];
-        int s = veci[i+1];
-        int t = veci[i+2];
-        if(sm1.count({f,s})){
-            if(!fl)
-            ans++;
-        }
-        if(sm2.count({s,t})){
-            if(!fl)
-            ans++;
-        }
-        if(sm3.count({t,f})){
-            if(!fl)
-            ans++;
-        }
-        sm1.insert({f,s});
-        sm2.insert({s,t});
-        sm3.insert({t,f});
-        if(r.count({f,s,t})){
-            ans--;
-        }
-        else
-        r[{f,s,t}]++;
-    }
-
-    out(ans);
-
-}   
+    
+}
 
 
 int32_t main()

@@ -1,8 +1,9 @@
-//"2024-05-20 19:25:29",
+// 2024-09-19 20:03:43
 // Author Ujjwal_Agrawal
-// Linkedin:  https://www.linkedin.com/in/uj7b1253/
-// Codeforces: https://codeforces.com/profile/n_________er
-// Codechef: https://www.codechef.com/users/kgr
+// Linkedin:  https://www.linkedin.com/in/u1253/
+// Codeforces: https://codeforces.com/profile
+// Codechef: https://www.codechef.com/users/
+
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -45,19 +46,21 @@ using namespace std;
 #define ps(x,y) fixed<<setprecision(y)<<x
 #define rtn return
 
-int powint(int base, int exponent) {int result = 1;for (int i = 0; i < exponent; i++) {result *= base;}return result;}
+
 
 //Typedef
 typedef long long ll;
-typedef pair<ll, ll> pil;typedef pair<int, int> pi;
+typedef pair<ll, ll> pll;typedef pair<int, int> pii;
+typedef pair<char, int> pci;typedef pair<char, ll> pcl;
+typedef pair<string, ll> psl;typedef pair<char, char> pcc;
 typedef vector<ll> vecl;typedef vector<int> vec;
 typedef map<ll,ll> mpl;typedef map<int,int> mp;
 typedef unordered_map<ll,ll> umpl;typedef unordered_map<int,int> ump;
 typedef vector<vector<ll>> dvecl;typedef vector<vector<int>> dvec;
-typedef vector<pair<ll,ll>> vec_pairl;typedef vector<pair<ll,ll>> vec_pairl;
-typedef vector<pair<ll,pair<ll,bool>>> vecdbplb;typedef vector<pair<int,pair<int,bool>>> vecdbpb;
+typedef vector<pair<ll,ll>> vecpll;
+typedef vector<pair<ll,pair<ll,bool>>> vecpllb;typedef vector<pair<int,pair<int,bool>>> vecpiib;
 typedef queue<ll> ql;
-typedef queue<pair<ll,ll>> qpl;
+typedef queue<pair<ll,ll>> qpll;
 typedef vector<char> vch;
 typedef set<char> sch;
 typedef set<int> si;
@@ -113,28 +116,28 @@ ll powermod(ll x, ll y, ll p){ll res = 1;x = x % p;if (x == 0) return 0;while (y
 bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
+ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
 void solve()
 {
     // code -->
-    inint(x);
-    inint(y);
-    int sc = 0;
-    int t = y/2;
-    int b = t*7;
-    int g = y -  t*2; 
-    b += g > 0 ? 11 : 0;
-    sc += t +( g > 0 ? 1 : 0);
-    x = x - b;
-    if(x < 0){
-        out(sc);
-        rtn;
+    inll(x);
+    inll(y);
+    ll ans = 0;
+    ll lft = 0;
+    if(y){
+        if(y%2 == 0){
+            ans += ceil(1.0*y/2.0);
+            lft = ans*7;
+        }
+        else{
+            ans += (y/2) + 1;
+            lft += (y/2)*7 + 11;
+        }
     }
-    sc += x/15;
-    if(x%15>0){
-        sc++;
+    if(x -lft >= 0){
+        ans += ceil(1.0*(x-lft)/15.0);
     }
-    out(sc);
-
+    out(ans);
 }   
 
 

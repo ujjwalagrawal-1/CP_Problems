@@ -1,4 +1,4 @@
-// 2024-09-19 20:15:44
+// 2024-10-03 17:54:22
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -60,6 +60,8 @@ typedef vector<vector<ll>> dvecl;typedef vector<vector<int>> dvec;
 typedef vector<pair<ll,ll>> vecpll;
 typedef vector<pair<ll,pair<ll,bool>>> vecpllb;typedef vector<pair<int,pair<int,bool>>> vecpiib;
 typedef queue<ll> ql;
+typedef priority_queue<ll,vecl,greater<ll>> pq_min;
+typedef priority_queue<ll> pq_max;
 typedef queue<pair<ll,ll>> qpll;
 typedef vector<char> vch;
 typedef set<char> sch;
@@ -117,47 +119,54 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
+bool comp(vecl & a,vecl & b){
+    if(a[0] == b[0]){
+        return a[1] > b[1];
+    }
+
+    return a[0] < b[0];
+}
 void solve()
 {
     // code -->
-    inll(x);
-    vecl veci(x);
-    cin>>veci;
-    set<pair<int,int>> sm1;
-    set<pair<int,int>> sm2;
-    set<pair<int,int>> sm3;
-    map<tuple<int,int,int>,int > r;
-    int ans = 0;
-    bool fl = 0;
-    rep(i,x-2){
-        fl = 0;
-        int f = veci[i];
-        int s = veci[i+1];
-        int t = veci[i+2];
-        if(sm1.count({f,s})){
-            if(!fl)
-            ans++;
+    inll(n);
+    inll(d);
+    inll(k);
+    dvecl jobs(k,vecl(2,0));
+    cin>>jobs;
+    sort(all(jobs));
+    pq_min pq;
+    ll j = 1;
+    ll ind = 0;
+    ll miniind = -1,maxiind = -1;
+    ll maxi = INT_MIN;
+    ll mini = INT_MAX;
+    
+    // out("Jobs is - "<<jobs);
+    while(j <= n-d+1){
+        // cy;
+        while(!pq.empty() &&  pq.top() < j){
+            pq.pop();
+            // cn;
         }
-        if(sm2.count({s,t})){
-            if(!fl)
-            ans++;
+        while(ind < k && jobs[ind][0] <= j+d-1){
+            pq.push(jobs[ind][1]);
+            // out(ind);
+            ind++;
         }
-        if(sm3.count({t,f})){
-            if(!fl)
-            ans++;
+        if(maxi < pq.size()){
+            // out("change in maxi "<<pq.size());
+            maxi = pq.size();
+            maxiind = j;
         }
-        sm1.insert({f,s});
-        sm2.insert({s,t});
-        sm3.insert({t,f});
-        if(r.count({f,s,t})){
-            ans--;
+        if(mini > pq.size()){
+            // out("change in mini  "<<pq.size());
+            mini = pq.size();
+            miniind = j;
         }
-        else
-        r[{f,s,t}]++;
+        j++;
     }
-
-    out(ans);
-
+    out(maxiind<<" "<<miniind);
 }   
 
 

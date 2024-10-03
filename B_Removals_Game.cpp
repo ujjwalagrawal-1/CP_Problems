@@ -1,4 +1,4 @@
-// 2024-09-19 20:15:44
+// 2024-09-19 23:30:14
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -120,44 +120,34 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
-    inll(x);
-    vecl veci(x);
-    cin>>veci;
-    set<pair<int,int>> sm1;
-    set<pair<int,int>> sm2;
-    set<pair<int,int>> sm3;
-    map<tuple<int,int,int>,int > r;
-    int ans = 0;
-    bool fl = 0;
-    rep(i,x-2){
-        fl = 0;
-        int f = veci[i];
-        int s = veci[i+1];
-        int t = veci[i+2];
-        if(sm1.count({f,s})){
-            if(!fl)
-            ans++;
-        }
-        if(sm2.count({s,t})){
-            if(!fl)
-            ans++;
-        }
-        if(sm3.count({t,f})){
-            if(!fl)
-            ans++;
-        }
-        sm1.insert({f,s});
-        sm2.insert({s,t});
-        sm3.insert({t,f});
-        if(r.count({f,s,t})){
-            ans--;
-        }
-        else
-        r[{f,s,t}]++;
+    int n;
+    cin>>n;
+    vector<int>a(n), b(n);
+    for(int i=0;i<n;i++){
+        cin>>a[i];
     }
-
-    out(ans);
-
+    for(int i=0;i<n;i++){
+        cin>>b[i];
+    }
+    bool flag=true, flag2=true;
+    for(int i=0;i<n;i++){
+        if(a[i]!=b[i]){
+            flag=false;
+            break;
+        }
+    }
+    for(int i=0;i<n;i++){
+        if(a[n-i-1]!=b[i]){
+            flag2=false;
+            break;
+        }
+    }
+    if(flag || flag2){
+        cout<<"Bob"<<endl;
+    }
+    else{
+        cout<<"Alice"<<endl;
+    }
 }   
 
 

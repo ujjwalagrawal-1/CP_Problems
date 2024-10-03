@@ -1,4 +1,4 @@
-// 2024-09-19 20:15:44
+// 2024-09-24 23:15:22
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -117,48 +117,34 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
-void solve()
-{
-    // code -->
-    inll(x);
-    vecl veci(x);
-    cin>>veci;
-    set<pair<int,int>> sm1;
-    set<pair<int,int>> sm2;
-    set<pair<int,int>> sm3;
-    map<tuple<int,int,int>,int > r;
-    int ans = 0;
-    bool fl = 0;
-    rep(i,x-2){
-        fl = 0;
-        int f = veci[i];
-        int s = veci[i+1];
-        int t = veci[i+2];
-        if(sm1.count({f,s})){
-            if(!fl)
-            ans++;
+int findCapableWinners(vector<int>& a, vector<int>& b, vector<int>& c) {
+    int n = a.size();
+    int cw = 0;
+    int mp[3] = {0, 0, 0};
+    vector<vec> pl;
+    
+    rep(i,n){
+        // Sort the scores a[i], b[i], c[i] in descending order
+        vector<int> p = {a[i], b[i], c[i]};
+        sort(p.begin(), p.end(), std::greater<int>());
+        pl.push_back(p);
+
+        // Update maximums for mp[0], mp[1], mp[2]
+        rep(j,3){
+            mp[j] = max(mp[j], p[j]);
         }
-        if(sm2.count({s,t})){
-            if(!fl)
-            ans++;
-        }
-        if(sm3.count({t,f})){
-            if(!fl)
-            ans++;
-        }
-        sm1.insert({f,s});
-        sm2.insert({s,t});
-        sm3.insert({t,f});
-        if(r.count({f,s,t})){
-            ans--;
-        }
-        else
-        r[{f,s,t}]++;
     }
 
-    out(ans);
+    for (const auto& p : pl) {
+        if ((p[0] > mp[1] && p[1] > mp[2]) ||
+            (p[0] > mp[1] && p[0] > mp[0]) ||
+            (p[1] == mp[1] && p[0] == mp[0])) {
+            cw++;
+        }
+    }
 
-}   
+    return cw;
+}
 
 
 int32_t main()
