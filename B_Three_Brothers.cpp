@@ -1,4 +1,4 @@
-// 2024-10-05 11:29:51
+// 2024-10-04 09:27:57
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -117,35 +117,20 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
-ll dfs(ll node,vecl adj [],ll k,vecl &arr){
-    if(k == 0){
-        return 0;
-    }
-    for(auto itr : adj[node]){
-        auto 
-    }
-}
-ll f(ll sb, vecl & p,vecl & arr,ll k){
-    vecl adj [sz(p)];
-    for(int i = 0;i < sz(p);i++){
-        adj[i].pb(p[i]-1);
-        adj[i].pb(i);
-    }
-    queue<ll> pq;
-    return dfs(sb-1,adj,k,arr);
-}
 void solve()
 {
     // code -->
-    inll(n); 
-    inll(k);
-    inll(sb);
-    inll(ss);
-    vecl p(n);
-    vecl arr(n);
-    cin>>p;
-    cin>>arr;
-    ll ansb = f(sb,p,arr,k); 
+    ll x,y;
+    cin>>x>>y;
+    vecl veci(4);
+    veci[x]++;
+    veci[y]++;
+    feach(i,1,4,1){
+        if(veci[i] == 0){
+            out(i);
+            rtn;
+        }
+    }
 }   
 
 
@@ -161,7 +146,7 @@ int32_t main()
     */
 
     int t = 1;
-    cin>>t;
+    // cin>>t;
     while(t--)
     {
     solve();
