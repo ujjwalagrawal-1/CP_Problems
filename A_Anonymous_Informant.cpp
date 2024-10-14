@@ -1,4 +1,4 @@
-// 2024-10-08 00:28:44
+// 2024-10-10 07:33:32
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -123,7 +123,43 @@ void solve()
     inll(x);
     inll(k);
     vecl veci(x);
-    
+    cin>>veci;
+    queue<ll> qu;
+    qu.push(0);
+    ll csu  = 0;
+    while (!qu.empty())
+    {
+        if(k < 0){
+            cn;
+            rtn;
+        }
+        ll n = qu.size();
+        bool fl = 0;
+        rep(j, n)
+        {
+            ll ele = qu.front();
+            // out(ele);
+            qu.pop();
+            rep(i, x)
+            {
+              // out(i<<"  "<<veci[i]<<" "<<ele<<" "<<(i + veci[i] + ele) % x + 1<<" "<<veci[(i + ele)%x]);
+                if ((i+ele + veci[(i+ele)%x])% x + 1 == veci[(i+ele)%x])
+                {
+                  qu.push(ele+veci[(i+ele)%x]);
+                  fl = 1;
+                }
+            }
+        }
+        if(fl == 1){
+            k--;
+        }
+        if(k == 0){
+            cy;
+            rtn;
+        }
+    }
+    cn;
+    rtn;
 }   
 
 

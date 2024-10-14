@@ -1,11 +1,10 @@
-// 2024-08-01 14:44:40
+// 2024-10-11 09:23:04
 // Author Ujjwal_Agrawal
-// Linkedin:  https://www.linkedin.com/in/uj7b1253/
-// Codeforces: https://codeforces.com/profile/n_________er
-// Codechef: https://www.codechef.com/users/kgr
+// Linkedin:  https://www.linkedin.com/in/u1253/
+// Codeforces: https://codeforces.com/profile
+// Codechef: https://www.codechef.com/users/
 
 
-// Credit : Viraj Sir
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -51,15 +50,17 @@ using namespace std;
 
 //Typedef
 typedef long long ll;
-typedef pair<ll, ll> pil;typedef pair<int, int> pi;
+typedef pair<ll, ll> pll;typedef pair<int, int> pii;
+typedef pair<char, int> pci;typedef pair<char, ll> pcl;
+typedef pair<string, ll> psl;typedef pair<char, char> pcc;
 typedef vector<ll> vecl;typedef vector<int> vec;
 typedef map<ll,ll> mpl;typedef map<int,int> mp;
 typedef unordered_map<ll,ll> umpl;typedef unordered_map<int,int> ump;
 typedef vector<vector<ll>> dvecl;typedef vector<vector<int>> dvec;
-typedef vector<pair<ll,ll>> vec_pairl;typedef vector<pair<ll,ll>> vec_pairl;
-typedef vector<pair<ll,pair<ll,bool>>> vecdbplb;typedef vector<pair<int,pair<int,bool>>> vecdbpb;
+typedef vector<pair<ll,ll>> vecpll;
+typedef vector<pair<ll,pair<ll,bool>>> vecpllb;typedef vector<pair<int,pair<int,bool>>> vecpiib;
 typedef queue<ll> ql;
-typedef queue<pair<ll,ll>> qpl;
+typedef queue<pair<ll,ll>> qpll;
 typedef vector<char> vch;
 typedef set<char> sch;
 typedef set<int> si;
@@ -119,37 +120,33 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
-    inll(a);
-    inll(b);
-    inll(r);
-
+    ll a,b,r;
+    cin>>a>>b>>r;
     if(a < b){
         swap(a,b);
     }
-    ll mini = LLONG_MAX;
-    ll num = 0;
-    rfeach(i,64,0,1){
-        ll po2 = (1LL<<i);
-        if(r < po2){
-            mini = min(mini,abs((a^num) - (b^num)));
-        }
-        else{
-            ll tnum = num | po2;
-            ll x = abs((a^tnum) - (b^tnum));
-            ll y = abs((a^num) - (b^num));
-            if(x < y){
-                if(x < mini){
-                    r -= po2;
-                    num = tnum;
-                    mini = x;
-                }
+    ll xo = 0;
+    bool flag = 1;
+    rfeach(i,62,0,1){
+        ll vala = (a>>i)&1;
+        ll valb = (b>>i)&1;
+        
+        if(vala == 1 && valb == 0){
+            if(flag)flag  = !flag;
+            else{
+                ll temp = xo | (1ll<< i);
+            if(temp <= r){
+                xo |= (1ll<<i);
             }
             else{
-                mini = min(y,mini);
+                C;
             }
+            }
+            
         }
     }
-    out(mini);
+    a^=xo;b^=xo;
+    out(abs(a-b));
 }   
 
 

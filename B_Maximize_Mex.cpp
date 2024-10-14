@@ -21,7 +21,7 @@ using namespace std;
 #define fir first
 #define sec second
 #define feach(i, j, k, in) for(int i=j;i<k;i+=in)
-#define rfeach(i, j, k, in) for(int i=j;i>=k;i-=in)
+#define rfeach(i, j, k, in) for(int i=j;i>=k;i-=in)\
 #define rep(i,j) feach(i,0,j,1)
 #define rrep(i,j) rfeach(i,j,0,1)
 #define set_bits(x) __builtin_popcountll(x)
@@ -162,11 +162,6 @@ int32_t main()
     #ifndef ONLINE_JUDGE
         freopen("Error.txt","w",stderr);
     #endif
-        /*
-    ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्। उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय माऽमृतात्॥
-    ॐ भूर्भुवः स्वः। तत्सवितुर्वरेण्यं॥भर्गो देवस्यः धीमहि। धियो यो नः प्रचोदयात्॥
-    */
-
     int t = 1;
     cin>>t;
     while(t--)
