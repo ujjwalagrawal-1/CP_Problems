@@ -1,8 +1,9 @@
-//"2023-11-26 21:32:11",
+// 2024-10-15 18:48:47
 // Author Ujjwal_Agrawal
-// Linkedin:  https://www.linkedin.com/in/uj7b1253/
-// Codeforces: https://codeforces.com/profile/n_________er
-// Codechef: https://www.codechef.com/users/kgr
+// Linkedin:  https://www.linkedin.com/in/u1253/
+// Codeforces: https://codeforces.com/profile
+// Codechef: https://www.codechef.com/users/
+
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -17,12 +18,12 @@ using namespace std;
 #define in(x) insert(x);
 #define pb push_back
 #define pp pop_back
-#define f first
-#define s second
-#define foreach(i, j, k, in) for(int i=j;i<k;i+=in)
-#define rforeach(i, j, k, in) for(int i=j;i>=k;i-=in)
-#define rep(i,j) foreach(i,0,j,1)
-#define rrep(i,j) rforeach(i,j,0,1)
+#define fir first
+#define sec second
+#define feach(i, j, k, in) for(int i=j;i<k;i+=in)
+#define rfeach(i, j, k, in) for(int i=j;i>=k;i-=in)
+#define rep(i,j) feach(i,0,j,1)
+#define rrep(i,j) rfeach(i,j,0,1)
 #define set_bits(x) __builtin_popcountll(x)
 #define zero_bits(x) __builtin_ctzll(x)
 #define sz(s) (int)(s.size())
@@ -43,22 +44,25 @@ using namespace std;
 #define cn cout<<"NO"<<endl
 #define cm cout<<"-1"<<endl
 #define ps(x,y) fixed<<setprecision(y)<<x
+#define rtn return
+
+
 
 //Typedef
 typedef long long ll;
-typedef pair<int, int> pi;
-typedef vector<int> vec;
-typedef vector<char> vec_ch;
-typedef map<int,int> mp;
-typedef unordered_map<int,int> ump;
-typedef vector<vector<int>> dvec;
-typedef vector<pair<int,int>> vec_pair;
-typedef vector<pair<int,pair<int,bool>>> vec_db_pr;
-typedef map<int,int> mp;
-typedef queue<int> q;
-typedef queue<pair<int,int>> doq;
+typedef pair<ll, ll> pll;typedef pair<int, int> pii;
+typedef pair<char, int> pci;typedef pair<char, ll> pcl;
+typedef pair<string, ll> psl;typedef pair<char, char> pcc;
+typedef vector<ll> vecl;typedef vector<int> vec;
+typedef map<ll,ll> mpl;typedef map<int,int> mp;
+typedef unordered_map<ll,ll> umpl;typedef unordered_map<int,int> ump;
+typedef vector<vector<ll>> dvecl;typedef vector<vector<int>> dvec;
+typedef vector<pair<ll,ll>> vecpll;
+typedef vector<pair<ll,pair<ll,bool>>> vecpllb;typedef vector<pair<int,pair<int,bool>>> vecpiib;
+typedef queue<ll> ql;
+typedef queue<pair<ll,ll>> qpll;
 typedef vector<char> vch;
-typedef set<char> sc;
+typedef set<char> sch;
 typedef set<int> si;
 typedef set<ll> sl;
 typedef set<string> ss;
@@ -109,38 +113,76 @@ ll gcd(ll a, ll b){if (b == 0)return a;return gcd(b, a % b);} //__gcd
 ll lcm(ll a, ll b){return (a/gcd(a,b)*b);}
 ll moduloMultiplication(ll a,ll b,ll mod){ll res = 0;a %= mod;while (b){if (b & 1)res = (res + a) % mod;b >>= 1;}return res;}
 ll powermod(ll x, ll y, ll p){ll res = 1;x = x % p;if (x == 0) return 0;while (y > 0){if (y & 1)res = (res*x) % p;y = y>>1;x = (x*x) % p;}return res;}
+bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
-class tree{
-    char ch;
-    tree* left;
-    tree* right;
-    tree(){
-        this->left = NULL;
-        this->right =NULL;
-    }
-    tree(char ch){
-        this->ch = ch;
-        this->left = NULL;
-        this->right =NULL;
+ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
+ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
+struct node {
+    char data;
+    node* left = NULL;
+    node* right = NULL;
+
+    node(char val) {
+        this->data = val;
     }
 };
-tree* make_tree(int i,char ch){
-    if(i == 0){
-        return NULL;
-    }
 
-    tree* newnode = new tree(ch);
-    tree->left = make_tree();
+void buildtree(node* root, const vector<vector<ll>>& tree, ll ind,string &st) {
+    // Check for left child
+    ll left_child_index = tree[ind][0];
+    if (left_child_index != 0)  {
+        node* left_child = new node(st[(left_child_index-1)]);
+        root->left = left_child;
+        buildtree(root->left, tree, left_child_index - 1,st);
+    }
+    ll right_child_index = tree[ind][1];
+    if (right_child_index != 0) {
+        node* right_child = new node(st[(right_child_index-1)]);
+        root->right = right_child;
+        buildtree(root->right, tree, right_child_index - 1,st);
+    }
+}
+
+void pre(node* root){
+    if(root == NULL){
+        return;
+    }
+    out(root->data);
+    pre(root->left);
+    pre(root->right);
+}
+ll f(node* root){
+    if(root == NULL){
+        return INT_MAX;
+    }
+    if(root->left == NULL && root->right == NULL){
+        return 0;
+    }
+    if(root->data == 'L'){
+        return min(f(root->left),f(root->right)+1);
+    }
+    if(root->data == 'R'){
+        return min(f(root->left)+1,f(root->right));
+    }
+    if(root->data == 'U'){
+        return min(f(root->left)+1,f(root->right)+1);
+    }
+    return 0;
 }
 void solve()
 {
-    inint(x);
+    // code -->
+    inll(x);
     instr(st);
-    rep(i,x){
-        
-    }
-    tree* node = make_tree();
-}
+    dvecl tree(x,vecl(2,0));
+    cin>>tree;
+    // cy;
+    node* root = new node(st[0]);
+    buildtree(root,tree,0,st);
+    // pre(root);
+    ll ans = f(root);
+    out(ans);
+}   
 
 
 int32_t main()
@@ -149,9 +191,12 @@ int32_t main()
     #ifndef ONLINE_JUDGE
         freopen("Error.txt","w",stderr);
     #endif
-    //              ☆*: .｡. o(≧▽≦)o .｡.:*☆
-    //        	   coding karne ke liya skills nahi hai.. moye moye    
-    int t;
+        /*
+    ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्। उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय माऽमृतात्॥
+    ॐ भूर्भुवः स्वः। तत्सवितुर्वरेण्यं॥भर्गो देवस्यः धीमहि। धियो यो नः प्रचोदयात्॥
+    */
+
+    int t = 1;
     cin>>t;
     while(t--)
     {
