@@ -1,4 +1,4 @@
-// 2024-10-16 17:41:20
+// 2024-10-17 09:07:46
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -115,13 +115,26 @@ ll moduloMultiplication(ll a,ll b,ll mod){ll res = 0;a %= mod;while (b){if (b & 
 ll powermod(ll x, ll y, ll p){ll res = 1;x = x % p;if (x == 0) return 0;while (y > 0){if (y & 1)res = (res*x) % p;y = y>>1;x = (x*x) % p;}return res;}
 bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
-ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n  - r + i) / i;}    return (ll)sum;}
+ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
 void solve()
 {
     // code -->
     inll(x);
-    
+    vecl veci(x);
+    cin>>veci;
+    vecl suffix(x+1,0);
+    rfeach(i,x-1,0,1){
+        suffix[i] = veci[i] + suffix [i+1];
+    }
+    // out(suffix);
+    ll ans = suffix[0];
+    feach(i,1,x,1){
+        if(suffix[i] > 0){
+            ans += suffix[i];
+        }
+    }
+    out(ans);
 }   
 
 

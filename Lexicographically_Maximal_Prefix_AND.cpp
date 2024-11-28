@@ -1,8 +1,9 @@
-// 2024-05-29 20:30:10
+// 2024-11-02 02:34:42
 // Author Ujjwal_Agrawal
-// Linkedin:  https://www.linkedin.com/in/uj7b1253/
-// Codeforces: https://codeforces.com/profile/n_________er
-// Codechef: https://www.codechef.com/users/kgr
+// Linkedin:  https://www.linkedin.com/in/u1253/
+// Codeforces: https://codeforces.com/profile
+// Codechef: https://www.codechef.com/users/
+
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -49,15 +50,17 @@ using namespace std;
 
 //Typedef
 typedef long long ll;
-typedef pair<ll, ll> pil;typedef pair<int, int> pi;
+typedef pair<ll, ll> pll;typedef pair<int, int> pii;
+typedef pair<char, int> pci;typedef pair<char, ll> pcl;
+typedef pair<string, ll> psl;typedef pair<char, char> pcc;
 typedef vector<ll> vecl;typedef vector<int> vec;
 typedef map<ll,ll> mpl;typedef map<int,int> mp;
 typedef unordered_map<ll,ll> umpl;typedef unordered_map<int,int> ump;
 typedef vector<vector<ll>> dvecl;typedef vector<vector<int>> dvec;
-typedef vector<pair<ll,ll>> vec_pairl;typedef vector<pair<ll,ll>> vec_pairl;
-typedef vector<pair<ll,pair<ll,bool>>> vecdbplb;typedef vector<pair<int,pair<int,bool>>> vecdbpb;
+typedef vector<pair<ll,ll>> vecpll;
+typedef vector<pair<ll,pair<ll,bool>>> vecpllb;typedef vector<pair<int,pair<int,bool>>> vecpiib;
 typedef queue<ll> ql;
-typedef queue<pair<ll,ll>> qpl;
+typedef queue<pair<ll,ll>> qpll;
 typedef vector<char> vch;
 typedef set<char> sch;
 typedef set<int> si;
@@ -120,16 +123,24 @@ void solve()
     inll(x);
     vecl veci(x);
     cin>>veci;
-    sort(all(veci),greater<int>());
-    vecl ans(x);
-    ans[0] = veci[0];
-    feach(i,1,x,1){
-        ans[i] = veci[i]&ans[i-1];
+    map<ll,vecl> mp;
+    map<ll,ll> mp2;
+    rep(j,x){
+        mp2[veci[j]]++;
+        rfeach(i,32,0,1){
+            if(veci[i]&(1<<i)){
+                mp[i].pb(veci[j]);
+            }
+        }
     }
-    cy;
-    out(veci);
-    out(ans);
-    cn;
+    out(mp2.rbegin()->first);
+    mp2.rbegin()->second--;
+    if(mp2.rbegin()->second == 0){
+        mp2.erase(mp2.rbegin()->first);
+    }
+    while(!mp.empty()){
+        
+    }
 }   
 
 
