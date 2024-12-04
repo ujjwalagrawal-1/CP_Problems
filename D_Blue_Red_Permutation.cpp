@@ -1,4 +1,4 @@
-// 2024-11-28 20:37:23
+// 2024-11-29 00:09:46
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -120,6 +120,35 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
+    inll(x);
+    vecl veci(x);
+    cin>>veci;
+    instr(st);
+    ll ans = 0;
+    vecl inc ,dec;
+    rep(i,x){
+        if(st[i] == 'R'){
+            inc.pb(veci[i]);
+        }
+        else{
+            dec.pb(veci[i]);
+        }
+    }
+    sort(all(inc));
+    sort(all(dec));
+    ll l = 0,m = 0;
+    feach(i,1,x+1,1){
+        if(l < sz(dec) && dec[l] >= i){ 
+            l++;
+        }
+        else if(m < sz(inc) && inc[m] <= i){
+            m++;
+        }
+        else{
+            cn;rtn;
+        }
+    }
+    cy;`
 }   
 
 

@@ -1,4 +1,4 @@
-// 2024-11-28 20:37:23
+// 2024-11-30 01:11:52
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -120,6 +120,28 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
+    inll(x);
+    vecl veci(x);
+    cin>>veci;
+    ll zr = 0,on = 0,fl;
+    rep(i,x){
+        if(veci[i] == 0){
+            zr++;
+        }
+        if(veci[i] == 1){
+            on++;
+        }
+        if(i>1 && veci[i-1] + 1 == veci[i]){
+            fl = 1;
+        }
+    }
+    if(zr && on){
+        cn;
+        rtn;
+    }
+    if(on==0){
+        cy;rtn;\
+    }
 }   
 
 

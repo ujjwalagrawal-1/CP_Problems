@@ -1,4 +1,4 @@
-// 2024-11-28 20:37:23
+// 2024-11-30 20:10:26
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -120,6 +120,9 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
+    inll(x);
+    inll(y);
+    out(lcm(x,y));
 }   
 
 

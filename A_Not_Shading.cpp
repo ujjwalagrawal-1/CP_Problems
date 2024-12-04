@@ -1,4 +1,4 @@
-// 2024-11-28 20:37:23
+// 2024-12-03 14:34:03
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -120,6 +120,47 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
+    ll n,m,a,b;
+    cin>>n>>m>>a>>b;
+    vector<string> st(n);
+    cin>>st;
+    bool fa = 0,fb = 0;
+    if(st[a-1][b-1] == 'B'){
+        out(0);
+        rtn;
+    }
+    for(int i = 0;i<n;i++){
+        if(st[i][b-1] == 'B'){
+            fa = 1;
+            break;
+        }
+    }
+    for(int i = 0;i<m;i++){
+        if(st[a-1][i] == 'B'){
+            fb = 1;
+            break;
+        }
+    }
+    if(fa || fb){
+        out(1);
+        rtn;
+    }
+    bool fc = 0;
+    rep(i,n){
+        rep(j,m){
+            if(st[i][j] == 'B'){
+                fc = 1;
+                break;
+            }
+        }
+    }
+    if(fc){
+        out(2);rtn;
+    }
+    else{
+        out(-1);
+        rtn;
+    }
 }   
 
 

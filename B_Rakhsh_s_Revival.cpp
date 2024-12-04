@@ -1,4 +1,4 @@
-// 2024-11-28 20:37:23
+// 2024-11-30 23:32:12
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -120,6 +120,24 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
+    ll n,m,k;
+    cin>>n>>m>>k;
+    instr(st);
+    ll prev = -1;
+    ll ans = 0;
+    rep(i,n){
+        if(st[i] == '1'){
+            prev = max(prev,i*1ll);
+        }
+        else{
+            if(i - prev >= m){
+                prev = (i + k - 1);
+                i = prev;
+                ans++;
+            }
+        }
+    }
+    out(ans);
 }   
 
 

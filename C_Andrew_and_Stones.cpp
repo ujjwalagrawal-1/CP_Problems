@@ -1,4 +1,4 @@
-// 2024-11-28 20:37:23
+// 2024-11-29 00:42:34
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -120,6 +120,30 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
+    inll(x);
+    vecl veci(x);
+    cin>>veci;
+    ll ans = 0;
+    bool fl = 0;
+    feach(i,1,x-1,1){
+        if(veci[i] >= 2 && x-2 > 1){
+            fl = 1;
+            break;
+        }
+    }
+    if(x == 3 && veci[1]%2 == 0){
+        fl = 1;
+    }
+    if(!fl){
+        cm;
+        rtn;
+    }
+    else{
+        feach(i,1,x-1,1){
+            ans += veci[i]%2 == 1 ? (veci[i]+1)/2 : (veci[i]/2);
+        }
+        out(ans);
+    }
 }   
 
 

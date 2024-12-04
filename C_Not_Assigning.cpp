@@ -1,4 +1,4 @@
-// 2024-10-21 20:10:27
+// 2024-12-03 22:14:23
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -117,51 +117,59 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
-void dfs(vecpll adj[],ll node,bool fl,vector<bool> &vis){
-    vis[node] = 1;
-    for(auto itr : adj[node]){
-        ll next_node = itr.fir;
-        if(!vis[next_node]){
-            if(fl){
-                itr.sec = 2;
-            }
-            dfs(adj,next_node,!fl,vis);
-        }
-        if(vis[next_node]){
-            if(!fl){
-                itr.sec = 2;
-            }
-        }
-    }
-    
-}
 void solve()
 {
     // code -->
     inll(x);
     dvecl veci(x-1,vecl(2,0));
     cin>>veci;
-    ll start = 0;
-    vector<pair<ll,ll>> adj[x+1];
-    rep(i,x){
-        adj[veci[i][0]].pb({veci[i][1],3});
-        adj[veci[i][1]].pb({veci[i][0],3});
+    vecl adj[x+1];
+    ll s = -1;
+    vecl temp(x+1,0);
+    rep(i,x-1){
+        adj[veci[i][0]].pb(veci[i][1]);
+        adj[veci[i][1]].pb(veci[i][0]);
+        temp[veci[i][0]]++;
+        temp[veci[i][1]]++;
     }
-    vector<bool> vis(x+1,0);
-    dfs(adj,veci[0][0],1,vis);
-    
-    vector<int> ans;
-    mp mp;
-    for(int i = 0;i<x;i++){
-        for(auto itr : adj[veci[i][0]]){
-            if(itr.fir ==  veci[i][1]){
-                ans.pb(itr.sec);
-                break;
+    rep(i,x+1){
+        if(temp[i] == 1){
+            s = i;
+        }
+        if(temp[i] > 2){
+            out(-1);
+            rtn;
+        }
+    }
+    map<pll,ll> mp;
+    queue<pll> qu;
+    qu.push({s,2});
+    vecl vis(x+1,0);
+    vis[s] = 1;
+    while(!qu.empty()){
+        auto node = qu.front();
+        qu.pop();
+        for(auto itr : adj[node.fir]){
+            if(!vis[itr]){
+                vis[itr] = 1;
+                mp[{node.fir,itr}] = node.sec;
+                mp[{itr,node.fir}] = node.sec;  
+                if(node.sec == 2){
+                    qu.push({itr,3});
+                }
+                else{
+                    qu.push({itr,2});
+                }
             }
         }
     }
-    out(ans);
-}  
+    for(auto i : veci){
+        if(mp.count({i[0],i[1]})){
+            cout<<mp[{i[0],i[1]}]<<" ";
+        }
+    }
+    cout<<endl;
+}
 
 
 int32_t main()

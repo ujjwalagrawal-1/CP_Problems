@@ -1,4 +1,4 @@
-// 2024-11-28 20:37:23
+// 2024-11-30 22:49:49
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -120,6 +120,23 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
+    inll(x);
+    inll(y);
+    vecl veci(x);
+    cin>>veci;
+    sort(all(veci));
+    ll i = 0;
+    ll ans = 0;
+    while(i<x-2*y){
+        ans += veci[i];
+        i++;
+    }
+    // out(veci);
+    while(i+y<x){
+        ans += (veci[i]/veci[i+y]);
+        i++;
+    }
+    out(ans);
 }   
 
 

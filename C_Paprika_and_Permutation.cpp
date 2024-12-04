@@ -1,4 +1,4 @@
-// 2024-11-28 20:37:23
+// 2024-11-30 19:47:40
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -120,6 +120,24 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
+    inll(x);
+    vecl veci(x);
+    cin>>veci;
+    vecl temp;
+    ll k = 0;
+    rep(i,x){
+        if(vec)
+    }
+    ll j = 1;
+    sort(all(veci));
+    ll cnt = 0;
+    rep(i,x){
+        if(veci[i] != j){
+            auto it = 
+        }
+        j++;
+    }
+    out(cnt);
 }   
 
 
