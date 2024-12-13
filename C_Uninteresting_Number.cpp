@@ -1,4 +1,4 @@
-// 2024-11-13 23:14:47
+// 2024-12-05 20:32:18
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -117,64 +117,35 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
+bool f(int t,int c2,int c6) {
+    for (int b = 0; b <= c6; b++){
+        ll r = (t - 6LL * b) % 9;
+        if (r < 0) r += 9;
+        ll a = (r)%9;
+        if (a <= c2) return 1;
+    }
+    return 0;
+}
+
 void solve()
 {
     // code -->
-    inll(x);
-    inll(y);
     instr(st);
-    ll i = 0;
-    ll j = sz(st)-1;
-    // map<ll,pll> mpp;
-    ll l = 0,m = sz(st)-1;
-    while(l<sz(st)-1 && st[l] != '1'){
-        l++;
+    ll val = 0;
+    ll t = 0, s = 0;
+    for(char i : st){
+        ll num = i - '0';
+        val += num;
+        if (num == 2) t++;
+        if (num == 3) s++;
     }
-    while(m >= 0 && st[m] != '1'){
-        m--;
+    ll r = (9 - (val%9))%9;
+    if(f(r,t,s)){
+        cy;
     }
-    while(l < m  && i < j){
-        ll adis = abs(l - i);
-        ll bdis = abs(j - m);
-        bool fl = 0;
-        if(bdis <= y){
-            y -= bdis;
-            swap(st[m],st[j]);
-            j--;
-            fl = 1;
-        }
-        if(adis <= y){
-            y -= adis;
-            swap(st[l],st[i]);
-            i++;
-            fl = 1;
-        }
-        if(!fl){
-            break;
-        }
-        while(l<sz(st)-1 && st[l] != '1'){
-            l++;
-        }
-        while(m >= 0 && st[m] != '1'){
-            m--;
-        }
+    else{
+        cn;
     }
-    ll ans = 0;
-    rep(i,x-1){
-        if(st[i] == '1' && st[i+1] == '0'){
-            ans += 10;
-        }
-        if(st[i] =='1' && st[i+1] == '1'){
-            ans += 11;
-        }
-        if(st[i] == '0' && st[i+1] == '1'){
-            ans += 1;
-        }
-        if(st[i] == '0' && st[i+1] == '0'){
-            ans += 0;
-        }
-    }
-    out(ans);
 }   
 
 

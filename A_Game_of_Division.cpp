@@ -1,4 +1,4 @@
-// 2024-11-13 23:14:47
+// 2024-12-08 20:07:05
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -121,60 +121,31 @@ void solve()
 {
     // code -->
     inll(x);
-    inll(y);
-    instr(st);
-    ll i = 0;
-    ll j = sz(st)-1;
-    // map<ll,pll> mpp;
-    ll l = 0,m = sz(st)-1;
-    while(l<sz(st)-1 && st[l] != '1'){
-        l++;
-    }
-    while(m >= 0 && st[m] != '1'){
-        m--;
-    }
-    while(l < m  && i < j){
-        ll adis = abs(l - i);
-        ll bdis = abs(j - m);
-        bool fl = 0;
-        if(bdis <= y){
-            y -= bdis;
-            swap(st[m],st[j]);
-            j--;
-            fl = 1;
+    inll(k);
+
+    vecl veci(x);
+    cin>>veci;
+    bool fl = 0;
+    rep(i,x){
+        fl = 1;
+        rep(j,x){
+            if(i == j){
+                C;
+            }
+            else{
+                if(llabs(veci[i] - veci[j])%k == 0){
+                    fl = 0;
+                    break;
+                }
+            }
         }
-        if(adis <= y){
-            y -= adis;
-            swap(st[l],st[i]);
-            i++;
-            fl = 1;
-        }
-        if(!fl){
-            break;
-        }
-        while(l<sz(st)-1 && st[l] != '1'){
-            l++;
-        }
-        while(m >= 0 && st[m] != '1'){
-            m--;
+        if(fl){
+            cy;
+            out(i+1);
+            rtn;
         }
     }
-    ll ans = 0;
-    rep(i,x-1){
-        if(st[i] == '1' && st[i+1] == '0'){
-            ans += 10;
-        }
-        if(st[i] =='1' && st[i+1] == '1'){
-            ans += 11;
-        }
-        if(st[i] == '0' && st[i+1] == '1'){
-            ans += 1;
-        }
-        if(st[i] == '0' && st[i+1] == '0'){
-            ans += 0;
-        }
-    }
-    out(ans);
+    cn;
 }   
 
 

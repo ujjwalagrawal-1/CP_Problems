@@ -1,4 +1,4 @@
-// 2024-11-13 23:14:47
+// 2024-12-05 16:49:18
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -117,65 +117,88 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
-void solve()
-{
-    // code -->
-    inll(x);
-    inll(y);
+ll f(string &st,ll i,ll prev,dvecl &dp){
+    if(i == st.size() || i == st.size()+1){
+        if(prev == -1){
+            return 0;
+        }
+        else{
+            return 1;
+        }
+    }
+    if(dp[i][prev+1] != -1){
+        return dp[i][prev+1];
+    }
+    int ans = INT_MAX;
+    if(prev == -1){
+        if(st[i] != st[i+1]){
+            ans = min(f(st,i+1,prev,dp)+1,f(st,i+2,i,dp)+1);
+        }
+        else{
+            ans = f(st,i+2,-1,dp);
+        }
+    }
+    else{
+        if(st[prev] == st[i]){
+            ans = f(st,i+1,-1,dp);
+        }
+        else{
+            ans = f(st,i+1,prev,dp)+1;
+        }
+    }
+
+    return dp[i][prev+1] = ans;
+}
+void solve() {
     instr(st);
-    ll i = 0;
-    ll j = sz(st)-1;
-    // map<ll,pll> mpp;
-    ll l = 0,m = sz(st)-1;
-    while(l<sz(st)-1 && st[l] != '1'){
-        l++;
-    }
-    while(m >= 0 && st[m] != '1'){
-        m--;
-    }
-    while(l < m  && i < j){
-        ll adis = abs(l - i);
-        ll bdis = abs(j - m);
-        bool fl = 0;
-        if(bdis <= y){
-            y -= bdis;
-            swap(st[m],st[j]);
-            j--;
-            fl = 1;
-        }
-        if(adis <= y){
-            y -= adis;
-            swap(st[l],st[i]);
-            i++;
-            fl = 1;
-        }
-        if(!fl){
-            break;
-        }
-        while(l<sz(st)-1 && st[l] != '1'){
-            l++;
-        }
-        while(m >= 0 && st[m] != '1'){
-            m--;
+    ll n = st.size();
+
+    // DP table with size (n+2) x (n+2), initialized to INT_MAX
+    vector<vector<ll>> dp(n + 2, vector<ll>(n + 2, INT_MAX));
+
+    // Base cases
+    for (ll prev = -1; prev < n + 1; prev++) {
+        if (prev == -1) {
+            dp[n][prev + 1] = 0;  // No more characters to process
+            dp[n + 1][prev + 1] = 0;
+        } else {
+            dp[n][prev + 1] = 1;  // Must insert 1 character to terminate
+            dp[n + 1][prev + 1] = 1;
         }
     }
-    ll ans = 0;
-    rep(i,x-1){
-        if(st[i] == '1' && st[i+1] == '0'){
-            ans += 10;
-        }
-        if(st[i] =='1' && st[i+1] == '1'){
-            ans += 11;
-        }
-        if(st[i] == '0' && st[i+1] == '1'){
-            ans += 1;
-        }
-        if(st[i] == '0' && st[i+1] == '0'){
-            ans += 0;
+
+    // Fill DP table bottom-up
+    for (ll i = n - 1; i >= 0; i--) {
+        for (ll prev = i; prev >= -1; prev--) {
+            ll ans = INT_MAX;
+
+            if (prev == -1) {
+                if (i + 1 < n && st[i] != st[i + 1]) {
+                    // Try skipping `st[i]` or pairing it with `st[i+1]`
+                    ans = min(dp[i + 1][prev + 1] + 1, dp[i + 2][i + 1] + 1);
+                } else if (i + 2 <= n) {
+                    // Skip two characters if `st[i] == st[i+1]`
+                    ans = dp[i + 2][0];
+                }
+            } else {
+                if (st[prev] == st[i]) {
+                    // If `prev` and `i` match, reset `prev`
+                    ans = dp[i + 1][0];
+                } else if (prev + 1 < n + 2) {
+                    // Continue the chain
+                    ans = dp[i + 1][prev + 1] + 1;
+                }
+            }
+
+            dp[i][prev + 1] = ans;
         }
     }
-    out(ans);
-}   
+
+    // The result is in dp[0][0]
+    out(dp[0][0]);
+}
+
+
 
 
 int32_t main()

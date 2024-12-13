@@ -1,4 +1,4 @@
-// 2024-11-13 23:14:47
+// 2024-12-05 20:40:26
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -120,61 +120,29 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
-    inll(x);
-    inll(y);
+    // cy;
     instr(st);
-    ll i = 0;
-    ll j = sz(st)-1;
-    // map<ll,pll> mpp;
-    ll l = 0,m = sz(st)-1;
-    while(l<sz(st)-1 && st[l] != '1'){
-        l++;
+    vecl veci(sz(st));
+    rep(i,sz(st)){
+        veci[i] = st[i] - '0';
     }
-    while(m >= 0 && st[m] != '1'){
-        m--;
-    }
-    while(l < m  && i < j){
-        ll adis = abs(l - i);
-        ll bdis = abs(j - m);
-        bool fl = 0;
-        if(bdis <= y){
-            y -= bdis;
-            swap(st[m],st[j]);
-            j--;
-            fl = 1;
-        }
-        if(adis <= y){
-            y -= adis;
-            swap(st[l],st[i]);
-            i++;
-            fl = 1;
-        }
-        if(!fl){
-            break;
-        }
-        while(l<sz(st)-1 && st[l] != '1'){
-            l++;
-        }
-        while(m >= 0 && st[m] != '1'){
-            m--;
+    feach(i,1,sz(st),1){
+        while(i>=1 && veci[i] > veci[i-1] + 1 && veci[i] > 0){
+            swap(veci[i],veci[i-1]);
+            veci[i-1]--;
+            // out("veci is "<<veci);
+            if(i>1){
+                i--;
+            }
+            else{
+                break;
+            }
         }
     }
-    ll ans = 0;
-    rep(i,x-1){
-        if(st[i] == '1' && st[i+1] == '0'){
-            ans += 10;
-        }
-        if(st[i] =='1' && st[i+1] == '1'){
-            ans += 11;
-        }
-        if(st[i] == '0' && st[i+1] == '1'){
-            ans += 1;
-        }
-        if(st[i] == '0' && st[i+1] == '0'){
-            ans += 0;
-        }
+    rep(i,sz(st)){
+        cout<<veci[i];
     }
-    out(ans);
+    cout<<endl;
 }   
 
 
@@ -193,6 +161,7 @@ int32_t main()
     cin>>t;
     while(t--)
     {
+    // out("new test  "<< t+1);
     solve();
     }
     return 0;

@@ -1,4 +1,4 @@
-// 2024-11-13 23:14:47
+// 2024-12-13 19:33:43
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -117,65 +117,39 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
+
+
+ll f(ll n,vecl &dp){
+    if(n == 0){
+        return 1;
+    }
+    if(dp[n] != -1){
+        return dp[n];
+    }
+    ll ans = 0;
+    for(int i = 1;i<=6;i++){
+        if(n-i < 0)break;
+        ans += f(n - i,dp);
+    }
+    return dp[n] = ans%M;
+}
 void solve()
 {
     // code -->
-    inll(x);
-    inll(y);
-    instr(st);
-    ll i = 0;
-    ll j = sz(st)-1;
-    // map<ll,pll> mpp;
-    ll l = 0,m = sz(st)-1;
-    while(l<sz(st)-1 && st[l] != '1'){
-        l++;
-    }
-    while(m >= 0 && st[m] != '1'){
-        m--;
-    }
-    while(l < m  && i < j){
-        ll adis = abs(l - i);
-        ll bdis = abs(j - m);
-        bool fl = 0;
-        if(bdis <= y){
-            y -= bdis;
-            swap(st[m],st[j]);
-            j--;
-            fl = 1;
-        }
-        if(adis <= y){
-            y -= adis;
-            swap(st[l],st[i]);
-            i++;
-            fl = 1;
-        }
-        if(!fl){
-            break;
-        }
-        while(l<sz(st)-1 && st[l] != '1'){
-            l++;
-        }
-        while(m >= 0 && st[m] != '1'){
-            m--;
-        }
-    }
-    ll ans = 0;
-    rep(i,x-1){
-        if(st[i] == '1' && st[i+1] == '0'){
-            ans += 10;
-        }
-        if(st[i] =='1' && st[i+1] == '1'){
-            ans += 11;
-        }
-        if(st[i] == '0' && st[i+1] == '1'){
-            ans += 1;
-        }
-        if(st[i] == '0' && st[i+1] == '0'){
-            ans += 0;
-        }
-    }
-    out(ans);
-}   
+    inll(n);
+    vecl dp(n+1,-1);
+    // dp[0] = 1;
+    out(f(n,dp)%M);
+    // feach(j,1,n+1,1){
+    //     ll ans = 0;
+    //     for(int i = 1;i<=6;i++){
+    //         if(j-i < 0)break;
+    //         ans += dp[j-i];
+    //     }
+    //     dp[j] = ans%M;
+    // }
+    // out(dp[n]%M);
+}
 
 
 int32_t main()
@@ -190,7 +164,7 @@ int32_t main()
     */
 
     int t = 1;
-    cin>>t;
+    // cin>>t;
     while(t--)
     {
     solve();

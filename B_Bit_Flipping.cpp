@@ -1,4 +1,4 @@
-// 2024-12-01 00:34:09
+// 2024-12-05 14:16:37
 // Author Ujjwal_Agrawal
 // Linkedin:  https://www.linkedin.com/in/u1253/
 // Codeforces: https://codeforces.com/profile
@@ -120,19 +120,11 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void solve()
 {
     // code -->
-    inll(x);
-    inll(y);
+    ll a,b;
+    cin>>a>>b;
     instr(st);
-    ll zero = COUNT(st,'0');
-    ll ones = sz(st) - zero;
-    if(y%2 == 0){
-        if(zero%2 == 0){
-            rep()
-        }
-    }
-    else{
+    
 
-    }
 }   
 
 
