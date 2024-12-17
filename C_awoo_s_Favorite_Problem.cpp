@@ -1,4 +1,4 @@
-// 2024-12-14 05:10:53",
+// 2024-12-14 14:58:53",
 // Author Ujjwal_Agrawal
 #include <bits/stdc++.h>
 using namespace std;
@@ -70,6 +70,7 @@ template <typename T>
 void _print(priority_queue<T> pq) {    cerr << "[ ";    priority_queue<T> temp = pq;    while (!temp.empty()) {        _print(temp.top());        cerr << " ";        temp.pop();    }    cerr << "]";}
 template <typename T>
 void _print(priority_queue<T, vector<T>, greater<T>> pq) {    cerr << "[ ";    priority_queue<T, vector<T>, greater<T>> temp = pq;    while (!temp.empty()) {        _print(temp.top());        cerr << " ";        temp.pop();    }    cerr << "]";}
+template <typename T1,typename T2>void _print(const std::vector<std::pair<T1, T2>>& vec) {    std::cerr << "[";    for (size_t i = 0; i < vec.size(); ++i) {        std::cerr << "(" << vec[i].first << ", " << vec[i].second << ")";        if (i != vec.size() - 1) {            std::cerr << ", ";        }    }    std::cerr << "]";}
 
 
 // Operator overloads
@@ -78,7 +79,7 @@ istream& operator>>(istream &istream, vector<T> &v){for (auto &it : v)cin >> it;
 template<typename T> // cout << vector<T>
 ostream& operator<<(ostream &ostream, const vector<T> &c) { for (auto &it : c) cout << it << " "; return ostream; }
 template<typename T, typename V> // cout << map<T,T>
-ostream& operator<<(ostream &ostream, const map<T,V> &c) { for (auto &it : c) cout << it.first << " " << it.second<<endl; return ostream; } 
+ostream& operator<<(ostream &ostream, const map<T,V> &c) { for (auto &it : c) cout << it.first << " " << it.second<<endl; return ostream; }
 
 //Sorting
 bool sorta(const pair<int,int> &a,const pair<int,int> &b){return (a.second < b.second);}
@@ -108,9 +109,77 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
+
 void ujjwal(){
     // Code Starts Here
-    
+    inll(x);
+    instr(a);
+    instr(b);
+    vecl bs , cs;
+    rep(i,x){
+        if(a[i] == 'b'){
+            bs.pb(i);
+        }
+        if(a[i] == 'c'){
+            cs.pb(i);
+        }
+    }
+    rep(i,x){
+        if(a[i] != b[i]){
+            if(i < x-1 && ((a[i] == 'a' && b[i] == 'b') || (a[i] == 'b' && b[i] == 'c'))){
+                if((a[i] == 'a' && b[i] == 'b')){
+                    auto it = upper_bound(all(bs),i) - bs.begin();
+                    // out("it is"<<bs[it]);
+                    if(it < sz(bs)){
+                        // out("at i = "<<i);
+                        // out(string(bs[it]-i,'a'));
+                        if(a.substr(i,bs[it] - i) != string(bs[it]-i,'a')){
+                            // out("remm")
+                            cn;rtn;
+                        }
+                        else{
+                            // out("changed");
+                            // out(i<< "    "<< bs[it]);
+                            swap(a[i],a[bs[it]]);
+                            // out("new string  "<<a);
+                            C;
+                        }
+                    }
+                    else{
+                        cn;rtn;
+                    }
+                }
+                else if((a[i] == 'b' && b[i] == 'c')){
+                    auto it = upper_bound(all(cs),i) - cs.begin();
+                    if(it < sz(cs)){
+                        // out("at i : "<<i)
+                        if(a.substr(i,cs[it] - i) != string(cs[it]-i,'b')){
+                            cn;rtn;
+                        }
+                        else{
+                            swap(a[i],a[cs[it]]);
+                            C;
+                        }
+                    }
+                    else{
+                        cn;rtn;
+                    }
+                }
+                else{
+                    cn;rtn;
+                }
+            }
+            else{
+                cn;
+                rtn;
+            }
+        }
+    }
+    if(a.back() == b.back()){
+        cy;
+        rtn;
+    }
+    cn;
 }
 
 int32_t main()

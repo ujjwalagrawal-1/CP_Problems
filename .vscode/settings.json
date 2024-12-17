@@ -69,6 +69,7 @@
         "typeinfo": "cpp",
         "valarray": "cpp",
         "span": "cpp",
-        "ranges": "cpp"
+        "ranges": "cpp",
+        "string_view": "cpp"
     }
 }

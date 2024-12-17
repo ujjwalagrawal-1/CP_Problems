@@ -1,16 +1,78 @@
-// 2024-12-11 21:27:31
+// 2024-12-14 03:32:04
 // Author Ujjwal_Agrawal
-// Linkedin:  https://www.linkedin.com/in/u1253/
-// Codeforces: https://codeforces.com/profile
-// Codechef: https://www.codechef.com/users/
-
-
 #include <bits/stdc++.h>
+
+#include <algorithm>
+#include <cassert>
+#include <vector>
+
+namespace atcoder {
+
+struct dsu {
+  public:
+    dsu() : _n(0) {}
+    explicit dsu(int n) : _n(n), parent_or_size(n, -1) {}
+
+    int merge(int a, int b) {
+        assert(0 <= a && a < _n);
+        assert(0 <= b && b < _n);
+        int x = leader(a), y = leader(b);
+        if (x == y) return x;
+        if (-parent_or_size[x] < -parent_or_size[y]) std::swap(x, y);
+        parent_or_size[x] += parent_or_size[y];
+        parent_or_size[y] = x;
+        return x;
+    }
+
+    bool same(int a, int b) {
+        assert(0 <= a && a < _n);
+        assert(0 <= b && b < _n);
+        return leader(a) == leader(b);
+    }
+
+    int leader(int a) {
+        assert(0 <= a && a < _n);
+        if (parent_or_size[a] < 0) return a;
+        return parent_or_size[a] = leader(parent_or_size[a]);
+    }
+
+    int size(int a) {
+        assert(0 <= a && a < _n);
+        return -parent_or_size[leader(a)];
+    }
+
+    std::vector<std::vector<int>> groups() {
+        std::vector<int> leader_buf(_n), group_size(_n);
+        for (int i = 0; i < _n; i++) {
+            leader_buf[i] = leader(i);
+            group_size[leader_buf[i]]++;
+        }
+        std::vector<std::vector<int>> result(_n);
+        for (int i = 0; i < _n; i++) {
+            result[i].reserve(group_size[i]);
+        }
+        for (int i = 0; i < _n; i++) {
+            result[leader_buf[i]].push_back(i);
+        }
+        result.erase(
+            std::remove_if(result.begin(), result.end(),
+                           [&](const std::vector<int>& v) { return v.empty(); }),
+            result.end());
+        return result;
+    }
+
+  private:
+    int _n;
+    std::vector<int> parent_or_size;
+};
+
+}  // namespace atcoder
+
 using namespace std;
+using namespace atcoder;
 
 //Speed
 #define bullet() ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-
 //Macros
 #define IOtext freopen("input.txt","r",stdin); freopen("output.txt","w",stdout);
 #define Pai (3.141592653589)
@@ -46,38 +108,37 @@ using namespace std;
 #define ps(x,y) fixed<<setprecision(y)<<x
 #define rtn return
 
-
-
 //Typedef
-typedef long long ll;
-typedef pair<ll, ll> pll;typedef pair<int, int> pii;
-typedef pair<char, int> pci;typedef pair<char, ll> pcl;
-typedef pair<string, ll> psl;typedef pair<char, char> pcc;
-typedef vector<ll> vecl;typedef vector<int> vec;
-typedef map<ll,ll> mpl;typedef map<int,int> mp;
-typedef unordered_map<ll,ll> umpl;typedef unordered_map<int,int> ump;
-typedef vector<vector<ll>> dvecl;typedef vector<vector<int>> dvec;
-typedef vector<pair<ll,ll>> vecpll;
-typedef vector<pair<ll,pair<ll,bool>>> vecpllb;typedef vector<pair<int,pair<int,bool>>> vecpiib;
-typedef queue<ll> ql;
-typedef queue<pair<ll,ll>> qpll;
-typedef vector<char> vch;
-typedef set<char> sch;
-typedef set<int> si;
-typedef set<ll> sl;
-typedef set<string> ss;
+typedef long long ll;typedef pair<ll, ll> pll;typedef pair<int, int> pii;typedef pair<char, int> pci;typedef pair<char, ll> pcl;typedef pair<string, ll> psl;typedef pair<char, char> pcc;typedef vector<ll> vecl;typedef vector<int> vec;typedef map<ll,ll> mpl;typedef map<int,int> mp;typedef unordered_map<ll,ll> umpl;typedef unordered_map<int,int> ump;typedef vector<vector<ll>> dvecl;typedef vector<vector<int>> dvec;typedef vector<pair<ll,ll>> vecpll;typedef vector<pair<ll,pair<ll,bool>>> vecpllb;typedef vector<pair<int,pair<int,bool>>> vecpiib;typedef queue<ll> ql;typedef queue<pair<ll,ll>> qpll;typedef vector<char> vch;typedef set<char> sch;typedef set<int> si;typedef set<ll> sl;typedef set<string> ss;
 
+// debug Outlet
 #ifndef ONLINE_JUDGE
 #define debug(x) cerr<<#x<<" ";_print(x); cerr<<endl;
 #else
 #define debug(x)
 #endif
 
-void _print(ll t) {cerr << t;}
-void _print(int t) {cerr << t;}
-void _print(string t) {cerr << t;}
-void _print(char t) {cerr << t;}
-void _print(double t) {cerr << t;}
+template <typename T>
+void _print(T t) {
+    cerr << t;
+}
+template <>
+void _print(bool t) {
+    cerr << (t ? "true" : "false");
+}
+template <typename T>
+void _print(vector<T> v) {    cerr << "[ ";    for (T i : v) {        _print(i);        cerr << " ";    }    cerr << "]";}
+template <typename T>
+void _print(set<T> s) {    cerr << "{ ";    for (T i : s) {        _print(i);        cerr << " ";    }    cerr << "}";}
+template <typename T, typename U>
+void _print(map<T, U> m) {    cerr << "{ ";    for (auto &p : m) {        cerr << "(";        _print(p.first);        cerr << ", ";        _print(p.second);        cerr << ") ";    }    cerr << "}";}
+template <typename T>
+void _print(multiset<T> ms) {    cerr << "{ ";    for (T i : ms) {        _print(i);        cerr << " ";    }    cerr << "}";}
+template <typename T>
+void _print(priority_queue<T> pq) {    cerr << "[ ";    priority_queue<T> temp = pq;    while (!temp.empty()) {        _print(temp.top());        cerr << " ";        temp.pop();    }    cerr << "]";}
+template <typename T>
+void _print(priority_queue<T, vector<T>, greater<T>> pq) {    cerr << "[ ";    priority_queue<T, vector<T>, greater<T>> temp = pq;    while (!temp.empty()) {        _print(temp.top());        cerr << " ";        temp.pop();    }    cerr << "]";}
+
 
 // Operator overloads
 template<typename T> // cin >> vector<T>
@@ -117,80 +178,25 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
-bool fun(vecl &veci)
-{
-    set<ll> st;
-    rep(i,sz(veci)){
-        if(st.count(veci[i])){
-            rtn 1;
-        }
-        st.insert(veci[i]);
-    }
-    rtn 0;
-}
-
-bool f(int x, ll left, ll right,vecl & veci)
-{
-    bool chk = fun(veci);
-    if(x > 8){
-        if (chk){
-            rtn (0 >= left && 0 <= right);
-        }
-        else{
-            rtn 0;
-        }
-    }
-    else{
-        if(chk){
-            rtn (0 >= left && 0 <= right);
-        }
-        else{
-            ll f = 1;bool r = 0;
-            rep(i,x){
-                feach(j,i+1,x,1){
-                    ll x = veci[i]^veci[j];
-                    if (x == 0){
-                        f = 0;
-                        B;
-                    }
-                    if (f > right/x){
-                        f = right+1;
-                        r = 1;
-                        B;
-                    }f *= x;
-                }if (f == 0)B;
-                if(r){
-                    B;
-                }
-            }
-            rtn (f <= right && f >= left);
-        }
-    }
-}
 void solve()
 {
-    // code -->
-    inll(x);inll(l);inll(r);
-    vecl veci(x);
+    inll(x);
+    vecl veci(x); 
     cin>>veci;
-    if(f(x,l,r,veci)){
-        cy;
-        rtn;
+    debug(veci);
+    mp mp;
+    rep(i,x){
+        mp[veci[i]]++;
     }
-    cn;
+    debug(mp);
+    out(veci);
 }
+
 
 int32_t main()
 {
     bullet()
-    // #ifndef ONLINE_JUDGE
-    //     freopen("Error.txt","w",stderr);
-    // #endif
-        /*
-    ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्। उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय माऽमृतात्॥
-    ॐ भूर्भुवः स्वः। तत्सवितुर्वरेण्यं॥भर्गो देवस्यः धीमहि। धियो यो नः प्रचोदयात्॥
-    */
-
+    // It is not the End Until is the End!!
     int t = 1;
     cin>>t;
     while(t--)
