@@ -113,7 +113,7 @@ ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = 
 
 void solve()
 {
-   inint(x) 
+   inll(x) 
    if(x<127){
     cn;
    }
