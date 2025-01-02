@@ -1,3 +1,4 @@
+// 2025-01-01 20:02:54",
 // Author Ujjwal_Agrawal
 #include <bits/stdc++.h>
 using namespace std;
@@ -112,17 +113,19 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void ujjwal(){
     // Code Starts Here
     inll(x);
-    vecl veci(x);
-    cin>>veci;
-    sort(all(veci));
-    ll maxi = INT_MIN;
-    rfeach(i,x-1,1,1){
-        maxi = max(maxi,veci[i] - veci[i-1] +  veci[i] - veci[0]);
+    instr(s);
+    if(s.front() != s.back()){out(1);}
+    else{
+        ll i = 1;
+        while(i< x&&s[i] == s.front()){
+            i++;
+        }
+        if(i!=x){
+            out(1); 
+            rtn;
+        }
+        out(x);
     }
-    feach(i,0,x-2,1){
-        maxi = max(maxi,veci[x-1] - veci[i] + veci[i+1] - veci[i]);
-    }
-    out(maxi)
 }
 
 int32_t main()

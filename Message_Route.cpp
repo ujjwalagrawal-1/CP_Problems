@@ -1,3 +1,4 @@
+// 2024-12-31 00:55:03",
 // Author Ujjwal_Agrawal
 #include <bits/stdc++.h>
 using namespace std;
@@ -111,26 +112,52 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 
 void ujjwal(){
     // Code Starts Here
-    inll(x);
-    vecl veci(x);
-    cin>>veci;
-    sort(all(veci));
-    ll maxi = INT_MIN;
-    rfeach(i,x-1,1,1){
-        maxi = max(maxi,veci[i] - veci[i-1] +  veci[i] - veci[0]);
+    ll x,y;
+    cin>>x>>y;
+    ll dis[x+1]; 
+    memset(dis,0x3f,sizeof(dis));
+    vector<ll> adj[x+1];
+    rep(i,y){
+        ll a,b;
+        cin>>a>>b;
+        adj[a].pb(b);
+        adj[b].pb(a);
     }
-    feach(i,0,x-2,1){
-        maxi = max(maxi,veci[x-1] - veci[i] + veci[i+1] - veci[i]);
+    priority_queue<ll,vecl,greater<ll>> pq;
+    pq.push(1);
+    dis[1] = 0;
+    vecl veci(x+1,-1);
+    while(!pq.empty()){
+        ll node = pq.top();
+        pq.pop();
+        for(auto itr : adj[node]){
+            if(1+dis[node] < dis[itr]){
+                dis[itr] = 1 + dis[node];
+                veci[itr] = node;
+                pq.push(itr);
+            }
+        }
     }
-    out(maxi)
+    if(veci[x] == -1){
+        out("IMPOSSIBLE");
+        rtn;
+    }
+    vecl ans;
+    ll num = x;
+    while(num != -1){
+        ans.pb(num);
+        num = veci[num];
+    }
+    out(sz(ans));
+    reverse(all(ans));
+    out(ans);
 }
-
 int32_t main()
 {
     bullet()
     // It is not the End Until is the End!!
     int t = 1;
-    cin>>t;
+    // cin>>t;
     while(t--)
     {
     ujjwal();

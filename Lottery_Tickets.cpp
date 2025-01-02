@@ -1,3 +1,4 @@
+// 2025-01-01 20:17:41",
 // Author Ujjwal_Agrawal
 #include <bits/stdc++.h>
 using namespace std;
@@ -114,22 +115,35 @@ void ujjwal(){
     inll(x);
     vecl veci(x);
     cin>>veci;
+    ll fi = veci[0];
     sort(all(veci));
-    ll maxi = INT_MIN;
-    rfeach(i,x-1,1,1){
-        maxi = max(maxi,veci[i] - veci[i-1] +  veci[i] - veci[0]);
+
+    ll ind = lower_bound(all(veci), fi) - veci.begin();
+    ll st, end;
+    st = ind >  0 ? (veci[ind-1] + veci[ind] +1)>>1 : 1;
+    end = ind < x-1 ? (veci[ind] + veci[ind+1])>>1  : M;
+    end = min(end,1000000ll);
+    debug(st);
+    debug(end);
+    st = max(st,1ll);
+    ll ans = 0;
+    debug(st);
+    debug(end);
+    if(st > end){
+        ans = 0;
     }
-    feach(i,0,x-2,1){
-        maxi = max(maxi,veci[x-1] - veci[i] + veci[i+1] - veci[i]);
+    else{
+        ans = end - st +1;
     }
-    out(maxi)
+    
+    out(ans);
 }
 
 int32_t main()
 {
     bullet()
     // It is not the End Until is the End!!
-    int t = 1;
+    ll t = 1;
     cin>>t;
     while(t--)
     {

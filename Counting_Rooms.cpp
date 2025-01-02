@@ -1,3 +1,4 @@
+// 2024-12-30 20:30:10",
 // Author Ujjwal_Agrawal
 #include <bits/stdc++.h>
 using namespace std;
@@ -109,28 +110,49 @@ ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = 
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
 
-void ujjwal(){
+void ujjwal() {
     // Code Starts Here
     inll(x);
-    vecl veci(x);
-    cin>>veci;
-    sort(all(veci));
-    ll maxi = INT_MIN;
-    rfeach(i,x-1,1,1){
-        maxi = max(maxi,veci[i] - veci[i-1] +  veci[i] - veci[0]);
+    inll(y);
+    vector<string> veci(x);
+    rep(i, x) {
+        cin >> veci[i];
     }
-    feach(i,0,x-2,1){
-        maxi = max(maxi,veci[x-1] - veci[i] + veci[i+1] - veci[i]);
+    stack<pll> stk;
+    int stp[4][2] = {{1, 0}, {0, -1}, {-1, 0}, {0, 1}};
+    int cnt = 0;
+    vector<vector<bool>> vis(x,vector<bool>(y,0)); 
+    rep(i, x) {
+        rep(j, y) {
+            if (veci[i][j] == '.' && !vis[i][j]) {
+                stk.push({i, j});
+                cnt++;
+                while (!stk.empty()) {
+                    auto [ci, cj] = stk.top();  
+                    stk.pop();
+                    vis[ci][cj] = 1;
+                    rep(k, 4){
+                        int ni = ci + stp[k][0];
+                        int nj = cj + stp[k][1];    
+                        if (ni >= 0 && ni < x && nj >= 0 && nj < y &&
+                            veci[ni][nj] == '.' && !vis[ni][nj]) {
+                            stk.push({ni, nj});
+                        }
+                    }
+                }
+            }
+        }
     }
-    out(maxi)
+    out(cnt);
 }
+
 
 int32_t main()
 {
     bullet()
     // It is not the End Until is the End!!
     int t = 1;
-    cin>>t;
+    // cin>>t;
     while(t--)
     {
     ujjwal();

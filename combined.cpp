@@ -1,6 +1,3 @@
-// 2024-12-14 03:32:04
-// Author Ujjwal_Agrawal
-#include <bits/stdc++.h>
 
 #include <algorithm>
 #include <cassert>
@@ -68,8 +65,9 @@ struct dsu {
 
 }  // namespace atcoder
 
-using namespace std;
+#include <bits/stdc++.h>
 using namespace atcoder;
+using namespace std;
 
 //Speed
 #define bullet() ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
@@ -138,6 +136,7 @@ template <typename T>
 void _print(priority_queue<T> pq) {    cerr << "[ ";    priority_queue<T> temp = pq;    while (!temp.empty()) {        _print(temp.top());        cerr << " ";        temp.pop();    }    cerr << "]";}
 template <typename T>
 void _print(priority_queue<T, vector<T>, greater<T>> pq) {    cerr << "[ ";    priority_queue<T, vector<T>, greater<T>> temp = pq;    while (!temp.empty()) {        _print(temp.top());        cerr << " ";        temp.pop();    }    cerr << "]";}
+template <typename T1,typename T2>void _print(const std::vector<std::pair<T1, T2>>& vec) {    std::cerr << "[";    for (size_t i = 0; i < vec.size(); ++i) {        std::cerr << "(" << vec[i].first << ", " << vec[i].second << ")";        if (i != vec.size() - 1) {            std::cerr << ", ";        }    }    std::cerr << "]";}
 
 
 // Operator overloads
@@ -160,11 +159,9 @@ ll binaryToDecimal(string n){string num = n;ll dec_value = 0;int base = 1;int le
 bool isPrime(ll n){if(n<=1)return false;if(n<=3)return true;if(n%2==0||n%3==0)return false;for(int i=5;i*i<=n;i=i+6)if(n%i==0||n%(i+2)==0)return false;return true;}
 bool isPowerOfTwo(int n){if(n==0)return false;return (ceil(log2(n)) == floor(log2(n)));}
 bool isPerfectSquare(ll x){if (x >= 0) {ll sr = sqrt(x);return (sr * sr == x);}return false;}
-
 //Constants
 vector <ll> primes;
 vector <bool> is_prime;
-
 // Mathematical functions
 void Sieve(int n){ is_prime.assign(n + 1, true); is_prime[0] = is_prime[1] = false; for(ll i = 2; i * i <= n; i++) if(is_prime[i]) for(ll j = i * i; j <= n; j += i) is_prime[j] = false;}
 void get_primes(int n){ for(int i = 2; i <= n; i++)  if(is_prime[i])  primes.push_back(i); }
@@ -178,30 +175,46 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
-void solve()
-{
-    inll(x);
-    vecl veci(x); 
-    cin>>veci;
-    debug(veci);
-    mp mp;
-    rep(i,x){
-        mp[veci[i]]++;
+void ujjwal(){
+    // Code Starts Here
+    inll(x) 
+    inll(y);
+    dsu dsu(x+1);
+    rep(i,y){
+        ll a,b;
+        cin>>a>>b;
+        dsu.merge(a,b);
     }
-    debug(mp);
-    out(veci);
-}
 
+    ll cnt = 0;
+    ll prev = -1;
+    vecpll veci;
+    feach(i,1,x+1,1){
+        if(dsu.leader(i) == i){
+            if(prev == -1){
+                prev = i;
+            }
+            else{
+                veci.pb({prev,i});
+                prev = i;
+            }
+        }
+    }
+    out(sz(veci));
+    rep(i,sz(veci)){
+        out(veci[i].fir<<" "<<veci[i].sec);
+    }
+}
 
 int32_t main()
 {
     bullet()
     // It is not the End Until is the End!!
     int t = 1;
-    cin>>t;
+    // cin>>t;
     while(t--)
     {
-    solve();
+    ujjwal();
     }
     return 0;
 }

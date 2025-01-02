@@ -1,3 +1,4 @@
+// 2025-01-02 14:27:49",
 // Author Ujjwal_Agrawal
 #include <bits/stdc++.h>
 using namespace std;
@@ -111,18 +112,38 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 
 void ujjwal(){
     // Code Starts Here
-    inll(x);
-    vecl veci(x);
-    cin>>veci;
-    sort(all(veci));
-    ll maxi = INT_MIN;
-    rfeach(i,x-1,1,1){
-        maxi = max(maxi,veci[i] - veci[i-1] +  veci[i] - veci[0]);
+    string s, res = "";
+    cin >> s;
+    ll i = 0;
+    
+    while (i < sz(s)) {
+        while (i < sz(s) && s[i] == ' ') {
+            i++;
+        }
+        // debug(i);
+        ll count = 0;
+        if (s[i] != ' ') {
+            ll start = i;
+            i++;
+            
+            while (i + 1 < sz(s) && s[i + 1] != ' ') {
+                count++;
+                i++;
+            }
+            
+            res += s[start];
+            res += count >0 ?to_string(count) : "";
+            res += s[i];
+            res += " ";
+        }
+        i++;
     }
-    feach(i,0,x-2,1){
-        maxi = max(maxi,veci[x-1] - veci[i] + veci[i+1] - veci[i]);
+    
+    if (!res.empty()) {
+        res.pop_back();
     }
-    out(maxi)
+    
+    out(res);
 }
 
 int32_t main()

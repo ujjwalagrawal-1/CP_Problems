@@ -1,3 +1,4 @@
+// 2025-01-01 17:26:03",
 // Author Ujjwal_Agrawal
 #include <bits/stdc++.h>
 using namespace std;
@@ -109,20 +110,23 @@ ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = 
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
 
+
 void ujjwal(){
     // Code Starts Here
     inll(x);
-    vecl veci(x);
-    cin>>veci;
-    sort(all(veci));
-    ll maxi = INT_MIN;
-    rfeach(i,x-1,1,1){
-        maxi = max(maxi,veci[i] - veci[i-1] +  veci[i] - veci[0]);
+    vecl veca(x);
+    vecl vecb(x);
+    cin>>veca>>vecb;
+    vecpll temp;
+    rep(i,x){
+        temp.pb({veca[i] + vecb[i] , i});
     }
-    feach(i,0,x-2,1){
-        maxi = max(maxi,veci[x-1] - veci[i] + veci[i+1] - veci[i]);
+    ll ans = 0; 
+    sort(all(temp),greater<pll>());
+    rep(i,x){
+        ans += i%2 == 0 ? veca[temp[i].sec]-1 : -1*(vecb[temp[i].sec]-1);
     }
-    out(maxi)
+    out(ans);
 }
 
 int32_t main()

@@ -1,6 +1,6 @@
-// 2024-12-30 14:16:26",
-// Author Ujjwal_Agrawal
+#include <atcoder/dsu>
 #include <bits/stdc++.h>
+using namespace atcoder;
 using namespace std;
 
 //Speed
@@ -109,9 +109,35 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
-
 void ujjwal(){
     // Code Starts Here
+    inll(x) 
+    inll(y);
+    dsu dsu(x+1);
+    rep(i,y){
+        ll a,b;
+        cin>>a>>b;
+        dsu.merge(a,b);
+    }
+
+    ll cnt = 0;
+    ll prev = -1;
+    vecpll veci;
+    feach(i,1,x+1,1){
+        if(dsu.leader(i) == i){
+            if(prev == -1){
+                prev = i;
+            }
+            else{
+                veci.pb({prev,i});
+                prev = i;
+            }
+        }
+    }
+    out(sz(veci));
+    rep(i,sz(veci)){
+        out(veci[i].fir<<" "<<veci[i].sec);
+    }
 }
 
 int32_t main()
@@ -119,7 +145,7 @@ int32_t main()
     bullet()
     // It is not the End Until is the End!!
     int t = 1;
-    cin>>t;
+    // cin>>t;
     while(t--)
     {
     ujjwal();
