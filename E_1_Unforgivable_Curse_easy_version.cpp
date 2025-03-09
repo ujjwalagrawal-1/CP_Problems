@@ -1,4 +1,3 @@
-// 2025-01-01 19:35:33",
 // Author Ujjwal_Agrawal
 #include <bits/stdc++.h>
 using namespace std;
@@ -112,17 +111,26 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 
 void ujjwal(){
     // Code Starts Here
-    ll x,y;cin>>x>>y;
-    instr(a);
-    instr(b);
-    rrep(i,x-1){
-        if(b[i] != a[i]){
-            if(b[i-3] == a[i]){
-                
-            }
+    ll a,b;
+    cin>>a>>b;
+    string stra,strb;
+    cin>>stra>>strb;
+    vector<ll> ta(256),tb(256);
+    rep(i,a){
+        ta[stra[i]]++;
+        tb[strb[i]]++;
+    }
+    if(ta != tb){
+        cn;rtn;
+    }
+
+    rep(i,a){
+        if(stra[i] != strb[i] && i+b >= a && i-b < 0){
+            cn;rtn;
         }
     }
-    
+    cy;
+
 }
 
 int32_t main()

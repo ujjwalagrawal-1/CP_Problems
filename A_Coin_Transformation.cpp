@@ -113,11 +113,8 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void ujjwal(){
     // Code Starts Here
     inll(x);
-
     ll val = log(x)/log(4);
-    // out(val);
     ll ans = 1<<val;
-    // out("ans  is "<<ans);
     out(ans);
 }
 

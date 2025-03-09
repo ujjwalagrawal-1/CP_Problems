@@ -1,4 +1,4 @@
-// 2025-01-01 14:25:12",
+// 2025-01-08 11:08:54",
 // Author Ujjwal_Agrawal
 #include <bits/stdc++.h>
 using namespace std;
@@ -113,6 +113,26 @@ ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * 
 void ujjwal(){
     // Code Starts Here
     inll(x);
+    vecl veci(x); 
+    cin>>veci;
+    if(x == 1){
+        out(0);
+        rtn;
+    }
+    if(x == 2){
+        out(veci[0]%10 << " "<<veci[x-1]%10);
+    }
+    ll a = 0,b = 0;
+    feach(i,1,x-2,1){
+        a += veci[i]*(x-2);
+    }
+    a += (veci[0] + veci[x-2]);
+    feach(i,2,x-1,1){
+        b += veci[i]*(x-2);
+    }
+    b += (veci[1] + veci[x-1]);
+    out(a%10 << " "<<b%10);
+    out(a << " "<<b);
 }
 
 int32_t main()
@@ -120,7 +140,7 @@ int32_t main()
     bullet()
     // It is not the End Until is the End!!
     int t = 1;
-    cin>>t;
+    // cin>>t;
     while(t--)
     {
     ujjwal();
