@@ -1,16 +1,10 @@
-// 2024-10-17 23:12:48
+// 2025-03-11 12:57:20",
 // Author Ujjwal_Agrawal
-// Linkedin:  https://www.linkedin.com/in/u1253/
-// Codeforces: https://codeforces.com/profile
-// Codechef: https://www.codechef.com/users/
-
-
 #include <bits/stdc++.h>
 using namespace std;
 
 //Speed
 #define bullet() ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-
 //Macros
 #define IOtext freopen("input.txt","r",stdin); freopen("output.txt","w",stdout);
 #define Pai (3.141592653589)
@@ -40,44 +34,44 @@ using namespace std;
 #define COUNT(x,u) count(all(x), u)
 #define B break
 #define C continue
-#define cy cout<<"YES"<<endl
-#define cn cout<<"NO"<<endl
+#define cy cout<<"Yes"<<endl
+#define cn cout<<"No"<<endl
 #define cm cout<<"-1"<<endl
 #define ps(x,y) fixed<<setprecision(y)<<x
 #define rtn return
 
-
-
 //Typedef
-typedef long long ll;
-typedef pair<ll, ll> pll;typedef pair<int, int> pii;
-typedef pair<char, int> pci;typedef pair<char, ll> pcl;
-typedef pair<string, ll> psl;typedef pair<char, char> pcc;
-typedef vector<ll> vecl;typedef vector<int> vec;
-typedef map<ll,ll> mpl;typedef map<int,int> mp;
-typedef unordered_map<ll,ll> umpl;typedef unordered_map<int,int> ump;
-typedef vector<vector<ll>> dvecl;typedef vector<vector<int>> dvec;
-typedef vector<pair<ll,ll>> vecpll;
-typedef vector<pair<ll,pair<ll,bool>>> vecpllb;typedef vector<pair<int,pair<int,bool>>> vecpiib;
-typedef queue<ll> ql;
-typedef queue<pair<ll,ll>> qpll;
-typedef vector<char> vch;
-typedef set<char> sch;
-typedef set<int> si;
-typedef set<ll> sl;
-typedef set<string> ss;
+typedef long long ll;typedef pair<ll, ll> pll;typedef pair<int, int> pii;typedef pair<char, int> pci;typedef pair<char, ll> pcl;typedef pair<string, ll> psl;typedef pair<char, char> pcc;typedef vector<ll> vecl;typedef vector<int> vec;typedef map<ll,ll> mpl;typedef map<int,int> mp;typedef unordered_map<ll,ll> umpl;typedef unordered_map<int,int> ump;typedef vector<vector<ll>> dvecl;typedef vector<vector<int>> dvec;typedef vector<pair<ll,ll>> vecpll;typedef vector<pair<ll,pair<ll,bool>>> vecpllb;typedef vector<pair<int,pair<int,bool>>> vecpiib;typedef queue<ll> ql;typedef queue<pair<ll,ll>> qpll;typedef vector<char> vch;typedef set<char> sch;typedef set<int> si;typedef set<ll> sl;typedef set<string> ss;
 
+// debug Outlet
 #ifndef ONLINE_JUDGE
 #define debug(x) cerr<<#x<<" ";_print(x); cerr<<endl;
 #else
 #define debug(x)
 #endif
 
-void _print(ll t) {cerr << t;}
-void _print(int t) {cerr << t;}
-void _print(string t) {cerr << t;}
-void _print(char t) {cerr << t;}
-void _print(double t) {cerr << t;}
+template <typename T>
+void _print(T t) {
+    cerr << t;
+}
+template <>
+void _print(bool t) {
+    cerr << (t ? "true" : "false");
+}
+template <typename T>
+void _print(vector<T> v) {    cerr << "[ ";    for (T i : v) {        _print(i);        cerr << " ";    }    cerr << "]";}
+template <typename T>
+void _print(set<T> s) {    cerr << "{ ";    for (T i : s) {        _print(i);        cerr << " ";    }    cerr << "}";}
+template <typename T, typename U>
+void _print(map<T, U> m) {    cerr << "{ ";    for (auto &p : m) {        cerr << "(";        _print(p.first);        cerr << ", ";        _print(p.second);        cerr << ") ";    }    cerr << "}";}
+template <typename T>
+void _print(multiset<T> ms) {    cerr << "{ ";    for (T i : ms) {        _print(i);        cerr << " ";    }    cerr << "}";}
+template <typename T>
+void _print(priority_queue<T> pq) {    cerr << "[ ";    priority_queue<T> temp = pq;    while (!temp.empty()) {        _print(temp.top());        cerr << " ";        temp.pop();    }    cerr << "]";}
+template <typename T>
+void _print(priority_queue<T, vector<T>, greater<T>> pq) {    cerr << "[ ";    priority_queue<T, vector<T>, greater<T>> temp = pq;    while (!temp.empty()) {        _print(temp.top());        cerr << " ";        temp.pop();    }    cerr << "]";}
+template <typename T1,typename T2>void _print(const std::vector<std::pair<T1, T2>>& vec) {    std::cerr << "[";    for (size_t i = 0; i < vec.size(); ++i) {        std::cerr << "(" << vec[i].first << ", " << vec[i].second << ")";        if (i != vec.size() - 1) {            std::cerr << ", ";        }    }    std::cerr << "]";}
+
 
 // Operator overloads
 template<typename T> // cin >> vector<T>
@@ -99,11 +93,9 @@ ll binaryToDecimal(string n){string num = n;ll dec_value = 0;int base = 1;int le
 bool isPrime(ll n){if(n<=1)return false;if(n<=3)return true;if(n%2==0||n%3==0)return false;for(int i=5;i*i<=n;i=i+6)if(n%i==0||n%(i+2)==0)return false;return true;}
 bool isPowerOfTwo(int n){if(n==0)return false;return (ceil(log2(n)) == floor(log2(n)));}
 bool isPerfectSquare(ll x){if (x >= 0) {ll sr = sqrt(x);return (sr * sr == x);}return false;}
-
 //Constants
 vector <ll> primes;
 vector <bool> is_prime;
-
 // Mathematical functions
 void Sieve(int n){ is_prime.assign(n + 1, true); is_prime[0] = is_prime[1] = false; for(ll i = 2; i * i <= n; i++) if(is_prime[i]) for(ll j = i * i; j <= n; j += i) is_prime[j] = false;}
 void get_primes(int n){ for(int i = 2; i <= n; i++)  if(is_prime[i])  primes.push_back(i); }
@@ -117,43 +109,28 @@ bool isPowerOfFour(int n) { return !(n&(n-1)) && (n&0x55555555);}
 ll modinv(ll p,ll q){ll ex;ex=M-2;while (ex) {if (ex & 1) {p = (p * q) % M;}q = (q * q) % M;ex>>= 1;}return p;}
 ll ncr(ll n,ll r){ll sum = 1;for(ll i = 1; i <= r; i++){    sum = sum * (n - r + i) / i;}    return (ll)sum;}
 ll pov(ll a,ll b){if(a == 1){return 1;}ll ans = 1;while(b){if(b&1){ans = (ans * a)%M;}a = (a*a)%M;b >>=1;}return ans;}
-void solve()
-{
-    // code -->
-    cy;
-    inll(x);
-    inll(m);
-    dvecl veci(m,vecl(3,0));
-    rep(i,m){
-        ll a,b,c;
-        cin>>a>>b>>c;
-        a--;b--;    
-        veci[i] = {a,b,c};
-    }
-    sort(all(veci));
-    rep(i,m){
-        out(veci[i]);
-    }
-    vecl temp(x,0);
 
-}   
+void ujjwal(){
+    // Code Starts Here
+    instr(st);
+    sort(all(st));
+    if(st == "ABC"){
+        cy;
+        rtn;
+    }
+    cn;
+    rtn;
+}
 
 int32_t main()
 {
     bullet()
-    #ifndef ONLINE_JUDGE
-        freopen("Error.txt","w",stderr);
-    #endif
-        /*
-    ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्। उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय माऽमृतात्॥
-    ॐ भूर्भुवः स्वः। तत्सवितुर्वरेण्यं॥भर्गो देवस्यः धीमहि। धियो यो नः प्रचोदयात्॥
-    */
-
+    // It is not the End Until is the End!!
     int t = 1;
-    cin>>t;
+    // cin>>t;
     while(t--)
     {
-    solve();
+    ujjwal();
     }
     return 0;
 }
